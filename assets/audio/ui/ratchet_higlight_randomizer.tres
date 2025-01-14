@@ -1,0 +1,11 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=4 format=3 uid="uid://dv0axkbkqvgof"]
+
+[ext_resource type="AudioStream" uid="uid://42r4hgy7v0o3" path="res://assets/audio/ui/ratchet_highlight_01.mp3" id="1_8ip5x"]
+[ext_resource type="AudioStream" uid="uid://bf23f4ahb1rnu" path="res://assets/audio/ui/ratchet_highlight_02.mp3" id="2_nw08q"]
+[ext_resource type="AudioStream" uid="uid://b7q35ad4qb22g" path="res://assets/audio/ui/ratchet_highlight_03.mp3" id="3_k16qq"]
+
+[resource]
+streams_count = 3
+stream_0/stream = ExtResource("1_8ip5x")
+stream_1/stream = ExtResource("2_nw08q")
+stream_2/stream = ExtResource("3_k16qq")
