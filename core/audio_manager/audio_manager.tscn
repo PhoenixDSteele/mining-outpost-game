@@ -9,8 +9,6 @@ process_mode = 3
 script = ExtResource("1_i8t5j")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-bus = &"Music"
 
 [node name="UI" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamPolyphonic_xef58")
-bus = &"UI"

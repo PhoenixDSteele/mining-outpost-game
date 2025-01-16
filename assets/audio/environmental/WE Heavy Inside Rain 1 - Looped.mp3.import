@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dee2pvosg4tos"
+path="res://.godot/imported/WE Heavy Inside Rain 1 - Looped.mp3-ac13e0ec07d9cf76c8cc0591e085d369.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/environmental/WE Heavy Inside Rain 1 - Looped.mp3"
+dest_files=["res://.godot/imported/WE Heavy Inside Rain 1 - Looped.mp3-ac13e0ec07d9cf76c8cc0591e085d369.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

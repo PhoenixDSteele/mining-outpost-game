@@ -1,11 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1v3kijl2hqrp"]
+[gd_scene load_steps=6 format=3 uid="uid://b1v3kijl2hqrp"]
 
 [ext_resource type="Script" path="res://game/scripts/main_menu/main_menu.gd" id="1_kukyf"]
 [ext_resource type="Theme" uid="uid://dtej56pljgyf2" path="res://assets/ui_theme/temp_theme.tres" id="2_lmcxa"]
-[ext_resource type="Texture2D" uid="uid://c0ira7bsj80t" path="res://assets/textures/360_F_908657750_4QOeo8aACvtT31QoWurpPa3i5DP3QtfF.jpg" id="3_ao2nw"]
+[ext_resource type="VideoStream" path="res://assets/video/bg_loop.ogv" id="3_wpcag"]
+[ext_resource type="PackedScene" uid="uid://3u6ci5l75476" path="res://core/ui/feature_button.tscn" id="4_4vemy"]
+[ext_resource type="AudioStream" uid="uid://dee2pvosg4tos" path="res://assets/audio/environmental/WE Heavy Inside Rain 1 - Looped.mp3" id="5_t1q80"]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_kukyf")
+
+[node name="BackgroundRain" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_t1q80")
+volume_db = -10.0
+autoplay = true
+bus = &"Environmental"
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -16,16 +24,19 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_lmcxa")
 
-[node name="TextureRect" type="TextureRect" parent="Control"]
+[node name="BackgroundVideo" type="VideoStreamPlayer" parent="Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_ao2nw")
+stream = ExtResource("3_wpcag")
+autoplay = true
+expand = true
 
 [node name="Panel" type="Panel" parent="Control"]
+self_modulate = Color(1, 1, 1, 0.5)
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 1
 anchors_preset = 8
@@ -52,15 +63,13 @@ theme_override_constants/margin_bottom = 25
 layout_mode = 2
 theme_override_constants/separation = 25
 
-[node name="START_Button" type="Button" parent="Control/Panel/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(250, 50)
+[node name="START_Button" parent="Control/Panel/MarginContainer/VBoxContainer" instance=ExtResource("4_4vemy")]
 layout_mode = 2
 text = "START GAME"
 
-[node name="EXIT_Button" type="Button" parent="Control/Panel/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(250, 50)
+[node name="EXIT_Button" parent="Control/Panel/MarginContainer/VBoxContainer" instance=ExtResource("4_4vemy")]
 layout_mode = 2
-text = "EXIT GAME"
+text = "EXIT"
 
 [connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/START_Button" to="." method="_start_button_pressed"]
 [connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/EXIT_Button" to="." method="_exit_button_pressed"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://sv47lnemnjnc"]
+[gd_scene load_steps=9 format=3 uid="uid://sv47lnemnjnc"]
 
 [ext_resource type="Shader" path="res://assets/shaders/screen_blur.gdshader" id="1_43ew5"]
 [ext_resource type="Script" path="res://game/scripts/UI/pause_screen.gd" id="1_ba3h2"]
 [ext_resource type="Theme" uid="uid://dtej56pljgyf2" path="res://assets/ui_theme/temp_theme.tres" id="2_23tle"]
+[ext_resource type="PackedScene" uid="uid://3u6ci5l75476" path="res://core/ui/feature_button.tscn" id="4_qiia4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8cbiy"]
 shader = ExtResource("1_43ew5")
@@ -99,17 +100,13 @@ theme_override_constants/margin_bottom = 25
 layout_mode = 2
 theme_override_constants/separation = 25
 
-[node name="RESUME_Button" type="Button" parent="Screen/Panel/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 50)
+[node name="RESUME_Button" parent="Screen/Panel/MarginContainer/VBoxContainer" instance=ExtResource("4_qiia4")]
 layout_mode = 2
 text = "RESUME"
 
-[node name="EXIT_Button" type="Button" parent="Screen/Panel/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 50)
+[node name="EXIT_Button" parent="Screen/Panel/MarginContainer/VBoxContainer" instance=ExtResource("4_qiia4")]
 layout_mode = 2
-text = "EXIT GAME"
+text = "TO MAIN MENU"
 
 [node name="ExitConfirmation" type="Control" parent="Screen"]
 unique_name_in_owner = true
@@ -171,15 +168,13 @@ layout_mode = 2
 theme_override_constants/separation = 30
 alignment = 1
 
-[node name="BUTTON_Yes" type="Button" parent="Screen/ExitConfirmation/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 30)
+[node name="CONFIRM_Button" parent="Screen/ExitConfirmation/Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_qiia4")]
+custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 text = "YES"
 
-[node name="BUTTON_No" type="Button" parent="Screen/ExitConfirmation/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 0)
+[node name="CANCEL_Button" parent="Screen/ExitConfirmation/Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_qiia4")]
+custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 text = "NO"
 
@@ -191,5 +186,5 @@ libraries = {
 
 [connection signal="pressed" from="Screen/Panel/MarginContainer/VBoxContainer/RESUME_Button" to="." method="resume_game"]
 [connection signal="pressed" from="Screen/Panel/MarginContainer/VBoxContainer/EXIT_Button" to="." method="exit_game"]
-[connection signal="pressed" from="Screen/ExitConfirmation/Panel/MarginContainer/VBoxContainer/HBoxContainer/BUTTON_Yes" to="." method="confirm_exit"]
-[connection signal="pressed" from="Screen/ExitConfirmation/Panel/MarginContainer/VBoxContainer/HBoxContainer/BUTTON_No" to="." method="cancel_exit"]
+[connection signal="pressed" from="Screen/ExitConfirmation/Panel/MarginContainer/VBoxContainer/HBoxContainer/CONFIRM_Button" to="." method="confirm_exit"]
+[connection signal="pressed" from="Screen/ExitConfirmation/Panel/MarginContainer/VBoxContainer/HBoxContainer/CANCEL_Button" to="." method="cancel_exit"]

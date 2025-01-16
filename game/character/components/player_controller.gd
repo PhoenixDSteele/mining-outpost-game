@@ -1,0 +1,19 @@
+class_name PlayerController extends Node
+## Player Controller, instantiated on a player controlled body by state machine.
+##
+## Don't manually place this. Put all player movement controls here.
+##
+
+## Used to output player input. [StateMachine] will connect [State]'s to this signal if they need player control.
+signal input
+
+
+func _physics_process(_delta: float) -> void:
+	if Input.is_action_pressed("movement"):
+		input.emit(Vector3(Input.get_vector("move_left","move_right","move_forward","move_backward").x,
+										0,
+					Input.get_vector("move_left","move_right","move_forward","move_backward").y))
+	elif Input.is_action_just_released("movement"):
+		input.emit(Vector3(Input.get_vector("move_left","move_right","move_forward","move_backward").x,
+										0,
+					Input.get_vector("move_left","move_right","move_forward","move_backward").y))
