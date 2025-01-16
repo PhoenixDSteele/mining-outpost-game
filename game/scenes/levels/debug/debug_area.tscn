@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c8px4gw6t5ejx"]
 
-[ext_resource type="PackedScene" uid="uid://r0rsvd7xkcoh" path="res://game/character/body_base.tscn" id="1_e218b"]
+[ext_resource type="PackedScene" uid="uid://dfqcqf6cw5gkp" path="res://game/character/player/player.tscn" id="1_yp5ro"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nfg6q"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -32,6 +32,5 @@ use_collision = true
 size = Vector3(31, 1, 31)
 material = SubResource("StandardMaterial3D_enc7h")
 
-[node name="BodyBase" parent="." instance=ExtResource("1_e218b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-controller_Type = 0
+[node name="Player" parent="." instance=ExtResource("1_yp5ro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

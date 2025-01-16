@@ -9,7 +9,7 @@ class_name StateMachine extends Node
 enum ControllerType {
 	PLAYER,
 	AI = -1}
-@export var controller_Type : ControllerType = ControllerType.AI
+var controller_Type : ControllerType = ControllerType.AI
 
 ## Player Controller
 var player_controller : PlayerController = null
@@ -42,7 +42,7 @@ func _ready() -> void:
 		player_controller.name = "PlayerController"
 		get_parent().add_child.call_deferred(player_controller)
 		# Loads in Camera, and adds it.
-		player_camera = load("res://player_camera.tscn")
+		player_camera = load("res://game/character/player/player_camera.tscn")
 		camera_instance = player_camera.instantiate()
 		camera_instance.position.y = 0.5
 		camera_instance.name = "PlayerCamera"

@@ -39,4 +39,4 @@ func _physics_process(delta: float) -> void:
 	pitch = clamp(pitch, pitch_min, pitch_max)
 	yaw_node.rotation_degrees.y = lerpf(yaw_node.rotation_degrees.y, yaw, yaw_acceleration * delta)
 	pitch_node.rotation_degrees.x = lerpf(pitch_node.rotation_degrees.y, pitch, pitch_acceleration * delta)
-	camera_rotation.emit(yaw_node.rotation.y)
+	camera_rotation.emit(yaw_node.transform.basis)

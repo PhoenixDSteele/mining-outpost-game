@@ -2,6 +2,7 @@ class_name MainMenu extends CanvasLayer
 ## Main Menu scene
 ##
 
+@warning_ignore("standalone_expression") # Working correctly as intended. -Phoenix
 func _ready() -> void:
 	# Starts Menu Music.
 	if SceneManager.on_main_menu == false:
