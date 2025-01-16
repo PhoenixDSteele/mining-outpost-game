@@ -19,6 +19,7 @@ var player_controller : PlayerController = null
 
 ## Player Camera.
 var player_camera : PlayerCamera = null
+var cam_rot : float = 0
 
 ## The controlled body.
 var body : BodyBase = null
@@ -33,7 +34,7 @@ func enter() -> void:
 
 ## If PLAYER controls this state machine, this will take in all input from the assigned [PlayerController].
 @warning_ignore("unused_parameter")
-func handle_input(input : Vector3) -> void:
+func handle_input(input) -> void:
 	pass
 
 func on_camera_update(camera_rotation : float) -> void:

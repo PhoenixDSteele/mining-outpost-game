@@ -44,6 +44,7 @@ func _ready() -> void:
 		# Loads in Camera, and adds it.
 		player_camera = load("res://player_camera.tscn")
 		camera_instance = player_camera.instantiate()
+		camera_instance.position.y = 0.5
 		camera_instance.name = "PlayerCamera"
 		get_parent().add_child.call_deferred(camera_instance)
 		self.controller_Type = ControllerType.PLAYER

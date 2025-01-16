@@ -13,7 +13,9 @@ func _physics_process(_delta: float) -> void:
 		input.emit(Vector3(Input.get_vector("move_left","move_right","move_forward","move_backward").x,
 										0,
 					Input.get_vector("move_left","move_right","move_forward","move_backward").y))
-	elif Input.is_action_just_released("movement"):
+	if Input.is_action_just_released("movement"):
 		input.emit(Vector3(Input.get_vector("move_left","move_right","move_forward","move_backward").x,
 										0,
 					Input.get_vector("move_left","move_right","move_forward","move_backward").y))
+	if Input.is_action_pressed("jump"):
+		input.emit(true)

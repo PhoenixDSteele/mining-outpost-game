@@ -1,6 +1,7 @@
 class_name BodyBase extends CharacterBody3D
 ## Base class for all characters in the game.
 ##
+@onready var visual: Node3D = %Visual
 
 ## Controller type.
 enum ControllerType {
