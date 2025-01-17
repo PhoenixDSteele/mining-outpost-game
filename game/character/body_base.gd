@@ -21,6 +21,7 @@ enum ControllerType {
 
 ## Personal Body Gravity
 @export var gravity : float = 8
+var gravity_enabled : bool = true
 
 func _ready() -> void:
 	if anim_player == null:
@@ -29,10 +30,11 @@ func _ready() -> void:
 		collision = find_collision()
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
+	# Add the gravity if it's enabled.
+	if not is_on_floor() and (gravity_enabled == true):
 		velocity.y -= gravity * delta
-
+	
+	# Always active to make velocity movements possible in state machine.
 	move_and_slide()
 
 ## Attempts to search for animation player if it's not manually set.

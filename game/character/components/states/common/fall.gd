@@ -30,7 +30,8 @@ func handle_input(input) -> void:
 		if (input is String):
 			if (input == "climb"):
 				if climb_checker.can_climb == true:
-					Transition.emit(self,"LedgeClimbState")
+					Transition.emit(self,"LedgeHangState")
+					return
 
 func update_process(_delta) -> void:
 	pass
@@ -41,6 +42,7 @@ func update_physics(_delta) -> void:
 		move_direction = Vector3.ZERO
 		body.anim_player.play("idle", 0.3, 1.7)
 		Transition.emit(self, "idlestate")
+		return
 	
 	if move_input:
 		move_direction = move_direction.rotated(Vector3.UP, player_camera.yaw_node.rotation.y)

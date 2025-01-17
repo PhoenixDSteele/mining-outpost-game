@@ -1,4 +1,4 @@
-class_name LedgeClimbState extends State
+class_name LedgeHangState extends State
 ## Movement state for character.
 ##
 
@@ -28,8 +28,11 @@ func enter() -> void:
 	
 	slide_pos =  target_angle_pos - body.global_position
 	
-	body.anim_player.play("", 0.2)
+	body.anim_player.play("ledge_hang", 0.2)
 	super.enter()
+	active = false
+	await get_tree().create_timer(0.2).timeout
+	active = true
 
 
 @warning_ignore("unused_parameter")
@@ -37,17 +40,23 @@ func handle_input(input) -> void:
 	if active == true:
 		if (input is String):
 			if input == "climb":
-				body.visual.position = Vector3.ZERO
-				body.global_position = climb_checker.climb_pos.global_position
-				Transition.emit(self, "idleState")
+				active = false
+				body.anim_player.animation_finished.connect(climb_up)
+				body.anim_player.play("climb_up", 0.0, 1.2)
 
+func climb_up(test):
+	body.anim_player.play("idle", 0.05, 4.0)
+	body.anim_player.animation_finished.disconnect(climb_up)
+	body.global_position = climb_checker.climb_pos.global_position
+	body.visual.position = Vector3.ZERO
+	Transition.emit(self, "idlestate")
+	return
 
 func update_process(_delta) -> void:
 	body.visual.rotation.y = lerp_angle(body.visual.rotation.y, atan2(target_rot_dir.x, target_rot_dir.y), 5 * _delta)
 	body.visual.position.y = lerp(body.visual.position.y, target_slump, 15 * _delta)
 	body.visual.position.x = lerp(body.visual.position.x, slide_pos.x, 5 * _delta)
 	body.visual.position.z = lerp(body.visual.position.z, slide_pos.z, 5 * _delta)
-
 
 func update_physics(_delta) -> void:
 	body.velocity = Vector3.ZERO

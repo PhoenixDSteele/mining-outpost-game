@@ -5,7 +5,7 @@ class_name JumpState extends State
 @export var jump_height : float = 5
 @export var air_move_speed : float = 10.0 ## Target max movespeed.
 @export var acceleration : float = 5.0 ## Rate of acceleration
-@export var decceleration : float = 5.0 ## Rate of decceleration.
+@export var decceleration : float = 1.0 ## Rate of decceleration.
 @export var turn_speed : float = 5.0 ## Speed of characters body turning.
 
 ## Movement Direction, as sent by the handled input.
@@ -29,11 +29,7 @@ func handle_input(input) -> void:
 				move_input = true
 			else:
 				move_input = false
-		
-		if (input is String):
-			if (input == "climb"):
-				if climb_checker.can_climb == true:
-					Transition.emit(self,"LedgeClimbState")
+
 
 
 func update_process(_delta) -> void:
