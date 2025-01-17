@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfgxhc1ypxt24"]
+
+[ext_resource type="Script" path="res://game/character/player/climb_checker.gd" id="1_je77x"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xpo43"]
+
+[node name="ClimbChecker" type="Node3D"]
+script = ExtResource("1_je77x")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 1)
+shape = SubResource("BoxShape3D_xpo43")

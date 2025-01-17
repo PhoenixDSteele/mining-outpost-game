@@ -5,6 +5,10 @@ class_name StateMachine extends Node
 ## The state machine will grab the parent node, which is a [BodyBase], and set it's [param body], which will be used in all the states.
 ##
 
+## Node that is rotated/moved during state control. Attach the rig/mesh to this node.
+@onready var visual: Node3D = %Visual
+
+
 ## Controller type.
 enum ControllerType {
 	PLAYER,
@@ -18,8 +22,13 @@ var player_controller : PlayerController = null
 var player_camera : Resource
 var camera_instance : PlayerCamera
 
+## Climber Checker - Used to check climbable conditions.
+var climb_checker : Resource
+var climb_checker_instance : ClimbChecker
+
 ## The controlled body.
 var body : BodyBase = null
+
 
 @export_category("States")
 ## Initial starting state. If not set, will return an error. Use [IdleState] for most characters.
@@ -47,6 +56,13 @@ func _ready() -> void:
 		camera_instance.position.y = 0.5
 		camera_instance.name = "PlayerCamera"
 		get_parent().add_child.call_deferred(camera_instance)
+		# Loads in ClimbChecker, and adds it to player.
+		climb_checker = load("res://game/character/player/climb_checker.tscn")
+		climb_checker_instance = climb_checker.instantiate()
+		climb_checker_instance.position.y = 0.0
+		climb_checker_instance.name = "ClimbChecker"
+		self.visual.add_child.call_deferred(climb_checker_instance)
+		# Sets state machine controller type.
 		self.controller_Type = ControllerType.PLAYER
 		print("Player Controlled")
 	elif controller_Type == ControllerType.AI:
@@ -61,8 +77,10 @@ func _ready() -> void:
 			child_state.controller_Type = self.controller_Type
 			if player_controller != null:
 				child_state.player_controller = self.player_controller
-			if camera_instance != null:
-				child_state.player_camera = self.camera_instance
+				if camera_instance != null:
+					child_state.player_camera = self.camera_instance
+					if climb_checker != null:
+						child_state.climb_checker = self.climb_checker_instance
 			state_list.get_or_add(child_state.name.to_lower(), child_state)
 	
 	# Failsafe error alert for making sure an initial state is set.
@@ -85,7 +103,6 @@ func state_transition(state:State, next_state:String) -> void:
 		current_state.exit()
 	
 	state_to_enter.enter()
-	
 	current_state = state_to_enter
 
 

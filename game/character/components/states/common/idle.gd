@@ -3,22 +3,19 @@ class_name IdleState extends State
 ##
 
 func enter() -> void:
+	body.anim_player.play("idle", 0.2)
 	super.enter()
 
 
 @warning_ignore("unused_parameter")
 func handle_input(input) -> void:
-	if input is Vector3:
-		Transition.emit(self, "movementstate")
-		return
-	if (input is bool) and (body.is_on_floor()):
-		if input == true:
-			Transition.emit(self, "jumpstate")
-
-
-func on_camera_update(camera_rotation : float) -> void:
-	cam_rot = camera_rotation
-	pass
+	if active == true:
+		if input is Vector3:
+			Transition.emit(self, "movementstate")
+			return
+		if (input is bool) and (body.is_on_floor()):
+			if input == true:
+				Transition.emit(self, "jumpstate")
 
 
 func update_process(_delta) -> void:

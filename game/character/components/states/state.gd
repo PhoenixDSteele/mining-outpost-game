@@ -21,23 +21,27 @@ var player_controller : PlayerController = null
 var player_camera : PlayerCamera = null
 var cam_rot : float = 0
 
+## Climber Checker - Used to check climbable conditions.
+var climb_checker : ClimbChecker = null
+
 ## The controlled body.
 var body : BodyBase = null
 
+## Active Boolean.
+var active : bool = false
+
 ## Handles everything that needs to happen upon entering the state.
 func enter() -> void:
+	active = true
 	if player_controller != null:
-		player_controller.input.connect(handle_input)
-	if player_camera != null:
-		player_camera.camera_rotation.connect(on_camera_update)
+		if player_controller.input.is_connected(handle_input) == false:
+			print("connected controller")
+			player_controller.input.connect(handle_input)
 	print(str(body.name.to_upper()) + " has entered their " + str(name) + ".") #DELETE LATER
 
 ## If PLAYER controls this state machine, this will take in all input from the assigned [PlayerController].
 @warning_ignore("unused_parameter")
 func handle_input(input) -> void:
-	pass
-
-func on_camera_update(camera_rotation : float) -> void:
 	pass
 
 ## Handles everything that needs to happen per update.
@@ -50,8 +54,5 @@ func update_physics(_delta) -> void:
 
 ## Handles everything that needs to happen upon exiting the state.
 func exit() -> void:
-	if player_controller != null:
-		player_controller.input.disconnect(handle_input)
-	if player_camera != null:
-		player_camera.camera_rotation.disconnect(on_camera_update)
+	active = false
 	#print(str(body.name.to_upper()) + " has exited their " + str(name) + ".") #DELETE LATER
