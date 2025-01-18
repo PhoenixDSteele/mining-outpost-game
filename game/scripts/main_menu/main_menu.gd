@@ -4,14 +4,14 @@ class_name MainMenu extends CanvasLayer
 
 @warning_ignore("standalone_expression") # Working correctly as intended. -Phoenix
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	# Starts Menu Music.
-	if SceneManager.on_main_menu == false:
+	if AudioManager.current_song != "main_menu":
 		AudioManager.play_music("main_menu")
-		SceneManager.on_main_menu == true
 
 ## Connected to the start button. Goes to the selected scene.
 func _start_button_pressed() -> void:
-	SceneManager.to_gameplay()
+	SceneManager.scene_change(SceneManager.level_debug)
 
 ## Connected to the start button. Ends the game.
 func _exit_button_pressed() -> void:

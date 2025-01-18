@@ -8,6 +8,10 @@ class_name PauseScreen extends CanvasLayer
 ## Used to grab the previous gameplays music time to resume at correct time.
 var stored_music_time : float = 0
 
+## Unpaused currently playing song name.
+var stored_song : String
+
+
 ## Pauses the game when it's instantiated in.
 func _ready() -> void:
 	# Plays swoosh sound for menu.
@@ -15,6 +19,7 @@ func _ready() -> void:
 	
 	# Starts Menu Music.
 	stored_music_time = AudioManager.music.get_playback_position()
+	stored_song = AudioManager.current_song
 	AudioManager.play_music("paused", AudioManager.stored_pause_music_time)
 	
 	get_tree().paused = true
@@ -24,7 +29,7 @@ func _ready() -> void:
 func resume_game() -> void:
 	get_tree().paused = false
 	AudioManager.stored_pause_music_time = AudioManager.music.get_playback_position()
-	AudioManager.play_music("gameplay", stored_music_time)
+	AudioManager.play_music(stored_song, stored_music_time)
 	self.queue_free()
 
 ## Pops up exit confirmation.
@@ -34,7 +39,7 @@ func exit_game() -> void:
 ## Confirms exit, and takes play back main menu.
 func confirm_exit() -> void:
 	get_tree().paused = false
-	SceneManager.to_main_menu()
+	SceneManager.scene_change(SceneManager.level_main_menu)
 	queue_free()
 
 ## Cancels exit, and takes play back a menu.

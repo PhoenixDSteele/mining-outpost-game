@@ -4,10 +4,6 @@ extends Node
 ## Scene change duration.
 @export var scene_change_duration: float = 3
 
-## Scenes to be loaded. Add more as necessary with the proper function.
-@export var main_menu : PackedScene
-@export var debug : PackedScene
-
 ## Timer used to determine the time given for loading out/in.
 @onready var scene_change_timer: Timer = $SceneChangeTimer
 
@@ -16,55 +12,54 @@ var load_screen_instance : LoadingScreen
 const LOADING_SCREEN = preload("res://game/scenes/UI/loading_screen.tscn")
 
 ## Current Scene, and Next Scene to go to.
-var current_scene : Node
+var current_scene : String
 var next_scene : PackedScene
+var loaded_level : Level
 
 ## Canvas Node, to instantiate during the pause menu.
 var pause_menu_instance : PauseScreen
 const PAUSE_SCREEN = preload("res://game/scenes/UI/pause_screen.tscn")
 
-## Dictionary of scenes. Add more as needed.
+## Dictionary of scenes. Add more as needed. If you add a scene to the dictionary, add it as a const underneath as well for auto-complete.
 var known_scenes: Dictionary = {
-	"main_menu": preload("res://game/scenes/main_menu/main_menu.tscn"),
-	"debug": preload("res://game/scenes/levels/debug/debug_area.tscn")
+	"main_menu": preload("res://game/scenes/levels/main_menu/main_menu.tscn"),
+	"debug": preload("res://game/scenes/levels/debug/debug.tscn"),
+	"hub_area": preload("res://game/scenes/levels/hub_area.tscn")
 }
+
+const level_main_menu:String = "main_menu" ## Main Menu
+const level_debug:String = "debug" ## Debug
+const level_hub_area:String = "hub_area" ## Hub Area
 
 ## Main Menu Check Boolean; Used to prevent pausing on main menu.
 var on_main_menu : bool = false
 ## Paused Check; Checks if game is paused.
 var paused : bool = false
 
+## Stored Scene Name For Load Functions.
+var next_scene_name : String = ""
+## Stored Door ID For Load Functions.
+var next_door_id : int = 0
+
 func _input(event: InputEvent) -> void:
 	## Pressing the input mapped key checks if the scene tree is already paused, if not it runs the pause function.
 	## Considering moving this elsewhere.
 	if event.is_action_pressed("pause"):
-		if !get_tree().paused:
-			pause_game()
+		if current_scene != "main_menu":
+			if !get_tree().paused:
+				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+				pause_game()
+			else:
+				pause_menu_instance.resume_game()
 
-
-## Goes to main menu.
-func to_main_menu() -> void:
-	# Starts Menu Music.
-	AudioManager.play_music("main_menu")
-
-	on_main_menu = true
-	next_scene = known_scenes["main_menu"]
-	scene_change()
-
-
-## Goes to gameplay.
-func to_gameplay() -> void:
-	# Starts Gameplay Music.
-	AudioManager.play_music("gameplay")
-
-	on_main_menu = false
-	next_scene = known_scenes["debug"]
-	scene_change()
 
 ## Starts timer, and spawns a loading screen.
 ## Connects the loading screen signals, and handles the fade on the object itself.
-func scene_change() -> void:
+func scene_change(scene_name:String, door_id:int = 1000) -> void:
+	current_scene = scene_name
 	if scene_change_timer.is_stopped():
+		next_scene_name = scene_name
+		next_door_id = door_id
 		load_screen_instance = LOADING_SCREEN.instantiate()
 		add_child(load_screen_instance)
 		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
@@ -74,16 +69,33 @@ func scene_change() -> void:
 	else:
 		return
 
-## Load scene, and waits until next game loop to call the scene change being finished.
+## Load scene, and waits until next game loop to call the scene change being finished. If door id not included, defaults to a manual spawn.
 func load_scene() -> void:
+	next_scene = known_scenes[next_scene_name]
+	
 	get_tree().change_scene_to_packed(next_scene)
+	
 	await get_tree().physics_frame
+	loaded_level = get_tree().current_scene
+	
+	if next_door_id == 1000:
+		if  loaded_level.no_spawn != true:
+			loaded_level.spawn_player_manually() 
+			print("No door ID detected, manually spawning at default location.")
+	else:
+		loaded_level.spawn_at_door(next_door_id)
+	if loaded_level.level_music != "":
+		if loaded_level.level_music != AudioManager.current_song:
+			AudioManager.play_music(loaded_level.level_music)
+		
 	scene_change_finished()
 
 ## Uses built in signal for the timer node.
 func scene_change_finished() -> void:
 	load_screen_instance.fade_in()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	print(loaded_level)
+	
 
 ## Clears load screen.
 func clear_load_screen() -> void:

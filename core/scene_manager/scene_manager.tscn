@@ -1,12 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://ecjyhabf1gsy"]
+[gd_scene load_steps=2 format=3 uid="uid://ecjyhabf1gsy"]
 
 [ext_resource type="Script" path="res://core/scene_manager/scene_manager.gd" id="1_86dut"]
-[ext_resource type="PackedScene" uid="uid://b1v3kijl2hqrp" path="res://game/scenes/main_menu/main_menu.tscn" id="2_5ng7q"]
 
 [node name="SceneManager" type="Node"]
 process_mode = 3
 script = ExtResource("1_86dut")
-main_menu = ExtResource("2_5ng7q")
 
 [node name="SceneChangeTimer" type="Timer" parent="."]
 

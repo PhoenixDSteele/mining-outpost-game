@@ -13,7 +13,6 @@ var move_speed : float = 0.0
 
 ## Movement Direction, as sent by the handled input.
 var move_direction = Vector3.ZERO
-var target_rotation = Vector3.ZERO
 
 var move_input : bool = false
 

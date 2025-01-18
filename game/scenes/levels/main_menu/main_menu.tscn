@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cs8cxrvwt8cs5"]
+
+[ext_resource type="PackedScene" uid="uid://dw8n0ir5hscjp" path="res://game/scenes/levels/level.tscn" id="1_j43ff"]
+[ext_resource type="PackedScene" uid="uid://b1v3kijl2hqrp" path="res://game/scenes/levels/main_menu/main_menu_canvas.tscn" id="2_ujyte"]
+
+[node name="Level" instance=ExtResource("1_j43ff")]
+level_name = "main_menu"
+level_music = "main_menu"
+no_spawn = true
+
+[node name="MainMenu" parent="." index="4" instance=ExtResource("2_ujyte")]

@@ -21,11 +21,14 @@ signal camera_rotation(camera_rotation : float)
 @onready var pitch_node: Node3D = %CameraPitch
 @onready var spring_arm: SpringArm3D = %SpringArm3D
 @onready var camera: Camera3D = %Camera3D
+@onready var interaction_ray: InteractionRay = %InteractionRay
 
 var yaw : float = 0
 var pitch : float = 0
 
 func _ready() -> void:
+	spring_arm.spring_length = camera_arm_length
+	
 	await get_tree().physics_frame
 
 func _input(event: InputEvent) -> void:

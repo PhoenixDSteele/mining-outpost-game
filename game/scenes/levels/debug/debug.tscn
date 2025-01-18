@@ -1,0 +1,94 @@
+[gd_scene load_steps=13 format=3 uid="uid://due6gjicxdioy"]
+
+[ext_resource type="PackedScene" uid="uid://dw8n0ir5hscjp" path="res://game/scenes/levels/level.tscn" id="1_43wqk"]
+[ext_resource type="Texture2D" uid="uid://4u0h7r84s3tu" path="res://icon.svg" id="2_mtwh1"]
+[ext_resource type="PackedScene" uid="uid://bhijhscc5lduk" path="res://zone_door.tscn" id="2_q6xqr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1fwe4"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_fuymo"]
+sky_material = SubResource("ProceduralSkyMaterial_1fwe4")
+
+[sub_resource type="Environment" id="Environment_lfxu7"]
+background_mode = 2
+sky = SubResource("Sky_fuymo")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jvfel"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bimoo"]
+transparency = 1
+albedo_color = Color(0, 1, 1, 0.119)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oi1nk"]
+albedo_color = Color(1, 0.21, 0.21, 1)
+metallic = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p220d"]
+shading_mode = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ia0t"]
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pgrwi"]
+albedo_texture = ExtResource("2_mtwh1")
+
+[node name="debug" instance=ExtResource("1_43wqk")]
+level_name = "debug"
+level_music = "main_menu"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Enviro#Lighting" index="0"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Enviro#Lighting" index="1"]
+environment = SubResource("Environment_lfxu7")
+
+[node name="Floor" type="CSGBox3D" parent="StaticScenery" index="0"]
+use_collision = true
+size = Vector3(15, 1, 15)
+material = SubResource("StandardMaterial3D_jvfel")
+
+[node name="Floor2" type="CSGBox3D" parent="StaticScenery" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 10, 0)
+use_collision = true
+size = Vector3(13, 1, 15)
+material = SubResource("StandardMaterial3D_bimoo")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticScenery" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 1.5, 6.5)
+use_collision = true
+size = Vector3(2, 2, 2)
+material = SubResource("StandardMaterial3D_oi1nk")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="StaticScenery" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 3.5, 2.5)
+use_collision = true
+size = Vector3(2, 2, 2)
+material = SubResource("StandardMaterial3D_p220d")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="StaticScenery" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 5.5, -1.5)
+use_collision = true
+size = Vector3(2, 2, 2)
+material = SubResource("StandardMaterial3D_7ia0t")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="StaticScenery" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 7.5, -5.5)
+use_collision = true
+size = Vector3(2, 2, 2)
+material = SubResource("StandardMaterial3D_pgrwi")
+
+[node name="to_hub_area" parent="Doors" index="0" instance=ExtResource("2_q6xqr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.55817, 0, 0)
+door_id = 4
+target_door_id = 2
+target_level = "hub_area"
+
+[node name="ManualSpawnLocation" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dw8n0ir5hscjp"]
+
+[ext_resource type="Script" path="res://level.gd" id="1_hsdj0"]
+
+[node name="Level" type="Node"]
+script = ExtResource("1_hsdj0")
+
+[node name="Enviro#Lighting" type="Node" parent="."]
+
+[node name="StaticScenery" type="Node" parent="."]
+
+[node name="Doors" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="ManualSpawnLocation" type="Marker3D" parent="."]

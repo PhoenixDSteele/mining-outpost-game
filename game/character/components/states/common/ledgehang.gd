@@ -44,7 +44,8 @@ func handle_input(input) -> void:
 				body.anim_player.animation_finished.connect(climb_up)
 				body.anim_player.play("climb_up", 0.0, 1.2)
 
-func climb_up(test):
+@warning_ignore("unused_parameter")
+func climb_up(anim_finished): # Need this param to properly connect animation_finished. Because the signal sends a boolean regardless.
 	body.anim_player.play("idle", 0.05, 4.0)
 	body.anim_player.animation_finished.disconnect(climb_up)
 	body.global_position = climb_checker.climb_pos.global_position

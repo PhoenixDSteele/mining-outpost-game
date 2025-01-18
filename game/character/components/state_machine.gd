@@ -53,7 +53,7 @@ func _ready() -> void:
 		# Loads in Camera, and adds it.
 		player_camera = load("res://game/character/player/player_camera.tscn")
 		camera_instance = player_camera.instantiate()
-		camera_instance.position.y = 0.5
+		camera_instance.position.y = 1.5
 		camera_instance.name = "PlayerCamera"
 		get_parent().add_child.call_deferred(camera_instance)
 		# Loads in ClimbChecker, and adds it to player.

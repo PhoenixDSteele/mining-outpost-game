@@ -3,12 +3,15 @@ extends Node
 ## Used to manage all sounds in game.
 ##
 
-## Dictionary of music. Add more as needed.
+## Dictionary of music. Add more as needed. Optionally add a constant below for auto-completion. Makes finding the song easier.
 var music_dict: Dictionary = {
 	"main_menu": preload("res://assets/audio/music/main_theme.mp3"),
 	"gameplay": preload("res://assets/audio/music/FearTheOre.mp3"),
 	"paused": preload("res://assets/audio/music/BreathForAMoment.mp3"),
 }
+const music_main_menu : String = "main_menu" ## Main menu Music
+const music_gameplay : String = "gameplay" ## Gameplay Music
+const music_paused : String = "paused" ## Pause Music
 
 ## Dictionary of UI Sounds. Add more as needed.
 var ui_sound_dict: Dictionary = {
@@ -22,11 +25,16 @@ var ui_sound_dict: Dictionary = {
 ## Reference to the UI's [AudioStreamPlayer] node; All UI sounds played through this node for now.
 @onready var ui: AudioStreamPlayer = $UI
 
+
 ## For keeping the pause music's resume time.
 var stored_pause_music_time : float = 0
 
+## Current Song
+var current_song : String
+
 ## Current Song Syntax String List: 'main_menu', 'gameplay', 'paused', 'shop'.
 func play_music(song_name:String, play_time:float = 0, volume:float = 0) -> void:
+	current_song = song_name
 	music.volume_db = volume
 	music.stream = music_dict[song_name]
 	music.play(play_time)
