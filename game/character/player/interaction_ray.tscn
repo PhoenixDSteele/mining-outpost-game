@@ -1,9 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://ckdrpe78mknwr"]
 
-[ext_resource type="Script" path="res://interaction_ray.gd" id="1_170bk"]
+[ext_resource type="Script" path="res://game/character/player/interaction_ray.gd" id="1_170bk"]
 
 [sub_resource type="SystemFont" id="SystemFont_q4bji"]
 font_names = PackedStringArray("Beanstalk")
+subpixel_positioning = 0
 
 [node name="InteractionRay" type="RayCast3D"]
 exclude_parent = false

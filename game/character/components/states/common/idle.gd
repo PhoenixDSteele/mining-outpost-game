@@ -3,7 +3,6 @@ class_name IdleState extends State
 ##
 
 func enter() -> void:
-	body.anim_player.play("idle", 0.2)
 	super.enter()
 
 

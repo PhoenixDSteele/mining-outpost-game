@@ -13,7 +13,7 @@ var move_direction = Vector3.ZERO
 var move_input : bool = false
 
 func enter() -> void:
-	body.anim_player.play("fall", 0.5)
+	#body.anim_player.play("fall", 0.5)
 	super.enter()
 
 
@@ -40,7 +40,7 @@ func update_physics(_delta) -> void:
 	
 	if body.is_on_floor():
 		move_direction = Vector3.ZERO
-		body.anim_player.play("idle", 0.3, 1.7)
+		#body.anim_player.play("idle", 0.3, 1.7)
 		Transition.emit(self, "idlestate")
 		return
 	

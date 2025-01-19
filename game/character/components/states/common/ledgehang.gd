@@ -28,7 +28,7 @@ func enter() -> void:
 	
 	slide_pos =  target_angle_pos - body.global_position
 	
-	body.anim_player.play("ledge_hang", 0.2)
+	#body.anim_player.play("ledge_hang", 0.2)
 	super.enter()
 	active = false
 	await get_tree().create_timer(0.2).timeout
@@ -41,8 +41,8 @@ func handle_input(input) -> void:
 		if (input is String):
 			if input == "climb":
 				active = false
-				body.anim_player.animation_finished.connect(climb_up)
-				body.anim_player.play("climb_up", 0.0, 1.2)
+				#body.anim_player.animation_finished.connect(climb_up)
+				#body.anim_player.play("climb_up", 0.0, 1.2)
 
 @warning_ignore("unused_parameter")
 func climb_up(anim_finished): # Need this param to properly connect animation_finished. Because the signal sends a boolean regardless.

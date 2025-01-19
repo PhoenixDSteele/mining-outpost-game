@@ -24,8 +24,8 @@ enum ControllerType {
 var gravity_enabled : bool = true
 
 func _ready() -> void:
-	if anim_player == null:
-		anim_player = find_anim_player()
+	#if anim_player == null:
+		#anim_player = find_anim_player()
 	if collision == null:
 		collision = find_collision()
 

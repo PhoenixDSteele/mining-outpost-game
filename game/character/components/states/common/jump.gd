@@ -14,11 +14,10 @@ var move_direction = Vector3.ZERO
 var move_input : bool = false
 
 func enter() -> void:
-	body.anim_player.play("jump_up", 0.2)
-	body.anim_player.seek(1.0)
+	#body.anim_player.play("jump_up", 0.2)
+	#body.anim_player.seek(1.0)
 	super.enter()
 	body.velocity.y += jump_height
-
 
 @warning_ignore("unused_parameter")
 func handle_input(input) -> void:
@@ -29,7 +28,6 @@ func handle_input(input) -> void:
 				move_input = true
 			else:
 				move_input = false
-
 
 
 func update_process(_delta) -> void:
