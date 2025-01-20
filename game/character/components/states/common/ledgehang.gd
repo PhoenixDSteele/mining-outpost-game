@@ -11,6 +11,10 @@ var target_angle_pos : Vector3 = Vector3.ZERO
 var target_rot_dir : Vector2 = Vector2.ZERO
 var slide_pos : Vector3 = Vector3.ZERO
 
+var root_motion_pos
+
+var finishing : bool = false
+
 func enter() -> void:
 	var ball_marker : MeshInstance3D = MeshInstance3D.new()
 	add_child(ball_marker)
@@ -26,9 +30,9 @@ func enter() -> void:
 	body.gravity_enabled = false
 	body.velocity = Vector3.ZERO
 	
-	slide_pos =  target_angle_pos - body.global_position
+	slide_pos =  body.global_position - target_angle_pos
 	
-	#body.anim_player.play("ledge_hang", 0.2)
+	body.anim_player.play("ledge_grab", 0.2)
 	super.enter()
 	active = false
 	await get_tree().create_timer(0.2).timeout
@@ -41,26 +45,39 @@ func handle_input(input) -> void:
 		if (input is String):
 			if input == "climb":
 				active = false
-				#body.anim_player.animation_finished.connect(climb_up)
-				#body.anim_player.play("climb_up", 0.0, 1.2)
+				body.anim_player.animation_finished.connect(climb_up)
+				body.visual.get_child(0).top_level = true
+				body.anim_player.play("ledge_climb", 0.2)
+				root_motion_pos = body.anim_player.get_root_motion_position()
+
 
 @warning_ignore("unused_parameter")
 func climb_up(anim_finished): # Need this param to properly connect animation_finished. Because the signal sends a boolean regardless.
-	body.anim_player.play("idle", 0.05, 4.0)
+	body.visual.get_child(0).global_position = $"../../Visual/greygoober_combined/metarig/Skeleton3D/RootAttachment/MeshInstance3D".global_position
+	body.anim_player.play("idle", 0.0)
 	body.anim_player.animation_finished.disconnect(climb_up)
-	body.global_position = climb_checker.climb_pos.global_position
-	body.visual.position = Vector3.ZERO
-	Transition.emit(self, "idlestate")
-	return
+	body.collision.disabled = true
+	finishing = true
+
 
 func update_process(_delta) -> void:
 	body.visual.rotation.y = lerp_angle(body.visual.rotation.y, atan2(target_rot_dir.x, target_rot_dir.y), 5 * _delta)
-	body.visual.position.y = lerp(body.visual.position.y, target_slump, 15 * _delta)
 	body.visual.position.x = lerp(body.visual.position.x, slide_pos.x, 5 * _delta)
 	body.visual.position.z = lerp(body.visual.position.z, slide_pos.z, 5 * _delta)
 
+
 func update_physics(_delta) -> void:
-	body.velocity = Vector3.ZERO
+	if finishing == true:
+		body.global_position = lerp(body.global_position, body.visual.get_child(0).global_position, 5 * _delta)
+		if body.global_position.distance_to(body.visual.get_child(0).global_position) <= 0.1:
+			body.collision.disabled = false
+			body.global_position = body.visual.get_child(0).global_position
+			body.visual.position = Vector3.ZERO
+			finishing = false
+			Transition.emit(self, "idlestate")
+			body.visual.get_child(0).top_level = false
+			body.gravity_enabled = true
+			return
 
 
 func exit() -> void:

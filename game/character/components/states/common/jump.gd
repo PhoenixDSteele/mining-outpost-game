@@ -14,8 +14,7 @@ var move_direction = Vector3.ZERO
 var move_input : bool = false
 
 func enter() -> void:
-	#body.anim_player.play("jump_up", 0.2)
-	#body.anim_player.seek(1.0)
+	body.anim_player.play("jump_up", 0.2)
 	super.enter()
 	body.velocity.y += jump_height
 

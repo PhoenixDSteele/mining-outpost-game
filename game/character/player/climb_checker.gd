@@ -13,3 +13,5 @@ func _physics_process(_delta: float) -> void:
 			can_climb = true
 		else:
 			can_climb = false
+	else:
+		can_climb = false

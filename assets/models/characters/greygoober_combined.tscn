@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdw7eddtg3dea"]
-
-[ext_resource type="PackedScene" uid="uid://b8o1y6k34bmm5" path="res://assets/models/characters/player/greygoober_combined.glb" id="1_qijd5"]
-
-[node name="greygoober_combined" instance=ExtResource("1_qijd5")]

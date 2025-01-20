@@ -57,10 +57,10 @@ func update_physics(_delta) -> void:
 	
 	if move_input:
 		if move_speed == jog_speed:
-			#body.anim_player.play("jog", 3.0)
+			body.anim_player.play("run", 3.0)
 			pass
 		elif move_speed == walk_speed:
-			#body.anim_player.play("walk" , 3.0)
+			body.anim_player.play("walk" , 3.0)
 			pass
 		move_direction = move_direction.rotated(Vector3.UP, player_camera.yaw_node.rotation.y)
 		var target_rotation = atan2(move_direction.x, move_direction.z) - body.rotation.y
@@ -68,7 +68,7 @@ func update_physics(_delta) -> void:
 		body.velocity.x = lerp(body.velocity.x, move_direction.x * move_speed, acceleration * _delta)
 		body.velocity.z = lerp(body.velocity.z, move_direction.z * move_speed, acceleration * _delta)
 	else:
-		#body.anim_player.play("idle", 5.0)
+		body.anim_player.play("idle", 5.0)
 		body.velocity.x = lerp(body.velocity.x, 0.0, decceleration * _delta)
 		body.velocity.z = lerp(body.velocity.z, 0.0, decceleration * _delta)
 		if absf(Vector2(body.velocity.x, body.velocity.z).length()) <= 0.1:
