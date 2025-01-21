@@ -1,0 +1,138 @@
+[gd_scene load_steps=13 format=3 uid="uid://cn7g28k3l3ssy"]
+
+[ext_resource type="PackedScene" uid="uid://dw8n0ir5hscjp" path="res://game/scenes/levels/level.tscn" id="1_4ictq"]
+[ext_resource type="Script" path="res://game/scripts/interactable/doors/zone_door.gd" id="2_gkvwf"]
+[ext_resource type="AudioStream" uid="uid://dj10gsc4fvlea" path="res://assets/audio/sfx/S_Sliding_Future_Door_Open.wav" id="3_xrdsj"]
+[ext_resource type="AudioStream" uid="uid://2sruocolw06x" path="res://assets/audio/sfx/S_Sliding_Future_Door_Close.wav" id="4_4at7g"]
+[ext_resource type="AudioStream" uid="uid://b6aoqryx4rx2x" path="res://assets/audio/sfx/S_Door_Locked.wav" id="5_40nke"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xwcbq"]
+size = Vector3(0.15, 3, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gvcxv"]
+albedo_color = Color(0.504, 0.5733, 0.63, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_p70h6"]
+material = SubResource("StandardMaterial3D_gvcxv")
+size = Vector3(0.15, 3, 2)
+
+[sub_resource type="Animation" id="Animation_jabor"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hfqi6"]
+resource_name = "close_door"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 4.5, 0), Vector3(0, 1.5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cr8fq"]
+resource_name = "open_door"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5, 0), Vector3(0, 4.5, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4w42h"]
+_data = {
+"RESET": SubResource("Animation_jabor"),
+"close_door": SubResource("Animation_hfqi6"),
+"open_door": SubResource("Animation_cr8fq")
+}
+
+[node name="level_living_area" instance=ExtResource("1_4ictq")]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticScenery" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.5, 0)
+use_collision = true
+size = Vector3(10, 1, 15)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="StaticScenery" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 2, 2.5)
+use_collision = true
+size = Vector3(1, 4, 10)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="StaticScenery" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 2, -6)
+use_collision = true
+size = Vector3(1, 4, 3)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="StaticScenery" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 3.5, -3.5)
+use_collision = true
+size = Vector3(1, 1, 2)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="StaticScenery" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -0.5, 0)
+use_collision = true
+size = Vector3(20, 1, 15)
+
+[node name="to_checkpoint" type="StaticBody3D" parent="Doors" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -4)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("2_gkvwf")
+target_door_id = 1
+target_level = "checkpoint_north"
+open_sound = ExtResource("3_xrdsj")
+close_sound = ExtResource("4_4at7g")
+locked_sound = ExtResource("5_40nke")
+prompt_message = "Door"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Doors/to_checkpoint" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Doors/to_checkpoint" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_xwcbq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Doors/to_checkpoint/CollisionShape3D" index="0"]
+mesh = SubResource("BoxMesh_p70h6")
+skeleton = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Doors/to_checkpoint" index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_4w42h")
+}
+
+[node name="SpawnPoint" type="Node3D" parent="Doors/to_checkpoint" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="Marker3D" type="Marker3D" parent="Doors/to_checkpoint/SpawnPoint" index="0"]
+
+[node name="DoorName" type="Label3D" parent="Doors/to_checkpoint" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.69999, 0)
+billboard = 1
+text = "To hub_area"
+font_size = 64
+
+[connection signal="interacted" from="Doors/to_checkpoint" to="Doors/to_checkpoint" method="_on_interacted"]

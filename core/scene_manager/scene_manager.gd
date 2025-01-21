@@ -24,7 +24,10 @@ const PAUSE_SCREEN = preload("res://game/scenes/UI/pause_screen.tscn")
 var known_scenes: Dictionary = {
 	"main_menu": preload("res://game/scenes/levels/main_menu/main_menu.tscn"),
 	"debug": preload("res://game/scenes/levels/debug/debug.tscn"),
-	"hub_area": preload("res://game/scenes/levels/hub_area.tscn")
+	"hub_area": preload("res://game/scenes/levels/levels/level_hub_area.tscn"),
+	"checkpoint_north": preload("res://game/scenes/levels/levels/level_checkpoint_north.tscn"),
+	"living_area": preload("res://game/scenes/levels/levels/level_living_area.tscn"),
+	"security": preload("res://game/scenes/levels/levels/level_security.tscn")
 }
 
 const level_main_menu:String = "main_menu" ## Main Menu

@@ -12,9 +12,6 @@ class_name ZoneDoor extends Interactable
 @export var close_sound : AudioStream
 @export var locked_sound : AudioStream
 
-## These are manually typed, look for syntax errors here if it doesn't work.
-@export var target_scene : String = ""
-
 ## Used to lock/unlock the door as needed.
 @export var locked : bool = false
 

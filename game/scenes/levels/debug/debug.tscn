@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://due6gjicxdioy"]
+[gd_scene load_steps=14 format=3 uid="uid://due6gjicxdioy"]
 
 [ext_resource type="PackedScene" uid="uid://dw8n0ir5hscjp" path="res://game/scenes/levels/level.tscn" id="1_43wqk"]
 [ext_resource type="Texture2D" uid="uid://4u0h7r84s3tu" path="res://icon.svg" id="2_mtwh1"]
 [ext_resource type="PackedScene" uid="uid://bhijhscc5lduk" path="res://game/scenes/interactables/zone_door.tscn" id="2_q6xqr"]
-[ext_resource type="PackedScene" uid="uid://ci63q8vcnjm6o" path="res://addons/Main.tscn" id="3_6mh0t"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1fwe4"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -95,8 +94,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 7.5, -5.5)
 use_collision = true
 size = Vector3(2, 2, 2)
 material = SubResource("StandardMaterial3D_pgrwi")
-
-[node name="Main" parent="StaticScenery" index="7" instance=ExtResource("3_6mh0t")]
 
 [node name="to_hub_area" parent="Doors" index="0" instance=ExtResource("2_q6xqr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.55817, 0, 0)

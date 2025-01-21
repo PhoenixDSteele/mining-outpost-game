@@ -13,11 +13,11 @@ class_name BodyBase extends CharacterBody3D
 ## Can be manually set, and it won't attempt to search for it.
 @export var collision : CollisionShape3D = null
 
-## Controller type.
-enum ControllerType {
-	PLAYER,
-	AI = -1}
-@export var controller_Type : ControllerType = ControllerType.AI
+##Set if controlled by player; to send input to the statemachine.
+@export var player_controller : PlayerController = null
+
+##Set if controlled by player; to send ledge climbing information to statemachine.
+@export var climb_checker : ClimbChecker = null
 
 ## Personal Body Gravity
 @export var gravity : float = 8

@@ -8,23 +8,14 @@ class_name StateMachine extends Node
 ## Node that is rotated/moved during state control. Attach the rig/mesh to this node.
 @onready var visual: Node3D = %Visual
 
-
-## Controller type.
-enum ControllerType {
-	PLAYER,
-	AI = -1}
-var controller_Type : ControllerType = ControllerType.AI
-
 ## Player Controller
 var player_controller : PlayerController = null
 
 ## Camera
-var player_camera : Resource
-var camera_instance : PlayerCamera
+@onready var player_camera: PlayerCamera = %PlayerCamera
 
 ## Climber Checker - Used to check climbable conditions.
-var climb_checker : Resource
-var climb_checker_instance : ClimbChecker
+var climb_checker : ClimbChecker
 
 ## The controlled body.
 var body : BodyBase = null
@@ -45,28 +36,13 @@ func _ready() -> void:
 	self.body = get_parent()
 	
 	# Checks the set controller type at the main node, and propagates it to state machine.
-	if body.controller_Type == body.ControllerType.PLAYER:
-		# Add Player Controller.
-		player_controller = PlayerController.new()
-		player_controller.name = "PlayerController"
-		get_parent().add_child.call_deferred(player_controller)
-		# Loads in Camera, and adds it.
-		player_camera = load("res://game/character/player/player_camera.tscn")
-		camera_instance = player_camera.instantiate()
-		camera_instance.position.y = 1.5
-		camera_instance.name = "PlayerCamera"
-		get_parent().add_child.call_deferred(camera_instance)
-		# Loads in ClimbChecker, and adds it to player.
-		climb_checker = load("res://game/character/player/climb_checker.tscn")
-		climb_checker_instance = climb_checker.instantiate()
-		climb_checker_instance.position.y = 0.0
-		climb_checker_instance.name = "ClimbChecker"
-		self.visual.add_child.call_deferred(climb_checker_instance)
-		# Sets state machine controller type.
-		self.controller_Type = ControllerType.PLAYER
+	if body.player_controller != null:
+		# Connects Player Controller.
+		player_controller = body.player_controller
+		# Connects ClimbChecker.
+		climb_checker = body.climb_checker
 		print("Player Controlled")
-	elif controller_Type == ControllerType.AI:
-		self.controller_Type = ControllerType.AI
+	if body.player_controller == null:
 		print("AI Controlled")
 	
 	# Populates state list array with all children for calling.
@@ -74,13 +50,10 @@ func _ready() -> void:
 		if child_state is State:
 			child_state.Transition.connect(state_transition)
 			child_state.body = self.body
-			child_state.controller_Type = self.controller_Type
 			if player_controller != null:
 				child_state.player_controller = self.player_controller
-				if camera_instance != null:
-					child_state.player_camera = self.camera_instance
-					if climb_checker != null:
-						child_state.climb_checker = self.climb_checker_instance
+				child_state.player_camera = player_camera 
+				child_state.climb_checker = climb_checker
 			state_list.get_or_add(child_state.name.to_lower(), child_state)
 	
 	# Failsafe error alert for making sure an initial state is set.

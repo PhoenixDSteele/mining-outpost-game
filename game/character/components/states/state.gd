@@ -6,14 +6,6 @@ class_name State extends Node
 
 signal Transition
 
-## Controller type.
-enum ControllerType {
-	PLAYER,
-	AI = -1}
-
-## Controller type.
-var controller_Type : ControllerType
-
 ## Player Controller if selected.
 var player_controller : PlayerController = null
 

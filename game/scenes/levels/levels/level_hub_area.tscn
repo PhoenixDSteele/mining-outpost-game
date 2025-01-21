@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbgq2nnc8o5mf"]
+
+[ext_resource type="PackedScene" uid="uid://dw8n0ir5hscjp" path="res://game/scenes/levels/level.tscn" id="1_n2ric"]
+[ext_resource type="PackedScene" uid="uid://bhijhscc5lduk" path="res://game/scenes/interactables/zone_door.tscn" id="2_lo8ni"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qoibk"]
+albedo_color = Color(0.3045, 0.308292, 0.35, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v7fup"]
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="level_hub_area" instance=ExtResource("1_n2ric")]
+level_name = "hub_area"
+level_music = "main_menu"
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Enviro#Lighting" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -36, 4, 8)
+
+[node name="Floor#Ceiling" type="CSGCombiner3D" parent="StaticScenery" index="0"]
+use_collision = true
+metadata/_edit_lock_ = true
+
+[node name="Ceiling" type="CSGCylinder3D" parent="StaticScenery/Floor#Ceiling" index="0"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 0, 12, 0)
+radius = 40.0
+height = 0.5
+sides = 12
+metadata/_edit_lock_ = true
+
+[node name="Floor" type="CSGCylinder3D" parent="StaticScenery/Floor#Ceiling" index="1"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 0, -0.25, 0)
+radius = 40.0
+height = 0.5
+sides = 12
+metadata/_edit_lock_ = true
+
+[node name="Walls" type="CSGCombiner3D" parent="StaticScenery" index="1"]
+use_collision = true
+metadata/_edit_lock_ = true
+
+[node name="CSG01" type="CSGCylinder3D" parent="StaticScenery/Walls" index="0"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 0, 6, 0)
+radius = 40.0
+height = 12.0
+sides = 12
+metadata/_edit_lock_ = true
+
+[node name="CutOut" type="CSGCylinder3D" parent="StaticScenery/Walls" index="1"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 0, 6, 0)
+operation = 2
+radius = 39.0
+height = 15.0
+sides = 12
+metadata/_edit_lock_ = true
+
+[node name="NorthGate" type="CSGCombiner3D" parent="StaticScenery" index="2"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticScenery/NorthGate" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.5, 4.5, 0)
+size = Vector3(1, 10, 19)
+material = SubResource("StandardMaterial3D_qoibk")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="StaticScenery/NorthGate" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.026, 1.51018, 0)
+operation = 2
+size = Vector3(0.384888, 5.10797, 13)
+material = SubResource("StandardMaterial3D_v7fup")
+
+[node name="to_debug_area" parent="Doors" index="0" instance=ExtResource("2_lo8ni")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -5.58494, -4.76837e-07, -6.77502)
+door_id = 2
+target_door_id = 4
+target_level = "debug"
+
+[node name="to_checkpoint_north" parent="Doors" index="1" instance=ExtResource("2_lo8ni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 0, 8)
+target_door_id = 2
+target_level = "checkpoint_north"
