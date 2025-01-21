@@ -11,7 +11,7 @@ albedo_color = Color(0, 0, 0, 1)
 
 [node name="level_hub_area" instance=ExtResource("1_n2ric")]
 level_name = "hub_area"
-level_music = "main_menu"
+level_music = "temp03"
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Enviro#Lighting" index="0"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -36, 4, 8)

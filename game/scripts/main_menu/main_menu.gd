@@ -11,7 +11,7 @@ func _ready() -> void:
 
 ## Connected to the start button. Goes to the selected scene.
 func _start_button_pressed() -> void:
-	SceneManager.scene_change(SceneManager.level_debug)
+	SceneManager.scene_change(SceneManager.level_checkpoint_north)
 
 ## Connected to the start button. Ends the game.
 func _exit_button_pressed() -> void:

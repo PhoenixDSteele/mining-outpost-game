@@ -6,12 +6,22 @@ extends Node
 ## Dictionary of music. Add more as needed. Optionally add a constant below for auto-completion. Makes finding the song easier.
 var music_dict: Dictionary = {
 	"main_menu": preload("res://assets/audio/music/main_theme.mp3"),
-	"gameplay": preload("res://assets/audio/music/FearTheOre.mp3"),
 	"paused": preload("res://assets/audio/music/BreathForAMoment.mp3"),
+	"temp01": preload("res://assets/audio/music/CityRiff.mp3"),
+	"temp02": preload("res://assets/audio/music/DustyEyes.mp3"),
+	"temp03": preload("res://assets/audio/music/EnterTheForest.mp3"),
+	"temp04": preload("res://assets/audio/music/RainCantStopTheBeat.mp3"),
+	"temp05": preload("res://assets/audio/music/FearTheOre.mp3")
+	
 }
 const music_main_menu : String = "main_menu" ## Main menu Music
 const music_gameplay : String = "gameplay" ## Gameplay Music
 const music_paused : String = "paused" ## Pause Music
+const music_temp01 : String = "temp01" ## Temp Music 01
+const music_temp02 : String = "temp02" ## Temp Music 02
+const music_temp03 : String = "temp03" ## Temp Music 03
+const music_temp04 : String = "temp04" ## Temp Music 04
+const music_temp05 : String = "temp05" ## Temp Music 05
 
 ## Dictionary of UI Sounds. Add more as needed.
 var ui_sound_dict: Dictionary = {

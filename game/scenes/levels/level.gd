@@ -39,14 +39,14 @@ func _ready() -> void:
 
 ## Function used when entering a level to spawn the player into the correct door position.
 func spawn_at_door(door_id:int) -> void:
+	var player_instance : BodyBase = PLAYER.instantiate()
+	add_child(player_instance)
 	if no_spawn == false:
 		if door_dictionary.has(door_id):
-			var player_instance : BodyBase = PLAYER.instantiate()
-			add_child(player_instance)
 			player_instance.global_position = door_dictionary[door_id].spawn_point.global_position
 		else:
+			player_instance.global_position = manual_spawn_location.global_position
 			OS.alert("Entered " + level_name + ", but couldn't find door ID: " + str(door_id))
-			get_tree().quit()
 
 ## Manual Spawn Location 
 func spawn_player_manually() -> void:

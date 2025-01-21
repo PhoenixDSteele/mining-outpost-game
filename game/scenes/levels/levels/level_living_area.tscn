@@ -71,6 +71,8 @@ _data = {
 }
 
 [node name="level_living_area" instance=ExtResource("1_4ictq")]
+level_name = "living_area"
+level_music = "temp04"
 
 [node name="CSGBox3D" type="CSGBox3D" parent="StaticScenery" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.5, 0)

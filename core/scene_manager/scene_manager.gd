@@ -33,6 +33,9 @@ var known_scenes: Dictionary = {
 const level_main_menu:String = "main_menu" ## Main Menu
 const level_debug:String = "debug" ## Debug
 const level_hub_area:String = "hub_area" ## Hub Area
+const level_checkpoint_north:String = "checkpoint_north" ## Checkpoint North
+const level_living_area:String = "living_area" ## Living Area
+const level_security:String = "security" ## Security
 
 ## Main Menu Check Boolean; Used to prevent pausing on main menu.
 var on_main_menu : bool = false
@@ -83,7 +86,7 @@ func load_scene() -> void:
 	
 	if next_door_id == 1000:
 		if  loaded_level.no_spawn != true:
-			loaded_level.spawn_player_manually() 
+			loaded_level.spawn_player_manually()
 			print("No door ID detected, manually spawning at default location.")
 	else:
 		loaded_level.spawn_at_door(next_door_id)
