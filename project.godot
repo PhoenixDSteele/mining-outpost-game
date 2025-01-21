@@ -15,6 +15,10 @@ run/main_scene="res://game/scenes/levels/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://core/audio_manager/default_bus_layout.tres"
+
 [autoload]
 
 AudioManager="*res://core/audio_manager/audio_manager.tscn"
@@ -107,6 +111,9 @@ retract_hand={
 
 [layer_names]
 
+3d_render/layer_1="world"
+3d_render/layer_2="player"
+3d_render/layer_3="objects"
 3d_physics/layer_1="world"
 3d_physics/layer_2="player"
 3d_physics/layer_3="interactables"

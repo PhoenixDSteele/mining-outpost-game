@@ -1,7 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbgq2nnc8o5mf"]
+[gd_scene load_steps=8 format=3 uid="uid://bbgq2nnc8o5mf"]
 
 [ext_resource type="PackedScene" uid="uid://dw8n0ir5hscjp" path="res://game/scenes/levels/level.tscn" id="1_n2ric"]
 [ext_resource type="PackedScene" uid="uid://bhijhscc5lduk" path="res://game/scenes/interactables/zone_door.tscn" id="2_lo8ni"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_12a3k"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_8syjm"]
+sky_material = SubResource("ProceduralSkyMaterial_12a3k")
+
+[sub_resource type="Environment" id="Environment_aykgf"]
+background_mode = 2
+sky = SubResource("Sky_8syjm")
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qoibk"]
 albedo_color = Color(0.3045, 0.308292, 0.35, 1)
@@ -13,7 +26,10 @@ albedo_color = Color(0, 0, 0, 1)
 level_name = "hub_area"
 level_music = "temp03"
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Enviro#Lighting" index="0"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Enviro#Lighting" index="0"]
+environment = SubResource("Environment_aykgf")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Enviro#Lighting" index="1"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -36, 4, 8)
 
 [node name="Floor#Ceiling" type="CSGCombiner3D" parent="StaticScenery" index="0"]

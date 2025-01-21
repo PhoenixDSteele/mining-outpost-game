@@ -1,10 +1,25 @@
-[gd_scene load_steps=13 format=3 uid="uid://cn7g28k3l3ssy"]
+[gd_scene load_steps=16 format=3 uid="uid://cn7g28k3l3ssy"]
 
 [ext_resource type="PackedScene" uid="uid://dw8n0ir5hscjp" path="res://game/scenes/levels/level.tscn" id="1_4ictq"]
 [ext_resource type="Script" path="res://game/scripts/interactable/doors/zone_door.gd" id="2_gkvwf"]
 [ext_resource type="AudioStream" uid="uid://dj10gsc4fvlea" path="res://assets/audio/sfx/S_Sliding_Future_Door_Open.wav" id="3_xrdsj"]
 [ext_resource type="AudioStream" uid="uid://2sruocolw06x" path="res://assets/audio/sfx/S_Sliding_Future_Door_Close.wav" id="4_4at7g"]
 [ext_resource type="AudioStream" uid="uid://b6aoqryx4rx2x" path="res://assets/audio/sfx/S_Door_Locked.wav" id="5_40nke"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_t0gdu"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_jrhrq"]
+sky_material = SubResource("ProceduralSkyMaterial_t0gdu")
+
+[sub_resource type="Environment" id="Environment_4ax32"]
+background_mode = 2
+sky = SubResource("Sky_jrhrq")
+ambient_light_source = 1
+reflected_light_source = 1
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xwcbq"]
 size = Vector3(0.15, 3, 2)
@@ -74,6 +89,12 @@ _data = {
 level_name = "living_area"
 level_music = "temp04"
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Enviro#Lighting" index="0"]
+environment = SubResource("Environment_4ax32")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Enviro#Lighting" index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 5.16807, 3.62079, -4.04409)
+
 [node name="CSGBox3D" type="CSGBox3D" parent="StaticScenery" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.5, 0)
 use_collision = true
@@ -99,7 +120,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -0.5, 0)
 use_collision = true
 size = Vector3(20, 1, 15)
 
-[node name="to_checkpoint" type="StaticBody3D" parent="Doors" index="0"]
+[node name="to_checkpoint_north" type="StaticBody3D" parent="Doors" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -4)
 collision_layer = 4
 collision_mask = 0
@@ -111,30 +132,30 @@ close_sound = ExtResource("4_4at7g")
 locked_sound = ExtResource("5_40nke")
 prompt_message = "Door"
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Doors/to_checkpoint" index="0"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Doors/to_checkpoint_north" index="0"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Doors/to_checkpoint" index="1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Doors/to_checkpoint_north" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("BoxShape3D_xwcbq")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Doors/to_checkpoint/CollisionShape3D" index="0"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Doors/to_checkpoint_north/CollisionShape3D" index="0"]
 mesh = SubResource("BoxMesh_p70h6")
 skeleton = NodePath("../..")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Doors/to_checkpoint" index="2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Doors/to_checkpoint_north" index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_4w42h")
 }
 
-[node name="SpawnPoint" type="Node3D" parent="Doors/to_checkpoint" index="3"]
+[node name="SpawnPoint" type="Node3D" parent="Doors/to_checkpoint_north" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
-[node name="Marker3D" type="Marker3D" parent="Doors/to_checkpoint/SpawnPoint" index="0"]
+[node name="Marker3D" type="Marker3D" parent="Doors/to_checkpoint_north/SpawnPoint" index="0"]
 
-[node name="DoorName" type="Label3D" parent="Doors/to_checkpoint" index="4"]
+[node name="DoorName" type="Label3D" parent="Doors/to_checkpoint_north" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.69999, 0)
 billboard = 1
 text = "To hub_area"
 font_size = 64
 
-[connection signal="interacted" from="Doors/to_checkpoint" to="Doors/to_checkpoint" method="_on_interacted"]
+[connection signal="interacted" from="Doors/to_checkpoint_north" to="Doors/to_checkpoint_north" method="_on_interacted"]

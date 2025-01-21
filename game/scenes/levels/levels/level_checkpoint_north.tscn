@@ -1,7 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://b44g4q5sr311o"]
+[gd_scene load_steps=8 format=3 uid="uid://b44g4q5sr311o"]
 
 [ext_resource type="PackedScene" uid="uid://dw8n0ir5hscjp" path="res://game/scenes/levels/level.tscn" id="1_4dd7x"]
 [ext_resource type="PackedScene" uid="uid://bhijhscc5lduk" path="res://game/scenes/interactables/zone_door.tscn" id="2_b7v6y"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6rrr8"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_gduj5"]
+sky_material = SubResource("ProceduralSkyMaterial_6rrr8")
+
+[sub_resource type="Environment" id="Environment_46ue6"]
+background_mode = 2
+sky = SubResource("Sky_gduj5")
+ambient_light_source = 1
+reflected_light_source = 1
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0rblt"]
 albedo_color = Color(0.3045, 0.308292, 0.35, 1)
@@ -13,8 +28,17 @@ albedo_color = Color(0, 0, 0, 1)
 level_name = "checkpoint_north"
 level_music = "temp02"
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Enviro#Lighting" index="0"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 8.16807, 3.62079, -13.4533)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Enviro#Lighting" index="0"]
+environment = SubResource("Environment_46ue6")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Enviro#Lighting" index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 8.16807, 3.62079, -13.0744)
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Enviro#Lighting" index="2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.6699, 3.62079, -2.60131)
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="Enviro#Lighting" index="3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -11.5523, 3.62079, 0.00451803)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="StaticScenery" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.5, 2.5)
