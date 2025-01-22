@@ -77,10 +77,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = 660.0
-offset_right = 150.0
-offset_bottom = 960.0
+offset_left = -534.0
+offset_top = -366.0
+offset_right = -234.0
+offset_bottom = -66.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -237,6 +237,10 @@ layout_mode = 2
 layout_mode = 2
 text = "TELEPORT"
 
+[node name="POWER_Button" parent="Screen/DebugMenu/Panel/MarginContainer/VBoxContainer" instance=ExtResource("4_qiia4")]
+layout_mode = 2
+text = "AREA POWER"
+
 [node name="RETURN_Debug_Button" parent="Screen/DebugMenu/Panel/MarginContainer/VBoxContainer" instance=ExtResource("4_qiia4")]
 layout_mode = 2
 text = "⬅️RETURN"
@@ -377,6 +381,64 @@ theme_override_font_sizes/font_size = 24
 text = "security"
 horizontal_alignment = 1
 
+[node name="PowerMenu" type="Control" parent="Screen"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Screen/PowerMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="Panel2" type="Panel" parent="Screen/PowerMenu"]
+custom_minimum_size = Vector2(300, 500)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 960.0
+offset_top = 540.0
+offset_right = -960.0
+offset_bottom = -540.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Screen/PowerMenu/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RETURN_Power_Button" parent="Screen/PowerMenu/Panel2/VBoxContainer" instance=ExtResource("4_qiia4")]
+layout_mode = 2
+text = "⬅️RETURN"
+
+[node name="Label" type="Label" parent="Screen/PowerMenu/Panel2/VBoxContainer"]
+layout_mode = 2
+text = "POWERED AREAS"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Screen/PowerMenu/Panel2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ManualPowerOptionContainer" type="VBoxContainer" parent="Screen/PowerMenu/Panel2/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
@@ -389,7 +451,9 @@ libraries = {
 [connection signal="pressed" from="Screen/ExitConfirmation/Panel/MarginContainer/VBoxContainer/HBoxContainer/CONFIRM_Button" to="." method="confirm_exit"]
 [connection signal="pressed" from="Screen/ExitConfirmation/Panel/MarginContainer/VBoxContainer/HBoxContainer/CANCEL_Button" to="." method="cancel_exit"]
 [connection signal="pressed" from="Screen/DebugMenu/Panel/MarginContainer/VBoxContainer/TELEPORT_Button" to="." method="_on_teleport_button_pressed"]
+[connection signal="pressed" from="Screen/DebugMenu/Panel/MarginContainer/VBoxContainer/POWER_Button" to="." method="_on_power_button_pressed"]
 [connection signal="pressed" from="Screen/DebugMenu/Panel/MarginContainer/VBoxContainer/RETURN_Debug_Button" to="." method="_on_return_debug_button_pressed"]
 [connection signal="text_changed" from="Screen/TeleportMenu/Panel/MarginContainer/VBoxContainer/Door_ID_Teleport_Input" to="." method="_on_door_id_teleport_input_text_changed"]
 [connection signal="pressed" from="Screen/TeleportMenu/Panel/MarginContainer/VBoxContainer/CONFIRM_Teleport_Button" to="." method="_on_confirm_teleport_button_pressed"]
 [connection signal="pressed" from="Screen/TeleportMenu/Panel/MarginContainer/VBoxContainer/RETURN_Teleport_Button" to="." method="_on_return_teleport_button_pressed"]
+[connection signal="pressed" from="Screen/PowerMenu/Panel2/VBoxContainer/RETURN_Power_Button" to="." method="_on_return_power_button_pressed"]

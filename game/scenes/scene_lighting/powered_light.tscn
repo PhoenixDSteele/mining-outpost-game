@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbnhw4pcy7l0k"]
+
+[ext_resource type="Script" path="res://game/scripts/scene_lighting/powered_light.gd" id="1_dogtm"]
+[ext_resource type="Script" path="res://game/scripts/object_components/powered.gd" id="2_pcfvf"]
+
+[node name="PoweredLight" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_dogtm")
+
+[node name="Powered" type="Node" parent="."]
+script = ExtResource("2_pcfvf")

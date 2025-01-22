@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://cs3ba5e7shuie"]
+
+[ext_resource type="Script" path="res://game/scripts/UI/debug/manual_power_option.gd" id="1_0gnn0"]
+
+[node name="ManualPowerOption" type="HBoxContainer"]
+script = ExtResource("1_0gnn0")
+
+[node name="CheckBox" type="CheckBox" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 6
+flat = true
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+
+[connection signal="toggled" from="CheckBox" to="." method="_on_check_box_toggled"]

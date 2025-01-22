@@ -1,4 +1,4 @@
-class_name Interactable extends CollisionObject3D
+class_name Interactable extends Node3D
 
 signal interacted(body)
 

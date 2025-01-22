@@ -12,4 +12,7 @@ script = ExtResource("1_hsdj0")
 [node name="Doors" type="Node" parent="."]
 unique_name_in_owner = true
 
+[node name="PoweredNodes" type="Node" parent="."]
+unique_name_in_owner = true
+
 [node name="ManualSpawnLocation" type="Marker3D" parent="."]

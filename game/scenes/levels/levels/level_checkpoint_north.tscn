@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b44g4q5sr311o"]
+[gd_scene load_steps=10 format=3 uid="uid://b44g4q5sr311o"]
 
 [ext_resource type="PackedScene" uid="uid://dw8n0ir5hscjp" path="res://game/scenes/levels/level.tscn" id="1_4dd7x"]
 [ext_resource type="PackedScene" uid="uid://bhijhscc5lduk" path="res://game/scenes/interactables/zone_door.tscn" id="2_b7v6y"]
+[ext_resource type="PackedScene" uid="uid://bbnhw4pcy7l0k" path="res://game/scenes/scene_lighting/powered_light.tscn" id="3_vgbmc"]
+[ext_resource type="PackedScene" uid="uid://dr038k11r1a4h" path="res://game/scenes/interactables/normal_door.tscn" id="4_lbqgo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6rrr8"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -44,34 +46,41 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -11.55
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.5, 2.5)
 use_collision = true
 size = Vector3(26, 1, 34)
+metadata/_edit_lock_ = true
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="StaticScenery" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 9.5, 2.5)
 use_collision = true
 size = Vector3(26, 1, 34)
+metadata/_edit_lock_ = true
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="StaticScenery" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 4.5, 2.5)
 use_collision = true
 size = Vector3(1, 11, 34)
+metadata/_edit_lock_ = true
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="StaticScenery" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 4.5, 2.5)
 use_collision = true
 size = Vector3(1, 11, 34)
+metadata/_edit_lock_ = true
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="StaticScenery" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 4.5, -14.9682)
 use_collision = true
 size = Vector3(26, 11, 1)
+metadata/_edit_lock_ = true
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="StaticScenery" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 4.5, 20.0318)
 use_collision = true
 size = Vector3(26, 11, 1)
+metadata/_edit_lock_ = true
 
 [node name="NorthGate" type="CSGCombiner3D" parent="StaticScenery" index="6"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="StaticScenery/NorthGate" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5, 4.5, -1.00536e-06)
@@ -97,3 +106,11 @@ target_level = "hub_area"
 [node name="to_security" parent="Doors" index="2" instance=ExtResource("2_b7v6y")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 11.5377, 0, -2.6845)
 target_level = "security"
+
+[node name="PoweredLight" parent="PoweredNodes" index="0" instance=ExtResource("3_vgbmc")]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="PoweredNodes/PoweredLight" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 3)
+
+[node name="NormalDoor" parent="PoweredNodes" index="1" instance=ExtResource("4_lbqgo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.00826, 0, 0)

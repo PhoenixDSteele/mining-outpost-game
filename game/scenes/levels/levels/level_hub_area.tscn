@@ -92,3 +92,9 @@ target_level = "debug"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 0, 8)
 target_door_id = 2
 target_level = "checkpoint_north"
+
+[node name="Reactor" type="Node3D" parent="." index="5"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Reactor" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.5, 0)
+size = Vector3(1, 3, 5)
