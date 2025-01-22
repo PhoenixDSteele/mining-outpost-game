@@ -13,15 +13,22 @@ class_name BodyBase extends CharacterBody3D
 ## Can be manually set, and it won't attempt to search for it.
 @export var collision : CollisionShape3D = null
 
-##Set if controlled by player; to send input to the statemachine.
+## Set if controlled by player; to send input to the statemachine.
 @export var player_controller : PlayerController = null
 
-##Set if controlled by player; to send ledge climbing information to statemachine.
+## Set if controlled by player; to send ledge climbing information to statemachine.
 @export var climb_checker : ClimbChecker = null
+
+## Body Stats - Currently only Health, and Oxygen.
+@export var stats : Stats = null
+
+## Whether or not the character can breath.
+var can_breath : bool = true
 
 ## Personal Body Gravity
 @export var gravity : float = 8
 var gravity_enabled : bool = true
+
 
 func _ready() -> void:
 	#if anim_player == null:
@@ -33,6 +40,10 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity if it's enabled.
 	if not is_on_floor() and (gravity_enabled == true):
 		velocity.y -= gravity * delta
+	
+	# Reduces oxygen levels if cant breath.
+	if (can_breath == false):
+		stats.oxygen -= 1 * delta
 	
 	# Always active to make velocity movements possible in state machine.
 	move_and_slide()

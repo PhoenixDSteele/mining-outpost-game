@@ -63,8 +63,10 @@ func spawn_at_door(door_id:int) -> void:
 	if no_spawn == false:
 		if door_dictionary.has(door_id):
 			player_instance.global_position = door_dictionary[door_id].spawn_point.global_position
+			player_instance.can_breath = GameInstance.powered_areas[level_name]
 		else:
 			player_instance.global_position = manual_spawn_location.global_position
+			player_instance.can_breath = GameInstance.powered_areas[level_name]
 			OS.alert("Entered " + level_name + ", but couldn't find door ID: " + str(door_id))
 
 ## Manual Spawn Location 
@@ -73,3 +75,4 @@ func spawn_player_manually() -> void:
 		var player_instance : BodyBase = PLAYER.instantiate()
 		add_child(player_instance)
 		player_instance.global_position = manual_spawn_location.global_position
+		player_instance.can_breath = GameInstance.powered_areas[level_name]

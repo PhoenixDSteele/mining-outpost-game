@@ -15,7 +15,9 @@ sky_material = SubResource("ProceduralSkyMaterial_6rrr8")
 [sub_resource type="Environment" id="Environment_46ue6"]
 background_mode = 2
 sky = SubResource("Sky_gduj5")
-ambient_light_source = 1
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.01
 reflected_light_source = 1
 tonemap_mode = 2
 glow_enabled = true
@@ -114,3 +116,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 3)
 
 [node name="NormalDoor" parent="PoweredNodes" index="1" instance=ExtResource("4_lbqgo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.00826, 0, 0)
+locked = false

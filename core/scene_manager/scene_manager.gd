@@ -101,7 +101,7 @@ func scene_change_finished() -> void:
 	load_screen_instance.fade_in()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	print(loaded_level)
-	
+
 
 ## Clears load screen.
 func clear_load_screen() -> void:
