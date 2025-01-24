@@ -1,7 +1,7 @@
 class_name PauseScreen extends CanvasLayer
 ## Is instantiated via the 'Scene Manager', using the input on it.
 ##
-
+@onready var options_menu: Control = %OptionsMenu
 @onready var debug_menu: Control = %DebugMenu
 @onready var teleport_menu: Control = %TeleportMenu
 @onready var power_menu: Control = %PowerMenu
@@ -58,9 +58,14 @@ func confirm_exit() -> void:
 func cancel_exit() -> void:
 	exit_confirmation.visible = false
 
+## Opens OPTIONS MENU
+func _on_options_button_pressed() -> void:
+	options_menu.on_enter()
+
 ## Opens DEBUG MENU
 func _on_debug_button_pressed() -> void:
 	debug_menu.visible = true
+
 
 ## Opens Teleport Menu
 func _on_teleport_button_pressed() -> void:

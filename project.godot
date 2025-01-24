@@ -24,6 +24,7 @@ buses/default_bus_layout="res://core/audio_manager/default_bus_layout.tres"
 AudioManager="*res://core/audio_manager/audio_manager.tscn"
 SceneManager="*res://core/scene_manager/scene_manager.tscn"
 GameInstance="*res://core/game_instance/game_instance.tscn"
+SaveManager="*res://core/save_manager.gd"
 
 [debug]
 

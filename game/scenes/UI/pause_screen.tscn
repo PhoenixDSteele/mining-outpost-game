@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://sv47lnemnjnc"]
+[gd_scene load_steps=10 format=3 uid="uid://sv47lnemnjnc"]
 
 [ext_resource type="Shader" path="res://assets/shaders/screen_blur.gdshader" id="1_43ew5"]
 [ext_resource type="Script" path="res://game/scripts/UI/pause_screen.gd" id="1_ba3h2"]
 [ext_resource type="Theme" uid="uid://dtej56pljgyf2" path="res://assets/ui_theme/temp_theme.tres" id="2_23tle"]
 [ext_resource type="PackedScene" uid="uid://3u6ci5l75476" path="res://core/ui/feature_button.tscn" id="4_qiia4"]
+[ext_resource type="PackedScene" uid="uid://d0jvtutoqnwm" path="res://core/ui/options_menu/options_menu.tscn" id="5_15wcu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8cbiy"]
 shader = ExtResource("1_43ew5")
@@ -103,6 +104,10 @@ theme_override_constants/separation = 25
 [node name="RESUME_Button" parent="Screen/Panel/MarginContainer/VBoxContainer" instance=ExtResource("4_qiia4")]
 layout_mode = 2
 text = "RESUME"
+
+[node name="OPTIONS_Button" parent="Screen/Panel/MarginContainer/VBoxContainer" instance=ExtResource("4_qiia4")]
+layout_mode = 2
+text = "OPTIONS"
 
 [node name="EXIT_Button" parent="Screen/Panel/MarginContainer/VBoxContainer" instance=ExtResource("4_qiia4")]
 layout_mode = 2
@@ -244,6 +249,10 @@ text = "AREA POWER"
 [node name="RETURN_Debug_Button" parent="Screen/DebugMenu/Panel/MarginContainer/VBoxContainer" instance=ExtResource("4_qiia4")]
 layout_mode = 2
 text = "⬅️RETURN"
+
+[node name="OptionsMenu" parent="Screen" instance=ExtResource("5_15wcu")]
+unique_name_in_owner = true
+layout_mode = 1
 
 [node name="TeleportMenu" type="Control" parent="Screen"]
 unique_name_in_owner = true
@@ -446,6 +455,7 @@ libraries = {
 }
 
 [connection signal="pressed" from="Screen/Panel/MarginContainer/VBoxContainer/RESUME_Button" to="." method="resume_game"]
+[connection signal="pressed" from="Screen/Panel/MarginContainer/VBoxContainer/OPTIONS_Button" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="Screen/Panel/MarginContainer/VBoxContainer/EXIT_Button" to="." method="exit_game"]
 [connection signal="pressed" from="Screen/Panel/MarginContainer/VBoxContainer/DEBUG_Button" to="." method="_on_debug_button_pressed"]
 [connection signal="pressed" from="Screen/ExitConfirmation/Panel/MarginContainer/VBoxContainer/HBoxContainer/CONFIRM_Button" to="." method="confirm_exit"]

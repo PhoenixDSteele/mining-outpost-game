@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1v3kijl2hqrp"]
+[gd_scene load_steps=7 format=3 uid="uid://b1v3kijl2hqrp"]
 
 [ext_resource type="Script" path="res://game/scripts/main_menu/main_menu.gd" id="1_kukyf"]
 [ext_resource type="Theme" uid="uid://dtej56pljgyf2" path="res://assets/ui_theme/temp_theme.tres" id="2_lmcxa"]
 [ext_resource type="VideoStream" path="res://assets/video/bg_loop.ogv" id="3_wpcag"]
 [ext_resource type="PackedScene" uid="uid://3u6ci5l75476" path="res://core/ui/feature_button.tscn" id="4_4vemy"]
 [ext_resource type="AudioStream" uid="uid://dee2pvosg4tos" path="res://assets/audio/environmental/WE Heavy Inside Rain 1 - Looped.mp3" id="5_t1q80"]
+[ext_resource type="PackedScene" uid="uid://d0jvtutoqnwm" path="res://core/ui/options_menu/options_menu.tscn" id="6_hibpx"]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_kukyf")
@@ -66,9 +67,17 @@ theme_override_constants/separation = 25
 layout_mode = 2
 text = "START GAME"
 
+[node name="OPTIONS_Button" parent="Control/Panel/MarginContainer/VBoxContainer" instance=ExtResource("4_4vemy")]
+layout_mode = 2
+text = "OPTIONS"
+
 [node name="EXIT_Button" parent="Control/Panel/MarginContainer/VBoxContainer" instance=ExtResource("4_4vemy")]
 layout_mode = 2
 text = "EXIT"
 
+[node name="OptionsMenu" parent="." instance=ExtResource("6_hibpx")]
+visible = false
+
 [connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/START_Button" to="." method="_start_button_pressed"]
+[connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/OPTIONS_Button" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/EXIT_Button" to="." method="_exit_button_pressed"]
