@@ -19,16 +19,23 @@ func _ready() -> void:
 	menu_area.mouse_exited.connect(_mouse_exited_area)
 	menu_area.input_event.connect(_mouse_input_event)
 
-	# If the material is NOT set to use billboard settings, then avoid running billboard specific code
-	if self.get_surface_override_material(0).billboard_mode == BaseMaterial3D.BillboardMode.BILLBOARD_DISABLED:
-		set_process(false)
+	# Sets the texture manually to avoid a known bug. https://www.reddit.com/r/godot/comments/13d93o1/godot_4_viewport_texture_error/
+	set_viewport_mat(self, menu_viewport)
+
+func set_viewport_mat(display_mesh : MeshInstance3D, sub_viewport : SubViewport, surface_id : int = 0):
+	var mat : StandardMaterial3D = StandardMaterial3D.new()
+	mat.resource_local_to_scene = true
+	mat.albedo_texture = sub_viewport.get_texture()
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	mat.cull_mode = BaseMaterial3D.CULL_DISABLED
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	display_mesh.set_surface_override_material(surface_id, mat)
 
 func _mouse_entered_area() -> void:
 	print("it touched")
 	is_mouse_inside = true
 	# Notify the viewport that the mouse is now hovering it.
 	menu_viewport.notification(NOTIFICATION_VP_MOUSE_ENTER)
-
 
 func _mouse_exited_area() -> void:
 	# Notify the viewport that the mouse is no longer hovering it.
