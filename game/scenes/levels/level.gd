@@ -46,6 +46,7 @@ func setup_door_dictionary():
 			else:
 				door_dictionary.get_or_add(door.door_id, door)
 
+
 ## Checks the powered object node, and sees what has a powered option under it, and makes sure if it has
 ## power that it's powered on.
 func check_powered_objects():

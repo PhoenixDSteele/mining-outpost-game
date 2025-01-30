@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://dfqcqf6cw5gkp"]
+[gd_scene load_steps=32 format=4 uid="uid://dfqcqf6cw5gkp"]
 
 [ext_resource type="PackedScene" uid="uid://r0rsvd7xkcoh" path="res://game/character/body_base.tscn" id="1_heyne"]
 [ext_resource type="Script" path="res://game/character/components/player_controller.gd" id="2_lusoa"]
@@ -11,21 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ckdrpe78mknwr" path="res://game/character/player/interaction_ray.tscn" id="8_wnmaa"]
 [ext_resource type="PackedScene" uid="uid://dfgxhc1ypxt24" path="res://game/character/player/climb_checker.tscn" id="10_8mwll"]
 [ext_resource type="PackedScene" uid="uid://b3enlx341w1qs" path="res://game/scenes/UI/HUD/hud.tscn" id="11_lfxd1"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3k0vi"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-
-[sub_resource type="Sky" id="Sky_iffpv"]
-sky_material = SubResource("ProceduralSkyMaterial_3k0vi")
-
-[sub_resource type="Environment" id="Environment_kpp45"]
-background_mode = 2
-sky = SubResource("Sky_iffpv")
-ambient_light_source = 1
-reflected_light_source = 1
-tonemap_mode = 2
-glow_enabled = true
+[ext_resource type="Script" path="res://game/character/components/ui_controller.gd" id="11_x6r1t"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xabkq"]
 
@@ -8773,9 +8759,6 @@ player_controller = NodePath("PlayerController")
 climb_checker = NodePath("Visual/ClimbChecker")
 stats = NodePath("Stats")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
-environment = SubResource("Environment_kpp45")
-
 [node name="greygoober_combined" type="Node3D" parent="Visual" index="0"]
 
 [node name="metarig" type="Node3D" parent="Visual/greygoober_combined" index="0"]
@@ -9936,10 +9919,13 @@ libraries = {
 
 [node name="ClimbChecker" parent="Visual" index="1" instance=ExtResource("10_8mwll")]
 
-[node name="PlayerController" type="Node" parent="." index="3"]
+[node name="HoldingPosition" type="Node3D" parent="Visual" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.39699, 0.644001)
+
+[node name="PlayerController" type="Node" parent="." index="2"]
 script = ExtResource("2_lusoa")
 
-[node name="StateMachine" parent="." index="4" node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" parent="." index="3" node_paths=PackedStringArray("initial_state")]
 initial_state = NodePath("IdleState")
 
 [node name="IdleState" type="Node" parent="StateMachine" index="0"]
@@ -9968,11 +9954,11 @@ turn_speed = 3.0
 [node name="LedgeHangState" type="Node" parent="StateMachine" index="4"]
 script = ExtResource("7_ysduw")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="5"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_0t56c")
 
-[node name="PlayerCamera" type="Node3D" parent="." index="6"]
+[node name="PlayerCamera" type="Node3D" parent="." index="5"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 script = ExtResource("7_h0o73")
@@ -9998,11 +9984,14 @@ exclude_parent = true
 target_position = Vector3(0, 0, -1.5)
 collision_mask = 4
 
-[node name="OmniLight3D" type="OmniLight3D" parent="." index="7"]
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.26823, 0)
 light_energy = 0.25
 light_specular = 0.0
 light_cull_mask = 4293918721
 omni_range = 2.0
+
+[node name="UIController" type="Node" parent="." index="7"]
+script = ExtResource("11_x6r1t")
 
 [node name="HUD" parent="." index="8" instance=ExtResource("11_lfxd1")]

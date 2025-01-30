@@ -75,9 +75,14 @@ text = "OPTIONS"
 layout_mode = 2
 text = "EXIT"
 
+[node name="DEBUG_AREA_Button" parent="Control/Panel/MarginContainer/VBoxContainer" instance=ExtResource("4_4vemy")]
+layout_mode = 2
+text = "Go to Debug Area"
+
 [node name="OptionsMenu" parent="." instance=ExtResource("6_hibpx")]
 visible = false
 
 [connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/START_Button" to="." method="_start_button_pressed"]
 [connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/OPTIONS_Button" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/EXIT_Button" to="." method="_exit_button_pressed"]
+[connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/DEBUG_AREA_Button" to="." method="_on_debug_area_button_pressed"]

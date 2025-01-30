@@ -16,10 +16,6 @@ var current_scene : String
 var next_scene : PackedScene
 var loaded_level : Level
 
-## Canvas Node, to instantiate during the pause menu.
-var pause_menu_instance : PauseScreen
-const PAUSE_SCREEN = preload("res://game/scenes/UI/pause_screen.tscn")
-
 ## Dictionary of scenes. Add more as needed. If you add a scene to the dictionary, add it as a const underneath as well for auto-complete.
 var known_scenes: Dictionary = {
 	"main_menu": preload("res://game/scenes/levels/main_menu/main_menu.tscn"),
@@ -46,18 +42,6 @@ var paused : bool = false
 var next_scene_name : String = ""
 ## Stored Door ID For Load Functions.
 var next_door_id : int = 0
-
-func _input(event: InputEvent) -> void:
-	## Pressing the input mapped key checks if the scene tree is already paused, if not it runs the pause function.
-	## Considering moving this elsewhere.
-	if event.is_action_pressed("pause"):
-		if current_scene != "main_menu":
-			if !get_tree().paused:
-				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-				pause_game()
-			else:
-				pause_menu_instance.resume_game()
-
 
 ## Starts timer, and spawns a loading screen.
 ## Connects the loading screen signals, and handles the fade on the object itself.
@@ -106,9 +90,3 @@ func scene_change_finished() -> void:
 ## Clears load screen.
 func clear_load_screen() -> void:
 	load_screen_instance.queue_free()
-
-## Call pause menu. The rest will be handled by the pause menu node itself.
-func pause_game():
-	if !on_main_menu:
-		pause_menu_instance = PAUSE_SCREEN.instantiate()
-		add_child(pause_menu_instance)

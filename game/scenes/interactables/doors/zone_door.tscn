@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=3 uid="uid://bhijhscc5lduk"]
 
-[ext_resource type="Script" path="res://game/scripts/interactable/doors/zone_door.gd" id="1_dkf50"]
-[ext_resource type="AudioStream" uid="uid://dj10gsc4fvlea" path="res://assets/audio/sfx/S_Sliding_Future_Door_Open.wav" id="2_hf4tf"]
-[ext_resource type="AudioStream" uid="uid://2sruocolw06x" path="res://assets/audio/sfx/S_Sliding_Future_Door_Close.wav" id="3_pcyfa"]
-[ext_resource type="AudioStream" uid="uid://b6aoqryx4rx2x" path="res://assets/audio/sfx/S_Door_Locked.wav" id="4_vjaev"]
+[ext_resource type="Script" path="res://game/scripts/interactable/doors/zone_door.gd" id="1_3xmmv"]
+[ext_resource type="AudioStream" uid="uid://dj10gsc4fvlea" path="res://assets/audio/sfx/S_Sliding_Future_Door_Open.wav" id="2_q15bh"]
+[ext_resource type="AudioStream" uid="uid://2sruocolw06x" path="res://assets/audio/sfx/S_Sliding_Future_Door_Close.wav" id="3_fqiej"]
+[ext_resource type="AudioStream" uid="uid://b6aoqryx4rx2x" path="res://assets/audio/sfx/S_Door_Locked.wav" id="4_wscmw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xwcbq"]
 size = Vector3(0.15, 3, 2)
@@ -79,10 +79,10 @@ size = Vector3(0.11, 2.9, 1.8)
 [node name="ZoneDoor" type="StaticBody3D"]
 collision_layer = 4
 collision_mask = 0
-script = ExtResource("1_dkf50")
-open_sound = ExtResource("2_hf4tf")
-close_sound = ExtResource("3_pcyfa")
-locked_sound = ExtResource("4_vjaev")
+script = ExtResource("1_3xmmv")
+open_sound = ExtResource("2_q15bh")
+close_sound = ExtResource("3_fqiej")
+locked_sound = ExtResource("4_wscmw")
 prompt_message = "Door"
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]

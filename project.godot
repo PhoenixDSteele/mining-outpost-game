@@ -45,7 +45,8 @@ project/assembly_name="Mining Outpost Game"
 folder_colors={
 "res://assets/": "gray",
 "res://core/": "gray",
-"res://game/": "blue",
+"res://game/": "gray",
+"res://game/character/": "blue",
 "res://game/scenes/": "green",
 "res://game/scripts/": "red"
 }

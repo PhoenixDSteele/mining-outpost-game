@@ -27,3 +27,7 @@ func _exit_button_pressed() -> void:
 
 func _on_options_button_pressed() -> void:
 	options_menu.on_enter()
+
+
+func _on_debug_area_button_pressed() -> void:
+	SceneManager.scene_change(SceneManager.level_debug)

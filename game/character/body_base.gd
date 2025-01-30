@@ -36,6 +36,7 @@ func _ready() -> void:
 	if collision == null:
 		collision = find_collision()
 
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity if it's enabled.
 	if not is_on_floor() and (gravity_enabled == true):
@@ -53,7 +54,8 @@ func find_anim_player() -> AnimationPlayer:
 	for x in visual.get_child(0).get_children():
 		if x is AnimationPlayer:
 			return x
-	OS.alert("No animation player found on curret body: " + str(self.name))
+	OS.alert("No animation player found on current body: " + str(self.name))
+	printerr("No animation player found on current body: " + str(self.name))
 	get_tree().quit()
 	return
 
@@ -62,6 +64,7 @@ func find_collision() -> CollisionShape3D:
 	for x in self.get_children():
 		if x is CollisionShape3D:
 			return x
-	OS.alert("No collision found on curret body: " + str(self.name))
+	OS.alert("No collision found on current body: " + str(self.name))
+	printerr("No collision found on current body: " + str(self.name))
 	get_tree().quit()
 	return
