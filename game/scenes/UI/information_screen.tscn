@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://bpoh2c6b0lro4"]
+[gd_scene load_steps=17 format=3 uid="uid://bpoh2c6b0lro4"]
 
 [ext_resource type="Script" path="res://game/scripts/UI/inventory_screen.gd" id="1_m3kkg"]
 [ext_resource type="Theme" uid="uid://dtej56pljgyf2" path="res://assets/ui_theme/temp_theme.tres" id="2_ks75h"]
 [ext_resource type="Shader" path="res://assets/shaders/screen_blur.gdshader" id="3_jrvv0"]
 [ext_resource type="PackedScene" uid="uid://3u6ci5l75476" path="res://core/ui/feature_button.tscn" id="4_v7lk2"]
 [ext_resource type="FontFile" uid="uid://csnmcna6ln5mk" path="res://assets/fonts/Ethnocentric Rg.otf" id="5_camjc"]
+[ext_resource type="PackedScene" uid="uid://cyowhqjj5pq7j" path="res://inventory_menu.tscn" id="6_2cgkk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xx6ww"]
 shader = ExtResource("3_jrvv0")
@@ -226,10 +227,11 @@ custom_minimum_size = Vector2(0, 800)
 layout_mode = 2
 
 [node name="ARM" type="Control" parent="Screen/MarginContainer/VBoxContainer/Menus"]
+visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_right = 0.467
+anchor_bottom = 1.125
+offset_right = -0.630005
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -245,14 +247,99 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 15
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Screen/MarginContainer/VBoxContainer/Menus/ARM/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Screen/MarginContainer/VBoxContainer/Menus/ARM/MarginContainer"]
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="Screen/MarginContainer/VBoxContainer/Menus/ARM/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(700, 0)
+[node name="Label" type="Label" parent="Screen/MarginContainer/VBoxContainer/Menus/ARM/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "ARM
+"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="Screen/MarginContainer/VBoxContainer/Menus/ARM/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MAP" type="Control" parent="Screen/MarginContainer/VBoxContainer/Menus"]
+layout_mode = 1
+anchor_left = 0.026
+anchor_right = 0.963
+anchor_bottom = 1.125
+offset_left = 0.860001
+offset_right = -0.0700684
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Screen/MarginContainer/VBoxContainer/Menus/MAP"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Screen/MarginContainer/VBoxContainer/Menus/MAP/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Screen/MarginContainer/VBoxContainer/Menus/MAP/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "MAP"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="Screen/MarginContainer/VBoxContainer/Menus/MAP/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="INVENTORY" parent="Screen/MarginContainer/VBoxContainer/Menus" instance=ExtResource("6_2cgkk")]
+visible = false
+layout_mode = 1
+
+[node name="DATA" type="Control" parent="Screen/MarginContainer/VBoxContainer/Menus"]
+visible = false
+layout_mode = 1
+anchor_right = 0.467
+anchor_bottom = 1.125
+offset_right = -0.630005
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Screen/MarginContainer/VBoxContainer/Menus/DATA"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Screen/MarginContainer/VBoxContainer/Menus/DATA/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Screen/MarginContainer/VBoxContainer/Menus/DATA/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "DATA"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="Screen/MarginContainer/VBoxContainer/Menus/DATA/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_8jw3i")
 }
+
+[connection signal="pressed" from="Screen/MarginContainer/VBoxContainer/MenuButtons/ARM_Button" to="." method="open_menu" binds= ["arm"]]
+[connection signal="pressed" from="Screen/MarginContainer/VBoxContainer/MenuButtons/MAP_Button" to="." method="open_menu" binds= ["map"]]
+[connection signal="pressed" from="Screen/MarginContainer/VBoxContainer/MenuButtons/INVENTORY_Button" to="." method="open_menu" binds= ["inventory"]]
+[connection signal="pressed" from="Screen/MarginContainer/VBoxContainer/MenuButtons/DATA_Button" to="." method="open_menu" binds= ["data"]]

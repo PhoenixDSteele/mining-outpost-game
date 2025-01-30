@@ -1,26 +1,49 @@
-[gd_scene load_steps=5 format=3 uid="uid://baq4gd5fw1htt"]
+[gd_scene load_steps=7 format=3 uid="uid://baq4gd5fw1htt"]
 
 [ext_resource type="Script" path="res://game/scripts/interactable/key_item/key_item.gd" id="1_6gh1l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s6iry"]
-size = Vector3(0.5, 0.5, 0.5)
+size = Vector3(0.35, 0.35, 0.35)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1s05"]
-transparency = 1
-albedo_color = Color(1, 0, 0, 0.75)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gille"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(0, 1, 0.983333, 1)
+emission_energy_multiplier = 4.0
 
-[sub_resource type="BoxMesh" id="BoxMesh_wkaem"]
-material = SubResource("StandardMaterial3D_p1s05")
-size = Vector3(0.5, 0.5, 0.5)
+[sub_resource type="CylinderMesh" id="CylinderMesh_dkkkc"]
+material = SubResource("StandardMaterial3D_gille")
+top_radius = 0.09
+bottom_radius = 0.09
+height = 0.4
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lj8je"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.05
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1ppic"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.3
 
 [node name="KeyItem" type="StaticBody3D"]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_6gh1l")
-prompt_message = "Key item"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_s6iry")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_wkaem")
+[node name="Battery" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_dkkkc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Battery"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.189401, -8.27896e-09)
+mesh = SubResource("CylinderMesh_lj8je")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Battery/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.167606, 7.32631e-09)
+mesh = SubResource("CylinderMesh_1ppic")
+
+[connection signal="interacted" from="." to="." method="_on_interacted"]

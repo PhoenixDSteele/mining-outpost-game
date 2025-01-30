@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://dfqcqf6cw5gkp"]
+[gd_scene load_steps=33 format=4 uid="uid://dfqcqf6cw5gkp"]
 
 [ext_resource type="PackedScene" uid="uid://r0rsvd7xkcoh" path="res://game/character/body_base.tscn" id="1_heyne"]
 [ext_resource type="Script" path="res://game/character/components/player_controller.gd" id="2_lusoa"]
@@ -10,9 +10,8 @@
 [ext_resource type="Script" path="res://game/character/components/states/common/ledgehang.gd" id="7_ysduw"]
 [ext_resource type="PackedScene" uid="uid://ckdrpe78mknwr" path="res://game/character/player/interaction_ray.tscn" id="8_wnmaa"]
 [ext_resource type="PackedScene" uid="uid://dfgxhc1ypxt24" path="res://game/character/player/climb_checker.tscn" id="10_8mwll"]
-[ext_resource type="Script" path="res://game/scripts/player_menu.gd" id="11_5g22t"]
+[ext_resource type="PackedScene" uid="uid://bq5ggtlx3irif" path="res://player_menu.tscn" id="11_h0okq"]
 [ext_resource type="Script" path="res://game/character/components/ui_controller.gd" id="11_x6r1t"]
-[ext_resource type="PackedScene" uid="uid://bpoh2c6b0lro4" path="res://game/scenes/UI/information_screen.tscn" id="13_grh4m"]
 [ext_resource type="PackedScene" uid="uid://b3enlx341w1qs" path="res://game/scenes/UI/HUD/hud.tscn" id="14_daw6m"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0t56c"]
@@ -8753,12 +8752,6 @@ _data = {
 "walk": SubResource("Animation_g4qgo")
 }
 
-[sub_resource type="QuadMesh" id="QuadMesh_rjvcv"]
-size = Vector2(4, 2.5)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_io1tc"]
-size = Vector3(3.98239, 2.34637, 0.103774)
-
 [node name="Player" node_paths=PackedStringArray("anim_player", "collision", "player_controller", "climb_checker", "stats") groups=["player"] instance=ExtResource("1_heyne")]
 collision_layer = 2
 anim_player = NodePath("Visual/greygoober_combined/AnimationPlayer")
@@ -9978,30 +9971,8 @@ camera_arm_length = 3.5
 [node name="CameraYaw" type="Node3D" parent="PlayerCamera" index="0"]
 unique_name_in_owner = true
 
-[node name="PlayerMenu" type="MeshInstance3D" parent="PlayerCamera/CameraYaw" index="0"]
+[node name="PlayerMenu" parent="PlayerCamera/CameraYaw" index="0" instance=ExtResource("11_h0okq")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, -1.06581e-14, 0, 1.06581e-14, 1, -0.727288, 0.00635052, 0.298956)
-visible = false
-mesh = SubResource("QuadMesh_rjvcv")
-skeleton = NodePath("../../..")
-script = ExtResource("11_5g22t")
-
-[node name="MenuViewport" type="SubViewport" parent="PlayerCamera/CameraYaw/PlayerMenu" index="0"]
-unique_name_in_owner = true
-transparent_bg = true
-size = Vector2i(1920, 1080)
-size_2d_override_stretch = true
-
-[node name="information_screen" parent="PlayerCamera/CameraYaw/PlayerMenu/MenuViewport" index="0" instance=ExtResource("13_grh4m")]
-
-[node name="menu_area" type="Area3D" parent="PlayerCamera/CameraYaw/PlayerMenu" index="1"]
-unique_name_in_owner = true
-process_mode = 3
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.157924, 0)
-input_capture_on_drag = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCamera/CameraYaw/PlayerMenu/menu_area" index="0"]
-shape = SubResource("BoxShape3D_io1tc")
 
 [node name="CameraPitch" type="Node3D" parent="PlayerCamera/CameraYaw" index="1"]
 unique_name_in_owner = true

@@ -54,6 +54,7 @@ func _input(event: InputEvent) -> void:
 			yaw += -event.relative.x * yaw_sensitivity * 0.1
 			pitch += -event.relative.y * pitch_sensitivity * 0.1
 
+## Make menu visible, and moves camera to correct position.
 func enter_menu():
 	in_menu = true
 	transitioning = true
@@ -67,7 +68,7 @@ func enter_menu():
 	menu_clamp_pitch = 0
 	transition_camera(Vector3(-0.8, 0, 0), 50)
 
-## Resets Camera Back To Normal
+## Resets Camera Back To Normal, and closes menu.
 func exit_menu():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	in_menu = false

@@ -26,8 +26,9 @@ var door_dictionary : Dictionary = {}
 ## Reference the powered node. All powered objects should be childed under it.
 @onready var powered_nodes: Node = %PoweredNodes
 
-## Constant reference to player to spawn them into the level.
+## Player spawn variables to spawn them into the level.
 const PLAYER = preload("res://game/character/player/player.tscn")
+var player_instance : BodyBase = null
 
 func _ready() -> void:
 	
@@ -55,25 +56,31 @@ func check_powered_objects():
 			if node is Powered:
 				if GameInstance.powered_areas.has(level_name):
 					node.toggle_power(GameInstance.powered_areas[level_name])
+					if player_instance != null:
+						player_instance.can_breath = GameInstance.powered_areas[level_name]
+						player_instance.hud.check_area_power()
 
 
 ## Function used when entering a level to spawn the player into the correct door position.
 func spawn_at_door(door_id:int) -> void:
-	var player_instance : BodyBase = PLAYER.instantiate()
+	player_instance = PLAYER.instantiate()
 	add_child(player_instance)
 	if no_spawn == false:
 		if door_dictionary.has(door_id):
 			player_instance.global_position = door_dictionary[door_id].spawn_point.global_position
 			player_instance.can_breath = GameInstance.powered_areas[level_name]
+			player_instance.hud.check_area_power()
 		else:
 			player_instance.global_position = manual_spawn_location.global_position
 			player_instance.can_breath = GameInstance.powered_areas[level_name]
+			player_instance.hud.check_area_power()
 			OS.alert("Entered " + level_name + ", but couldn't find door ID: " + str(door_id))
 
 ## Manual Spawn Location 
 func spawn_player_manually() -> void:
 	if no_spawn == false:
-		var player_instance : BodyBase = PLAYER.instantiate()
+		player_instance = PLAYER.instantiate()
 		add_child(player_instance)
 		player_instance.global_position = manual_spawn_location.global_position
 		player_instance.can_breath = GameInstance.powered_areas[level_name]
+		player_instance.hud.check_area_power()

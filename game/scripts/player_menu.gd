@@ -1,6 +1,9 @@
-extends MeshInstance3D
-## Not my script.  -Phoenix
+class_name PlayerMenu extends MeshInstance3D
+## Not my script Modified from linked source below.  -Phoenix
 ## Source: https://github.com/godotengine/godot-demo-projects/blob/master/viewport/gui_in_3d/gui_3d.gd
+
+## Reference to UI
+@onready var information_screen: InformationScreen = $MenuViewport/information_screen
 
 ## Used for checking if the mouse is inside the Area3D.
 var is_mouse_inside := false
@@ -116,3 +119,7 @@ func _mouse_input_event(_camera: Camera3D, event: InputEvent, event_position: Ve
 
 	# Finally, send the processed input event to the viewport.
 	menu_viewport.push_input(event)
+
+func _on_visibility_changed() -> void:
+	if (self.visible == true):
+		information_screen.check_game_instance()

@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://bq5ggtlx3irif"]
+
+[ext_resource type="Script" path="res://game/scripts/player_menu.gd" id="1_4olg0"]
+[ext_resource type="PackedScene" uid="uid://bpoh2c6b0lro4" path="res://game/scenes/UI/information_screen.tscn" id="2_e2mv3"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_rjvcv"]
+size = Vector2(4, 2.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_io1tc"]
+size = Vector3(3.98239, 2.34637, 0.103774)
+
+[node name="PlayerMenu" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, -1.06581e-14, 0, 1.06581e-14, 1, -0.727288, 0.00635052, 0.298956)
+visible = false
+mesh = SubResource("QuadMesh_rjvcv")
+skeleton = NodePath("../../..")
+script = ExtResource("1_4olg0")
+
+[node name="MenuViewport" type="SubViewport" parent="."]
+unique_name_in_owner = true
+transparent_bg = true
+size = Vector2i(1920, 1080)
+size_2d_override_stretch = true
+
+[node name="information_screen" parent="MenuViewport" instance=ExtResource("2_e2mv3")]
+
+[node name="menu_area" type="Area3D" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.157924, 0)
+input_capture_on_drag = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="menu_area"]
+shape = SubResource("BoxShape3D_io1tc")
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="visibility_changed" from="MenuViewport/information_screen" to="MenuViewport/information_screen" method="_on_visibility_changed"]

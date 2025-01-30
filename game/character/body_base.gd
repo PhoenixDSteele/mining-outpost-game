@@ -22,6 +22,9 @@ class_name BodyBase extends CharacterBody3D
 ## Body Stats - Currently only Health, and Oxygen.
 @export var stats : Stats = null
 
+## HUD REF
+@onready var hud: HUD = %HUD
+
 ## Whether or not the character can breath.
 var can_breath : bool = true
 
@@ -42,9 +45,11 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor() and (gravity_enabled == true):
 		velocity.y -= gravity * delta
 	
-	# Reduces oxygen levels if cant breath.
-	if (can_breath == false):
+	# Handles Oxygen Stat Levels
+	if (can_breath == false) and (stats.oxygen != -1):
 		stats.oxygen -= 1 * delta
+	elif (can_breath == true) and (stats.oxygen != 100):
+		stats.oxygen += 1 * delta
 	
 	# Always active to make velocity movements possible in state machine.
 	move_and_slide()
