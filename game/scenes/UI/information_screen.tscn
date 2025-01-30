@@ -1,0 +1,258 @@
+[gd_scene load_steps=16 format=3 uid="uid://bpoh2c6b0lro4"]
+
+[ext_resource type="Script" path="res://game/scripts/UI/inventory_screen.gd" id="1_m3kkg"]
+[ext_resource type="Theme" uid="uid://dtej56pljgyf2" path="res://assets/ui_theme/temp_theme.tres" id="2_ks75h"]
+[ext_resource type="Shader" path="res://assets/shaders/screen_blur.gdshader" id="3_jrvv0"]
+[ext_resource type="PackedScene" uid="uid://3u6ci5l75476" path="res://core/ui/feature_button.tscn" id="4_v7lk2"]
+[ext_resource type="FontFile" uid="uid://csnmcna6ln5mk" path="res://assets/fonts/Ethnocentric Rg.otf" id="5_camjc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xx6ww"]
+shader = ExtResource("3_jrvv0")
+shader_parameter/lod = 0.8
+
+[sub_resource type="Gradient" id="Gradient_vp8hy"]
+colors = PackedColorArray(0, 1, 0.718, 0.2, 0, 1, 0.718, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6w2v5"]
+gradient = SubResource("Gradient_vp8hy")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_5wtmr"]
+base_font = ExtResource("5_camjc")
+variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s4rxw"]
+bg_color = Color(0, 1, 0.717, 0.6)
+skew = Vector2(0.2, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 1, 0.716667, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lq8wa"]
+bg_color = Color(0, 1, 0.717, 0.25)
+skew = Vector2(0.2, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 1, 0.716667, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wr"]
+bg_color = Color(0, 1, 0.717, 0.25)
+draw_center = false
+skew = Vector2(0.2, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 1, 0.716667, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Animation" id="Animation_18lhv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Screen/MarginContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1c33a"]
+resource_name = "info_menu_open"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Screen/MarginContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -200), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8jw3i"]
+_data = {
+"RESET": SubResource("Animation_18lhv"),
+"info_menu_open": SubResource("Animation_1c33a")
+}
+
+[node name="information_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m3kkg")
+
+[node name="Screen" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_ks75h")
+
+[node name="BlurredBackground" type="ColorRect" parent="Screen"]
+visible = false
+material = SubResource("ShaderMaterial_xx6ww")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 1, 0, 0.5)
+
+[node name="TextureRect" type="TextureRect" parent="Screen"]
+visible = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_6w2v5")
+
+[node name="MarginContainer" type="MarginContainer" parent="Screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Screen/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="MenuButtons" type="HBoxContainer" parent="Screen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="ARM_Button" parent="Screen/MarginContainer/VBoxContainer/MenuButtons" instance=ExtResource("4_v7lk2")]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
+theme_override_colors/font_color = Color(0, 1, 0.717647, 1)
+theme_override_fonts/font = SubResource("FontVariation_5wtmr")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxFlat_s4rxw")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_lq8wa")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_lq8wa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lq8wa")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lq8wa")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sj4wr")
+text = "ARM"
+
+[node name="MAP_Button" parent="Screen/MarginContainer/VBoxContainer/MenuButtons" instance=ExtResource("4_v7lk2")]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
+theme_override_colors/font_color = Color(0, 1, 0.717647, 1)
+theme_override_fonts/font = SubResource("FontVariation_5wtmr")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxFlat_s4rxw")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_lq8wa")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_lq8wa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lq8wa")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lq8wa")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sj4wr")
+text = "MAP"
+
+[node name="INVENTORY_Button" parent="Screen/MarginContainer/VBoxContainer/MenuButtons" instance=ExtResource("4_v7lk2")]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
+theme_override_colors/font_color = Color(0, 1, 0.717647, 1)
+theme_override_fonts/font = SubResource("FontVariation_5wtmr")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxFlat_s4rxw")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_lq8wa")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_lq8wa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lq8wa")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lq8wa")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sj4wr")
+text = "INVENTORY"
+
+[node name="DATA_Button" parent="Screen/MarginContainer/VBoxContainer/MenuButtons" instance=ExtResource("4_v7lk2")]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
+theme_override_colors/font_color = Color(0, 1, 0.717647, 1)
+theme_override_fonts/font = SubResource("FontVariation_5wtmr")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxFlat_s4rxw")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_lq8wa")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_lq8wa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lq8wa")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lq8wa")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sj4wr")
+text = "DATA"
+
+[node name="Menus" type="Control" parent="Screen/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 800)
+layout_mode = 2
+
+[node name="ARM" type="Control" parent="Screen/MarginContainer/VBoxContainer/Menus"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Screen/MarginContainer/VBoxContainer/Menus/ARM"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Screen/MarginContainer/VBoxContainer/Menus/ARM/MarginContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Screen/MarginContainer/VBoxContainer/Menus/ARM/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8jw3i")
+}

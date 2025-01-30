@@ -23,7 +23,7 @@ func _ready() -> void:
 	check_area_power()
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	oxygen.value = stats.oxygen
 	if stats.oxygen <= 0:
 		print("player died")

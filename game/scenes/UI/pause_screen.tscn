@@ -206,7 +206,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.513)
+color = Color(0, 0, 0, 0.8)
 
 [node name="Panel" type="Panel" parent="Screen/DebugMenu"]
 custom_minimum_size = Vector2(300, 400)
@@ -271,7 +271,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.5)
+color = Color(0, 0, 0, 0.8)
 
 [node name="Panel" type="Panel" parent="Screen/TeleportMenu"]
 custom_minimum_size = Vector2(400, 250)
@@ -407,7 +407,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.5)
+color = Color(0, 0, 0, 0.8)
 
 [node name="Panel2" type="Panel" parent="Screen/PowerMenu"]
 custom_minimum_size = Vector2(300, 500)

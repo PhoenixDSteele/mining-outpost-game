@@ -1,19 +1,31 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dtej56pljgyf2"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://dtej56pljgyf2"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqxk4"]
-bg_color = Color(0.2277, 0.32659, 0.33, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[ext_resource type="FontFile" uid="uid://csnmcna6ln5mk" path="res://assets/fonts/Ethnocentric Rg.otf" id="1_o444r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mn7vs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exm11"]
-bg_color = Color(0.2665, 0.362167, 0.41, 1)
+bg_color = Color(0, 1, 0.718, 0.5)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1.01075e-06, 0.625205, 0.44316, 1)
+border_blend = true
 corner_radius_top_left = 15
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
 [resource]
-Button/styles/normal = SubResource("StyleBoxFlat_uqxk4")
+Button/colors/font_color = Color(0, 1, 0.718, 1)
+Button/colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
+Button/colors/font_hover_pressed_color = Color(0.988235, 0.611765, 0, 1)
+Button/fonts/font = ExtResource("1_o444r")
+Button/styles/focus = SubResource("StyleBoxEmpty_mn7vs")
+Button/styles/hover = SubResource("StyleBoxEmpty_mn7vs")
+Button/styles/normal = SubResource("StyleBoxEmpty_mn7vs")
+Button/styles/pressed = SubResource("StyleBoxEmpty_mn7vs")
+Label/colors/font_color = Color(0, 1, 0.717647, 1)
+Label/fonts/font = ExtResource("1_o444r")
 Panel/styles/panel = SubResource("StyleBoxFlat_exm11")
