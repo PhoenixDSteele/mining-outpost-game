@@ -8,7 +8,7 @@ class_name UIController extends Node
 
 ## Canvas Node, to instantiate during the pause menu.
 var pause_menu_instance : PauseScreen
-const PAUSE_SCREEN = preload("res://game/scenes/UI/pause_screen.tscn")
+const PAUSE_SCREEN = preload("res://core/ui/pause_menu/pause_screen.tscn")
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):

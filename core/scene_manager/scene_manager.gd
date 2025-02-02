@@ -9,7 +9,7 @@ extends Node
 
 ## Simple Canvas Node To Cover Everything. Has functions, 'fade_in', and 'fade_out'.
 var load_screen_instance : LoadingScreen
-const LOADING_SCREEN = preload("res://game/scenes/UI/loading_screen.tscn")
+const LOADING_SCREEN = preload("res://core/scene_manager/loading_screen/loading_screen.tscn")
 
 ## Current Scene, and Next Scene to go to.
 var current_scene : String
