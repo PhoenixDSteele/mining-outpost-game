@@ -8,7 +8,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8cbiy"]
 shader = ExtResource("1_43ew5")
-shader_parameter/lod = 0.8
+shader_parameter/lod = 0.5
 
 [sub_resource type="Animation" id="Animation_x85kf"]
 length = 0.001
@@ -68,7 +68,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 1, 0, 0.5)
+color = Color(0, 0, 0, 0.8)
 
 [node name="Panel" type="Panel" parent="Screen"]
 custom_minimum_size = Vector2(300, 300)
@@ -250,6 +250,7 @@ text = "⬅️RETURN"
 
 [node name="OptionsMenu" parent="Screen" instance=ExtResource("5_15wcu")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 
 [node name="TeleportMenu" type="Control" parent="Screen"]
@@ -408,7 +409,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.8)
 
 [node name="Panel2" type="Panel" parent="Screen/PowerMenu"]
-custom_minimum_size = Vector2(300, 500)
+custom_minimum_size = Vector2(500, 700)
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0

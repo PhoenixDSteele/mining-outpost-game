@@ -3,18 +3,27 @@
 [ext_resource type="Script" path="res://game/scripts/UI/debug/manual_power_option.gd" id="1_0gnn0"]
 
 [node name="ManualPowerOption" type="HBoxContainer"]
-script = ExtResource("1_0gnn0")
-
-[node name="CheckBox" type="CheckBox" parent="."]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(25, 25)
-layout_mode = 2
+anchors_preset = -1
+anchor_right = 0.101
+anchor_bottom = 0.029
+offset_right = 0.0799866
+offset_bottom = -0.320002
 size_flags_horizontal = 6
-flat = true
+size_flags_vertical = 4
+alignment = 1
+script = ExtResource("1_0gnn0")
 
 [node name="Label" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
+text = "checkpoint_north"
+
+[node name="CheckBox" type="CheckBox" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 25)
+layout_mode = 2
+text = "ON"
+flat = true
 
 [connection signal="toggled" from="CheckBox" to="." method="_on_check_box_toggled"]
