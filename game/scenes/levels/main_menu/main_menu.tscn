@@ -8,4 +8,4 @@ level_name = "main_menu"
 level_music = "main_menu"
 no_spawn = true
 
-[node name="MainMenu" parent="." index="4" instance=ExtResource("2_ujyte")]
+[node name="MainMenu" parent="." index="6" instance=ExtResource("2_ujyte")]

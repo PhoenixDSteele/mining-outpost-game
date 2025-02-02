@@ -34,6 +34,8 @@ grow_vertical = 2
 stream = ExtResource("3_wpcag")
 autoplay = true
 expand = true
+loop = true
+bus = &"SFX"
 
 [node name="Panel" type="Panel" parent="Control"]
 self_modulate = Color(1, 1, 1, 0.5)

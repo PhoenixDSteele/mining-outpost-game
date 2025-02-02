@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dw8n0ir5hscjp" path="res://game/scenes/levels/level.tscn" id="1_n2ric"]
 [ext_resource type="PackedScene" uid="uid://bhijhscc5lduk" path="res://game/scenes/interactables/doors/zone_door.tscn" id="2_lo8ni"]
 [ext_resource type="PackedScene" uid="uid://dr038k11r1a4h" path="res://game/scenes/interactables/doors/normal_door.tscn" id="3_045wp"]
-[ext_resource type="PackedScene" uid="uid://cvwuan084uqd3" path="res://reactor_slot.tscn" id="3_phagt"]
+[ext_resource type="PackedScene" uid="uid://cvwuan084uqd3" path="res://game/scenes/interactables/reactor_slots/reactor_slot.tscn" id="3_phagt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_12a3k"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -102,7 +102,7 @@ target_level = "checkpoint_north"
 transform = Transform3D(-0.661927, 0, -0.749568, 0, 1, 0, 0.749568, 0, -0.661927, 0, 0, -8.14272)
 locked = false
 
-[node name="Reactor" type="Node3D" parent="." index="5"]
+[node name="Reactor" type="Node3D" parent="." index="6"]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Reactor" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.941703, 0)

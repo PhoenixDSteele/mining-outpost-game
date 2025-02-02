@@ -1,11 +1,11 @@
 [gd_scene load_steps=17 format=3 uid="uid://bpoh2c6b0lro4"]
 
-[ext_resource type="Script" path="res://game/scripts/UI/inventory_screen.gd" id="1_m3kkg"]
+[ext_resource type="Script" path="res://game/scripts/UI/player_menu/inventory_screen.gd" id="1_m3kkg"]
 [ext_resource type="Theme" uid="uid://dtej56pljgyf2" path="res://assets/ui_theme/temp_theme.tres" id="2_ks75h"]
 [ext_resource type="Shader" path="res://assets/shaders/screen_blur.gdshader" id="3_jrvv0"]
 [ext_resource type="PackedScene" uid="uid://3u6ci5l75476" path="res://core/ui/feature_button.tscn" id="4_v7lk2"]
 [ext_resource type="FontFile" uid="uid://csnmcna6ln5mk" path="res://assets/fonts/Ethnocentric Rg.otf" id="5_camjc"]
-[ext_resource type="PackedScene" uid="uid://cyowhqjj5pq7j" path="res://inventory_menu.tscn" id="6_2cgkk"]
+[ext_resource type="PackedScene" uid="uid://cyowhqjj5pq7j" path="res://game/scenes/UI/player_menu/inventory_menu.tscn" id="6_2cgkk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xx6ww"]
 shader = ExtResource("3_jrvv0")

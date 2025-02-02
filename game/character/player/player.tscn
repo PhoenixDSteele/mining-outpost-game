@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://game/character/components/states/common/ledgehang.gd" id="7_ysduw"]
 [ext_resource type="PackedScene" uid="uid://ckdrpe78mknwr" path="res://game/character/player/interaction_ray.tscn" id="8_wnmaa"]
 [ext_resource type="PackedScene" uid="uid://dfgxhc1ypxt24" path="res://game/character/player/climb_checker.tscn" id="10_8mwll"]
-[ext_resource type="PackedScene" uid="uid://bq5ggtlx3irif" path="res://player_menu.tscn" id="11_h0okq"]
+[ext_resource type="PackedScene" uid="uid://bq5ggtlx3irif" path="res://game/scenes/UI/player_menu/player_menu.tscn" id="11_h0okq"]
 [ext_resource type="Script" path="res://game/character/components/ui_controller.gd" id="11_x6r1t"]
 [ext_resource type="PackedScene" uid="uid://b3enlx341w1qs" path="res://game/scenes/UI/HUD/hud.tscn" id="14_daw6m"]
 
