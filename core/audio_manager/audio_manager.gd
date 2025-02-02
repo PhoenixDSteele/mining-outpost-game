@@ -2,14 +2,7 @@ extends Node
 ## AudioManager autoloaded.
 ## Used to manage all sounds in game.
 
-## The total number of Audio Buses
-const AUDIO_BUSES: int = 3
-## The Master buses index
-const BUS_MASTER_IDX: int = 0
-## The Music buses index
-const BUS_MUSIC_IDX: int = 1
-## The SFX buses index
-const BUS_SFX_IDX: int = 2
+
 
 ##
 ## Dictionary of music. Add more as needed. Optionally add a constant below for auto-completion. Makes finding the song easier.
@@ -64,7 +57,3 @@ func play_UI_sound(ui_sound_name:String, volume:float = 0) -> void:
 	ui.volume_db = volume
 	ui.stream = ui_sound_dict[ui_sound_name]
 	ui.play()
-
-## Convert options slider value to volume decibel.
-func lerp_to_db(value: float) -> float:
-	return clampf(lerp(-25.0, 25.0, value), -15.0, 5.0)

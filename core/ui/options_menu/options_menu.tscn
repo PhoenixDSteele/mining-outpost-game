@@ -8,7 +8,7 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_isdup"]
 
-[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("fullscreen_checkbox", "master_vol_slider", "music_vol_slider", "sfx_vol_slider")]
+[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("fullscreen_checkbox", "resolution_options", "master_vol_slider", "music_vol_slider", "sfx_vol_slider")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,6 +18,7 @@ grow_vertical = 2
 theme = ExtResource("1_x64v0")
 script = ExtResource("1_71rb0")
 fullscreen_checkbox = NodePath("Panel/MarginContainer/VBoxContainer/HBoxVideo/VBoxControls/MarginSpacer/CheckBoxFullscreen")
+resolution_options = NodePath("Panel/MarginContainer/VBoxContainer/HBoxVideo/VBoxControls/MarginSpacer2/ResOptionButton")
 master_vol_slider = NodePath("Panel/MarginContainer/VBoxContainer/HBoxAudio/VBoxControls/HSliderMaster")
 music_vol_slider = NodePath("Panel/MarginContainer/VBoxContainer/HBoxAudio/VBoxControls/HSliderMusic")
 sfx_vol_slider = NodePath("Panel/MarginContainer/VBoxContainer/HBoxAudio/VBoxControls/HSliderSFX")
@@ -84,6 +85,12 @@ theme_override_colors/font_color = Color(0.847474, 0.847474, 0.847474, 1)
 text = "Fullscreen"
 horizontal_alignment = 2
 
+[node name="LabelResolution" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxVideo/VBoxLabels"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.847474, 0.847474, 0.847474, 1)
+text = "Resolution"
+horizontal_alignment = 2
+
 [node name="VBoxControls" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxVideo"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -98,6 +105,23 @@ theme_override_constants/margin_left = 32
 layout_mode = 2
 size_flags_horizontal = 0
 flat = true
+
+[node name="MarginSpacer2" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxVideo/VBoxControls"]
+layout_mode = 2
+
+[node name="ResOptionButton" type="OptionButton" parent="Panel/MarginContainer/VBoxContainer/HBoxVideo/VBoxControls/MarginSpacer2"]
+layout_mode = 2
+selected = 0
+item_count = 5
+popup/item_0/text = "1920x1080"
+popup/item_1/text = "1600x900"
+popup/item_1/id = 1
+popup/item_2/text = "1280x720"
+popup/item_2/id = 2
+popup/item_3/text = "1024x576"
+popup/item_3/id = 3
+popup/item_4/text = "640x360"
+popup/item_4/id = 4
 
 [node name="MarginSeparator" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
