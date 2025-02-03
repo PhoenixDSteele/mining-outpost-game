@@ -30,8 +30,8 @@ func setup_slot() -> void:
 			power_off_light.visible = true
 			battery.visible = false
 
-@warning_ignore("unused_parameter")
-func _on_interacted(body: Variant) -> void:
+
+func _on_interacted() -> void:
 	if active:
 		toggle_reactor_slot(false)
 	elif not active:

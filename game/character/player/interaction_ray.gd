@@ -15,7 +15,7 @@ func _process(_delta: float) -> void:
 			interact_text.text = collider.get_prompt()
 			
 			if Input.is_action_just_pressed("interact"):
-				collider.interact(collider)
+				collider.interact()
 		
 		else:
 			interact_text.text = ""
