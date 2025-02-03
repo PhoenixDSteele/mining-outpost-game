@@ -14,6 +14,7 @@ enum Resolutions {FHD=0, HDPLUS=1, HDWXGA=2, WSVGA=3, nHD=4}
 var resolution: Resolutions
 var fullscreen: bool
 
+## Dictionary of the Audio Bus volumes. {bus_idx: volume}
 var audio_volumes: Dictionary = {
 	
 }
@@ -34,6 +35,7 @@ func load_config() -> void:
 	else: save_config()
 	update_options()
 
+## Set and Save the Config file.
 func save_config() -> void:
 	set_config()
 	config.save(CONFIG_PATH)
@@ -48,47 +50,50 @@ func reset_config() -> void:
 		set_bus_volume(i, default_volume)
 	set_config()
 	
-
+## Set the Config file values.
 func set_config() -> void:
 	config.set_value("video", "fullscreen", fullscreen)
 	config.set_value("video", "resolution", resolution)
 	for idx in range(AUDIO_BUSES):
 		var volume:float = audio_volumes[idx]
 		config.set_value("audio", str(idx), volume)
-
+## Load Video config options 
 func load_video_config() -> void:
 	fullscreen = config.get_value("video", "fullscreen")
 	resolution = config.get_value("video", "resolution")
 
-
+## Load Audio config options 
 func load_audio_config() -> void:
 	for i in range(AUDIO_BUSES):
 		var volume: float = config.get_value("audio", str(i))
 		set_bus_volume(i, volume)
 #endregion
 #region UPDATE FUNCTIONS
+## Apply the current Video & Audio settings.
 func update_options() -> void:
 	update_video()
 	update_audio()
 
-
+## Apply the current Video settings.
 func update_video() -> void:
 	set_resolution()
 	set_window_mode()
 
-
+## Apply the current Audio settings
 func update_audio() -> void:
 	for i in range(AUDIO_BUSES):
 		var volume: float = audio_volumes[i]
 		set_bus_volume(i, volume)
 #endregion
 #region SET FUNCTIONS
+## Toggle the window mode between Fullscreen and Windowed
 func set_window_mode() -> void:
 	var mode: DisplayServer.WindowMode = DisplayServer.WindowMode.WINDOW_MODE_EXCLUSIVE_FULLSCREEN
 	if not fullscreen: mode = DisplayServer.WindowMode.WINDOW_MODE_WINDOWED
 	DisplayServer.window_set_mode(mode)
 
-
+##TODO Adjust Resolution scale in the future
+## Set the Resolution/Window Size
 func set_resolution() -> void:
 	match resolution:
 		Resolutions.FHD:
@@ -102,7 +107,7 @@ func set_resolution() -> void:
 		Resolutions.nHD:
 			DisplayServer.window_set_size(Vector2(640,360))
 
-
+## Set a specific Audio buses volume.
 func set_bus_volume(idx:int, value:float) -> void:
 	audio_volumes[idx] = value
 	var volume:float  = lerp_to_db(value)

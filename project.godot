@@ -26,7 +26,6 @@ SceneManager="*res://core/scene_manager/scene_manager.tscn"
 GameInstance="*res://core/game_instance/game_instance.tscn"
 OptionsManager="*res://core/options_manager/options_manager.gd"
 SaveManager="*res://core/save_manager/save_manager.gd"
-GameViewPort="*res://game_view_port.tscn"
 
 [debug]
 
