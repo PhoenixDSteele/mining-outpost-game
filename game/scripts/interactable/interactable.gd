@@ -15,5 +15,5 @@ func get_prompt():
 	return prompt_message + "\n<" + input_action + ">"
 
 
-func interact(body):
-	interacted.emit(body)
+func interact():
+	interacted.emit()

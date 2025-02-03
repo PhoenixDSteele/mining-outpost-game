@@ -30,8 +30,7 @@ func _ready() -> void:
 	door_name.text = ("TO: <" + target_level + " | " + "Target ID: " + str(target_door_id) + ">" +
 						"\n FROM: <" + str(get_parent().get_parent().name) + " | " + "ID: " + str(door_id) + ">" )
 
-@warning_ignore("unused_parameter")
-func _on_interacted(body: Variant) -> void:
+func _on_interacted() -> void:
 	if target_level != "":
 		if not locked:
 			animation_player.play("open_door")

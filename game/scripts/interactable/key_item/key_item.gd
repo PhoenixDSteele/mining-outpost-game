@@ -10,7 +10,7 @@ func _ready() -> void:
 	prompt_message = "Pick Up " + item_name.capitalize()
 
 @warning_ignore("unused_parameter")
-func _on_interacted(body: Variant) -> void:
+func _on_interacted() -> void:
 	var free_item_up:bool = false
 	match item_name:
 		"battery":

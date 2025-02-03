@@ -15,6 +15,9 @@ var root_motion_pos
 
 var finishing : bool = false
 
+@onready var root_visual_mesh_for_debug: MeshInstance3D = %RootVisualMeshForDebug
+
+
 func enter() -> void:
 	var ball_marker : MeshInstance3D = MeshInstance3D.new()
 	add_child(ball_marker)
@@ -53,7 +56,7 @@ func handle_input(input) -> void:
 
 @warning_ignore("unused_parameter")
 func climb_up(anim_finished): # Need this param to properly connect animation_finished. Because the signal sends a boolean regardless.
-	body.visual.get_child(0).global_position = $"../../Visual/greygoober_combined/metarig/Skeleton3D/RootAttachment/MeshInstance3D".global_position
+	body.visual.get_child(0).global_position = root_visual_mesh_for_debug.global_position
 	body.anim_player.play("idle", 0.0)
 	body.anim_player.animation_finished.disconnect(climb_up)
 	body.collision.disabled = true

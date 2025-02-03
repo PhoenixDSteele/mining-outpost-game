@@ -38,8 +38,7 @@ func toggle_power(power_state:bool) -> void:
 			light_source.light_energy = 0.5
 			prompt_message = "Open Door"
 
-@warning_ignore("unused_parameter")
-func _on_interacted(body: Variant) -> void:
+func _on_interacted() -> void:
 	if not powered_on:
 		return
 	elif powered_on:

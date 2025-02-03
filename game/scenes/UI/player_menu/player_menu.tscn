@@ -28,6 +28,8 @@ size_2d_override_stretch = true
 unique_name_in_owner = true
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.157924, 0)
+collision_layer = 16
+collision_mask = 0
 input_capture_on_drag = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="menu_area"]
