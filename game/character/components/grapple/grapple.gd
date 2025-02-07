@@ -4,6 +4,7 @@ class_name Grapple extends Node3D
 
 @onready var player: BodyBase = $"../../../../../.."
 @onready var camera: Camera3D = %Camera3D
+@onready var audio: AudioStreamPlayer3D = $Audio
 
 @export var player_controller : PlayerController = null
 @export var grapple_max_length : float = 10
@@ -13,9 +14,15 @@ var cable : Cable
 
 var grapple_attempt : bool = false
 var grappling : bool = false
+var too_far : bool = false
 var reeling_in : bool = false
 var attached_object : RigidBody3D = null
 var attached_pos : Vector3 = Vector3.ZERO
+
+const GRAPPLE_HIT = preload("res://assets/audio/sfx/grapple_hit.mp3")
+const REEL_IN = preload("res://assets/audio/sfx/reel_in.mp3")
+const ROPE_TIGHTEN = preload("res://assets/audio/sfx/rope_tighten.mp3")
+const STRETCH_BREAK = preload("res://assets/audio/sfx/stretch_break.mp3")
 
 func _ready() -> void:
 	player_controller.input.connect(grapple)
@@ -33,13 +40,19 @@ func grapple(grapple_input) -> void:
 			elif grappling:
 				grappling = false
 				print('Releasing Grapple')
+				audio.stream = STRETCH_BREAK
+				audio.play()
 
 ## Handles reeling input
 func reel_in(reel_input) -> void:
 	if reel_input is String:
 		if (reel_input == "grapple_reel"):
+			if not reeling_in:
+				audio.stream = REEL_IN
+				audio.play()
 			reeling_in = true
 		elif (reel_input == "grapple_reel_stop"):
+			audio.stop()
 			reeling_in = false
 
 ## Handles raycast, grapple, distance, and reeling.
@@ -67,7 +80,13 @@ func _physics_process(delta: float) -> void:
 	if grappling:
 		cable.update_pos(self.global_position, attached_object.global_position)
 		if (player.global_position.distance_to(attached_object.global_position) > (grapple_max_length - 1)) or (reeling_in):
+			if not too_far and not reeling_in:
+				audio.stream = ROPE_TIGHTEN
+				audio.play()
+			too_far = true
 			attached_object.apply_central_force((player.global_position - attached_object.global_position) * delta * 100)
+			if (player.global_position.distance_to(attached_object.global_position) <= (grapple_max_length/2)):
+				too_far = false
 		else:
 			attached_object.constant_force = Vector3.ZERO
 		if cable != null:
@@ -80,6 +99,8 @@ func _physics_process(delta: float) -> void:
 
 ## Attaches to first rigidbody hit if it was detected as a rigidbody.
 func attach_grapple(body:RigidBody3D) -> void:
+	audio.stream = GRAPPLE_HIT
+	audio.play()
 	attached_object = body
 	cable = Cable.new()
 	cable.top_level = true

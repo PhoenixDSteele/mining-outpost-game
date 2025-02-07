@@ -1,8 +1,8 @@
 [gd_scene load_steps=36 format=4 uid="uid://dfqcqf6cw5gkp"]
 
 [ext_resource type="PackedScene" uid="uid://r0rsvd7xkcoh" path="res://game/character/body_base.tscn" id="1_heyne"]
+[ext_resource type="PackedScene" uid="uid://buxi3fgts6clp" path="res://grapple.tscn" id="2_6rfct"]
 [ext_resource type="Script" path="res://game/character/components/player_controller.gd" id="2_lusoa"]
-[ext_resource type="Script" path="res://game/character/components/grapple/grapple.gd" id="2_mvg5x"]
 [ext_resource type="Script" path="res://game/character/components/states/common/idle.gd" id="3_3npd5"]
 [ext_resource type="Script" path="res://game/character/components/states/common/movement.gd" id="4_gfeqp"]
 [ext_resource type="Script" path="res://game/character/components/states/common/fall.gd" id="5_gjswa"]
@@ -9932,10 +9932,8 @@ transform = Transform3D(0.20827, -0.779882, 0.590261, 0.136168, -0.574498, -0.80
 bone_name = "palm.01.R"
 bone_idx = 126
 
-[node name="Grapple" type="Node3D" parent="Visual/greygoober_combined/metarig/Skeleton3D/BoneAttachmentGrapple" index="0" node_paths=PackedStringArray("player_controller")]
-script = ExtResource("2_mvg5x")
+[node name="Grapple" parent="Visual/greygoober_combined/metarig/Skeleton3D/BoneAttachmentGrapple" index="0" node_paths=PackedStringArray("player_controller") instance=ExtResource("2_6rfct")]
 player_controller = NodePath("../../../../../../PlayerController")
-hit_layers = 5
 
 [node name="DEBUGVisualHandPos" type="MeshInstance3D" parent="Visual/greygoober_combined/metarig/Skeleton3D/BoneAttachmentGrapple" index="1"]
 mesh = SubResource("SphereMesh_pxeah")
