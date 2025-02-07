@@ -1,0 +1,214 @@
+[gd_scene load_steps=13 format=3 uid="uid://bjjt0afr84kt0"]
+
+[ext_resource type="PackedScene" uid="uid://ce6q280vssji4" path="res://assets/models/characters/player/hand.glb" id="1_k5nuj"]
+[ext_resource type="Script" path="res://hand_controller.gd" id="2_8wuot"]
+[ext_resource type="Script" path="res://start_ik.gd" id="2_ked5p"]
+[ext_resource type="Script" path="res://ik_target.gd" id="4_luyn5"]
+[ext_resource type="PackedScene" uid="uid://b20fckocvf0xf" path="res://game/character/player/player_camera.tscn" id="4_xfxa6"]
+[ext_resource type="Script" path="res://step_ray.gd" id="5_5kged"]
+[ext_resource type="Script" path="res://step_target_container.gd" id="5_xd6he"]
+[ext_resource type="AudioStream" uid="uid://bxblvxod0u7nn" path="res://assets/audio/sfx/hand_step.mp3" id="8_53vak"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r30vu"]
+shading_mode = 0
+albedo_color = Color(0, 1, 0.0666666, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_rk0s0"]
+material = SubResource("StandardMaterial3D_r30vu")
+radius = 0.01
+height = 0.02
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dekj4"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 0.5)
+
+[sub_resource type="SphereMesh" id="SphereMesh_cit7c"]
+material = SubResource("StandardMaterial3D_dekj4")
+radius = 0.01
+height = 0.02
+
+[node name="hand" instance=ExtResource("1_k5nuj")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.12937, 0)
+script = ExtResource("2_8wuot")
+ground_offset = 0.129
+
+[node name="Hand_001" parent="." index="0"]
+transform = Transform3D(-6.99382e-08, 0, -1.6, 0, 1.6, 0, 1.6, 0, -6.99382e-08, 0, 0, -0.006)
+
+[node name="PlayerCamera" parent="Hand_001" index="0" instance=ExtResource("4_xfxa6")]
+transform = Transform3D(-2.73196e-08, 0, 0.625, 0, 0.625, 0, -0.625, 0, -2.73196e-08, 0, 0.399059, 0)
+camera_arm_length = 6.0
+
+[node name="Pinky" type="SkeletonIK3D" parent="Hand_001/Skeleton3D" index="1"]
+root_bone = &"Pinky.001"
+tip_bone = &"Pinky_IK"
+use_magnet = true
+magnet = Vector3(0, 10, 0)
+target_node = NodePath("../PinkyIKTarget")
+script = ExtResource("2_ked5p")
+
+[node name="Ring" type="SkeletonIK3D" parent="Hand_001/Skeleton3D" index="2"]
+root_bone = &"Ring.001"
+tip_bone = &"Ring_IK"
+use_magnet = true
+magnet = Vector3(0, 10, 0)
+target_node = NodePath("../RingIKTarget")
+script = ExtResource("2_ked5p")
+
+[node name="Middle" type="SkeletonIK3D" parent="Hand_001/Skeleton3D" index="3"]
+root_bone = &"Middle.001"
+tip_bone = &"Middle_IK"
+use_magnet = true
+magnet = Vector3(0, 10, 0)
+target_node = NodePath("../MiddleIKTarget")
+script = ExtResource("2_ked5p")
+
+[node name="Index" type="SkeletonIK3D" parent="Hand_001/Skeleton3D" index="4"]
+root_bone = &"Index.001"
+tip_bone = &"Index_IK"
+use_magnet = true
+magnet = Vector3(0, 10, 0)
+target_node = NodePath("../IndexIKTarget")
+script = ExtResource("2_ked5p")
+
+[node name="Thumb" type="SkeletonIK3D" parent="Hand_001/Skeleton3D" index="5"]
+root_bone = &"Thumb.001"
+tip_bone = &"Thumb_IK"
+use_magnet = true
+magnet = Vector3(0, 10, 0)
+target_node = NodePath("../ThumbIKTarget")
+script = ExtResource("2_ked5p")
+
+[node name="PinkyIKTarget" type="Marker3D" parent="Hand_001/Skeleton3D" index="6" node_paths=PackedStringArray("step_target", "adjacent_target")]
+unique_name_in_owner = true
+transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.8, 0, 0.8, 0, -3.49691e-08, 0.337178, 0.074535, 0.40494)
+top_level = true
+script = ExtResource("4_luyn5")
+step_target = NodePath("../StepTargetContainer/PinkyRay/PinkyIKStepTarget")
+step_disance = 0.8
+adjacent_target = NodePath("../RingIKTarget")
+
+[node name="GreenMarker" type="MeshInstance3D" parent="Hand_001/Skeleton3D/PinkyIKTarget" index="0"]
+mesh = SubResource("SphereMesh_rk0s0")
+
+[node name="RingIKTarget" type="Marker3D" parent="Hand_001/Skeleton3D" index="7" node_paths=PackedStringArray("step_target", "adjacent_target")]
+unique_name_in_owner = true
+transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.8, 0, 0.8, 0, -3.49691e-08, 0.150778, 0.074535, 0.52334)
+top_level = true
+script = ExtResource("4_luyn5")
+step_target = NodePath("../StepTargetContainer/RingRay/RingIKStepTarget")
+step_disance = 0.8
+adjacent_target = NodePath("../MiddleIKTarget")
+
+[node name="GreenMarker" type="MeshInstance3D" parent="Hand_001/Skeleton3D/RingIKTarget" index="0"]
+mesh = SubResource("SphereMesh_rk0s0")
+
+[node name="MiddleIKTarget" type="Marker3D" parent="Hand_001/Skeleton3D" index="8" node_paths=PackedStringArray("step_target", "adjacent_target")]
+unique_name_in_owner = true
+transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.8, 0, 0.8, 0, -3.49691e-08, -0.121222, 0.074535, 0.41294)
+top_level = true
+script = ExtResource("4_luyn5")
+step_target = NodePath("../StepTargetContainer/MiddleRay/MiddleIKStepTarget")
+step_disance = 0.8
+adjacent_target = NodePath("../IndexIKTarget")
+
+[node name="GreenMarker" type="MeshInstance3D" parent="Hand_001/Skeleton3D/MiddleIKTarget" index="0"]
+mesh = SubResource("SphereMesh_rk0s0")
+
+[node name="IndexIKTarget" type="Marker3D" parent="Hand_001/Skeleton3D" index="9" node_paths=PackedStringArray("step_target", "adjacent_target")]
+unique_name_in_owner = true
+transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.8, 0, 0.8, 0, -3.49691e-08, -0.338344, 0.074535, 0.417432)
+top_level = true
+script = ExtResource("4_luyn5")
+step_target = NodePath("../StepTargetContainer/IndexRay/IndexIKStepTarget")
+step_disance = 0.8
+adjacent_target = NodePath("../PinkyIKTarget")
+
+[node name="GreenMarker" type="MeshInstance3D" parent="Hand_001/Skeleton3D/IndexIKTarget" index="0"]
+mesh = SubResource("SphereMesh_rk0s0")
+
+[node name="ThumbIKTarget" type="Marker3D" parent="Hand_001/Skeleton3D" index="10" node_paths=PackedStringArray("step_target", "adjacent_target")]
+unique_name_in_owner = true
+transform = Transform3D(-3.49691e-08, 0, -0.8, 0, 0.8, 0, 0.8, 0, -3.49691e-08, -0.313338, 0.074535, -0.298333)
+top_level = true
+script = ExtResource("4_luyn5")
+step_target = NodePath("../StepTargetContainer/ThumbRay/ThumbIKStepTarget")
+step_disance = 0.8
+adjacent_target = NodePath("../PinkyIKTarget")
+
+[node name="GreenMarker" type="MeshInstance3D" parent="Hand_001/Skeleton3D/ThumbIKTarget" index="0"]
+mesh = SubResource("SphereMesh_rk0s0")
+
+[node name="StepTargetContainer" type="Node3D" parent="Hand_001/Skeleton3D" index="11"]
+script = ExtResource("5_xd6he")
+
+[node name="PinkyRay" type="RayCast3D" parent="Hand_001/Skeleton3D/StepTargetContainer" index="0" node_paths=PackedStringArray("step_target")]
+transform = Transform3D(0.996195, -0.0871557, 1.06581e-14, 0.0868241, 0.992404, -0.0871558, 0.00759612, 0.0868241, 0.996195, 0.509859, 1.58587, -0.424)
+target_position = Vector3(0, -3, 0)
+script = ExtResource("5_5kged")
+step_target = NodePath("PinkyIKStepTarget")
+
+[node name="PinkyIKStepTarget" type="Marker3D" parent="Hand_001/Skeleton3D/StepTargetContainer/PinkyRay" index="0"]
+transform = Transform3D(0.998629, 0.0522642, 0.00273905, -0.0523359, 0.997261, 0.0522642, 1.43057e-10, -0.052336, 0.99863, -0.105633, -1.64442, 0.105897)
+
+[node name="RedMarker" type="MeshInstance3D" parent="Hand_001/Skeleton3D/StepTargetContainer/PinkyRay/PinkyIKStepTarget" index="0"]
+mesh = SubResource("SphereMesh_cit7c")
+
+[node name="RingRay" type="RayCast3D" parent="Hand_001/Skeleton3D/StepTargetContainer" index="1" node_paths=PackedStringArray("step_target")]
+transform = Transform3D(0.996195, -0.0871558, 1.06581e-14, 0.0871558, 0.996195, 0, -1.06581e-14, 8.88178e-16, 1, 0.657859, 1.58587, -0.191)
+target_position = Vector3(0, -3, 0)
+script = ExtResource("5_5kged")
+step_target = NodePath("RingIKStepTarget")
+
+[node name="RingIKStepTarget" type="Marker3D" parent="Hand_001/Skeleton3D/StepTargetContainer/RingRay" index="0"]
+transform = Transform3D(0.998629, 0.052336, 3.55271e-15, -0.052336, 0.998629, -4.44089e-16, -1.06581e-14, -1.11022e-16, 1, -0.105897, -1.64803, 0)
+
+[node name="RedMarker" type="MeshInstance3D" parent="Hand_001/Skeleton3D/StepTargetContainer/RingRay/RingIKStepTarget" index="0"]
+mesh = SubResource("SphereMesh_cit7c")
+
+[node name="MiddleRay" type="RayCast3D" parent="Hand_001/Skeleton3D/StepTargetContainer" index="2" node_paths=PackedStringArray("step_target")]
+transform = Transform3D(0.996195, -0.0871558, 1.06581e-14, 0.0871558, 0.996195, 0, -1.06581e-14, 8.88178e-16, 1, 0.519859, 1.58587, 0.149)
+target_position = Vector3(0, -3, 0)
+script = ExtResource("5_5kged")
+step_target = NodePath("MiddleIKStepTarget")
+
+[node name="MiddleIKStepTarget" type="Marker3D" parent="Hand_001/Skeleton3D/StepTargetContainer/MiddleRay" index="0"]
+transform = Transform3D(0.998629, 0.0523359, 1.42109e-14, -0.0523359, 0.998629, -8.88178e-16, -1.42109e-14, -2.22045e-16, 1, -0.105897, -1.64803, 0)
+
+[node name="RedMarker" type="MeshInstance3D" parent="Hand_001/Skeleton3D/StepTargetContainer/MiddleRay/MiddleIKStepTarget" index="0"]
+mesh = SubResource("SphereMesh_cit7c")
+
+[node name="IndexRay" type="RayCast3D" parent="Hand_001/Skeleton3D/StepTargetContainer" index="3" node_paths=PackedStringArray("step_target")]
+transform = Transform3D(0.996195, -0.0871558, 1.06581e-14, 0.0868241, 0.992404, 0.0871558, -0.00759613, -0.0868241, 0.996195, 0.525473, 1.58587, 0.420402)
+target_position = Vector3(0, -3, 0)
+script = ExtResource("5_5kged")
+step_target = NodePath("IndexIKStepTarget")
+
+[node name="IndexIKStepTarget" type="Marker3D" parent="Hand_001/Skeleton3D/StepTargetContainer/IndexRay" index="0"]
+transform = Transform3D(0.998629, 0.0522642, -0.00273905, -0.0523359, 0.997261, -0.0522643, 1.21768e-09, 0.052336, 0.99863, -0.105633, -1.64442, -0.105897)
+
+[node name="RedMarker" type="MeshInstance3D" parent="Hand_001/Skeleton3D/StepTargetContainer/IndexRay/IndexIKStepTarget" index="0"]
+mesh = SubResource("SphereMesh_cit7c")
+
+[node name="ThumbRay" type="RayCast3D" parent="Hand_001/Skeleton3D/StepTargetContainer" index="4" node_paths=PackedStringArray("step_target")]
+transform = Transform3D(1, -8.88178e-16, 1.06581e-14, 0, 0.996195, 0.0871558, -1.06581e-14, -0.0871558, 0.996195, -0.372093, 1.58587, 0.389805)
+target_position = Vector3(0, -3, 0)
+script = ExtResource("5_5kged")
+step_target = NodePath("ThumbIKStepTarget")
+
+[node name="ThumbIKStepTarget" type="Marker3D" parent="Hand_001/Skeleton3D/StepTargetContainer/ThumbRay" index="0"]
+transform = Transform3D(1, 1.11022e-16, 0, -4.44089e-16, 0.998629, -0.052336, -1.06581e-14, 0.052336, 0.998629, 0.00286043, -1.65359, -0.107045)
+
+[node name="RedMarker" type="MeshInstance3D" parent="Hand_001/Skeleton3D/StepTargetContainer/ThumbRay/ThumbIKStepTarget" index="0"]
+mesh = SubResource("SphereMesh_cit7c")
+
+[node name="StepSound" type="AudioStreamPlayer3D" parent="." index="1"]
+stream = ExtResource("8_53vak")
+bus = &"SFX"
+
+[node name="Timer" type="Timer" parent="StepSound" index="0"]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="StepSound/Timer" to="." method="_on_timer_timeout"]

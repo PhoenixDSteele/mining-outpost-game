@@ -112,6 +112,25 @@ use_collision = true
 size = Vector3(2, 2, 2)
 material = SubResource("StandardMaterial3D_pgrwi")
 
+[node name="Room" type="CSGCombiner3D" parent="StaticScenery" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0548439, 0, -0.013422)
+use_collision = true
+
+[node name="Wall2" type="CSGBox3D" parent="StaticScenery/Room" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -16.5, 5.5, -24)
+use_collision = true
+size = Vector3(15, 1, 10)
+
+[node name="Wall" type="CSGBox3D" parent="StaticScenery/Room" index="1"]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, -24.5521, 5.5, -17)
+use_collision = true
+size = Vector3(15, 1, 10)
+
+[node name="Ceiling" type="CSGBox3D" parent="StaticScenery/Room" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 10, -17)
+use_collision = true
+size = Vector3(15, 1, 15)
+
 [node name="KeyItem" parent="KeyItems" index="0" instance=ExtResource("3_1nei0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.967949, 0.565062, 0.629322)
 item_name = "battery"

@@ -7,6 +7,8 @@ class_name PlayerCamera extends Node3D
 ## Sends camera's current rotation.
 signal camera_rotation(camera_rotation : float)
 
+@export var player : BodyBase = null
+
 @export var camera_arm_length : float = 5.0
 
 @export var yaw_sensitivity : float = 0.1
@@ -22,7 +24,6 @@ signal camera_rotation(camera_rotation : float)
 @onready var spring_arm: SpringArm3D = %SpringArm3D
 @onready var camera: Camera3D = %Camera3D
 @onready var interaction_ray: InteractionRay = %InteractionRay
-@onready var player: BodyBase = $".."
 
 
 var yaw : float = 0
