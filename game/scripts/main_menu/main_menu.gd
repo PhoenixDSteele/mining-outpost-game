@@ -14,7 +14,7 @@ func _ready() -> void:
 
 ## Connected to the start button. Goes to the selected scene.
 func _start_button_pressed() -> void:
-	SceneManager.scene_change(SceneManager.level_checkpoint_north)
+	SceneManager.scene_change(SceneManager.level_hub_area)
 
 ## Connected to the options button. Goes to the options screen.
 func _options_button_pressed() -> void:

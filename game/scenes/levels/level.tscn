@@ -25,4 +25,6 @@ unique_name_in_owner = true
 [node name="PoweredNodes" type="Node" parent="."]
 unique_name_in_owner = true
 
+[node name="ActivatedNodes" type="Node" parent="."]
+
 [node name="ManualSpawnLocation" type="Marker3D" parent="."]
