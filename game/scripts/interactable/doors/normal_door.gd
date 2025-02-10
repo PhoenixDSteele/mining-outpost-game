@@ -1,6 +1,6 @@
 class_name NormalDoor extends Interactable
 
-var light_source : Light3D
+var light_source : SingleDoorLight
 var powered : Powered
 
 var powered_on : bool = false
@@ -15,30 +15,27 @@ var opened : bool = false
 @onready var audio: AudioStreamPlayer3D = %Audio
 
 func _ready() -> void:
-	for node in get_children():
+	for node in self.get_children():
 		if node is Powered:
 			powered = node
 			powered.powered_state.connect(toggle_power)
-		if node is Light3D:
+		if node is SingleDoorLight:
 			light_source = node
 
 func toggle_power(power_state:bool) -> void:
 	powered_on = power_state
 	if not powered_on:
 		if light_source:
-			light_source.light_color = Color.GOLD
-			light_source.light_energy = 0.1
+			light_source.powered_off()
 		prompt_message = "NO POWER"
 	elif powered_on:
 		if locked:
 			if light_source:
-				light_source.light_color = Color.RED
-				light_source.light_energy = 0.5
+				light_source.powered_on_locked()
 			prompt_message = "LOCKED"
 		elif not locked:
 			if light_source:
-				light_source.light_color = Color.GREEN_YELLOW
-				light_source.light_energy = 0.5
+				light_source.powered_on_unlocked()
 			prompt_message = "Open Door"
 
 func _on_interacted() -> void:

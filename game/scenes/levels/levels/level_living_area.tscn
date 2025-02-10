@@ -1,16 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://cn7g28k3l3ssy"]
+[gd_scene load_steps=7 format=3 uid="uid://cn7g28k3l3ssy"]
 
 [ext_resource type="PackedScene" uid="uid://dw8n0ir5hscjp" path="res://game/scenes/levels/level.tscn" id="1_4ictq"]
 [ext_resource type="MeshLibrary" uid="uid://c6i0xeit5bowu" path="res://assets/environment/mesh_libaries/asset_pack_001.meshlib" id="2_c8j4e"]
 [ext_resource type="PackedScene" uid="uid://dr038k11r1a4h" path="res://game/scenes/interactables/doors/normal_door.tscn" id="3_pjctk"]
 [ext_resource type="PackedScene" uid="uid://bhijhscc5lduk" path="res://game/scenes/interactables/doors/zone_door.tscn" id="3_y11mv"]
+[ext_resource type="PackedScene" uid="uid://cnykhwjt037ak" path="res://game/scenes/scene_lighting/single_door/single_door_light.tscn" id="5_pvr31"]
+[ext_resource type="PackedScene" uid="uid://01tbguhdf3cr" path="res://assets/environment/scenery/prop_single_door.tscn" id="5_qlhjv"]
 
 [node name="level_living_area" instance=ExtResource("1_4ictq")]
 level_name = "living_area"
 level_music = "temp04"
 
 [node name="GridMapFloor" parent="Gridmaps" index="0"]
-visible = false
 mesh_library = ExtResource("2_c8j4e")
 cell_center_y = false
 data = {
@@ -28,7 +29,6 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="GridMapCeiling" parent="Gridmaps" index="2"]
-visible = false
 mesh_library = ExtResource("2_c8j4e")
 cell_center_y = false
 data = {
@@ -41,10 +41,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 16)
 target_door_id = 1
 target_level = "checkpoint_north"
 
-[node name="SpawnPoint" parent="Doors/ZoneDoor" index="4"]
+[node name="SpawnPoint" parent="Doors/ZoneDoor" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 
 [node name="NormalDoor" parent="PoweredNodes" index="0" instance=ExtResource("3_pjctk")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8, 0, 13)
+locked = false
+
+[node name="SingleDoorLight" parent="PoweredNodes/NormalDoor" index="5" instance=ExtResource("5_pvr31")]
+
+[node name="Door_Single_Plane_001" parent="." index="7" instance=ExtResource("5_qlhjv")]
+transform = Transform3D(1.94707e-07, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, 1.94707e-07, -8.51093e-15, 2, 0, -28)
 
 [editable path="Doors/ZoneDoor"]
