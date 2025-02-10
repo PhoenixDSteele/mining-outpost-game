@@ -25,17 +25,20 @@ func _ready() -> void:
 func toggle_power(power_state:bool) -> void:
 	powered_on = power_state
 	if not powered_on:
-		light_source.light_color = Color.GOLD
-		light_source.light_energy = 0.2
+		if light_source:
+			light_source.light_color = Color.GOLD
+			light_source.light_energy = 0.1
 		prompt_message = "NO POWER"
 	elif powered_on:
 		if locked:
-			light_source.light_color = Color.RED
-			light_source.light_energy = 0.5
+			if light_source:
+				light_source.light_color = Color.RED
+				light_source.light_energy = 0.5
 			prompt_message = "LOCKED"
 		elif not locked:
-			light_source.light_color = Color.GREEN_YELLOW
-			light_source.light_energy = 0.5
+			if light_source:
+				light_source.light_color = Color.GREEN_YELLOW
+				light_source.light_energy = 0.5
 			prompt_message = "Open Door"
 
 func _on_interacted() -> void:

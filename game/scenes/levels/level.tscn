@@ -7,6 +7,14 @@ script = ExtResource("1_hsdj0")
 
 [node name="Enviro#Lighting" type="Node" parent="."]
 
+[node name="Gridmaps" type="Node" parent="."]
+
+[node name="GridMapFloor" type="GridMap" parent="Gridmaps"]
+
+[node name="GridMapWalls" type="GridMap" parent="Gridmaps"]
+
+[node name="GridMapCeiling" type="GridMap" parent="Gridmaps"]
+
 [node name="StaticScenery" type="Node" parent="."]
 
 [node name="KeyItems" type="Node" parent="."]

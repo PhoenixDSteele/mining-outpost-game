@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://4u0h7r84s3tu" path="res://icon.svg" id="2_mtwh1"]
 [ext_resource type="PackedScene" uid="uid://bhijhscc5lduk" path="res://game/scenes/interactables/doors/zone_door.tscn" id="2_q6xqr"]
 [ext_resource type="PackedScene" uid="uid://baq4gd5fw1htt" path="res://game/scenes/interactables/key_items/key_item.tscn" id="3_1nei0"]
-[ext_resource type="Script" path="res://LooseBody.gd" id="5_sdelt"]
+[ext_resource type="Script" path="res://game/scenes/objects/LooseBody.gd" id="5_sdelt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1fwe4"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -141,9 +141,6 @@ door_id = 4
 target_door_id = 2
 target_level = "hub_area"
 
-[node name="ManualSpawnLocation" parent="." index="5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-
 [node name="Box" type="RigidBody3D" parent="." index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -6)
 script = ExtResource("5_sdelt")
@@ -174,3 +171,6 @@ shape = SubResource("SphereShape3D_jf4bo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ball" index="1"]
 mesh = SubResource("SphereMesh_ps6in")
+
+[node name="ManualSpawnLocation" parent="." index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

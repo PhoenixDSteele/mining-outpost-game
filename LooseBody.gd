@@ -1,1 +1,0 @@
-class_name LooseBody extends RigidBody3D
