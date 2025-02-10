@@ -9,7 +9,7 @@
 
 [node name="level_living_area" instance=ExtResource("1_4ictq")]
 level_name = "living_area"
-level_music = "temp04"
+level_music = "main_menu"
 
 [node name="GridMapFloor" parent="Gridmaps" index="0"]
 mesh_library = ExtResource("2_c8j4e")

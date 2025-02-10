@@ -8,4 +8,15 @@ level_name = "main_menu"
 level_music = "main_menu"
 no_spawn = true
 
+[node name="GridMapFloor" parent="Gridmaps" index="0"]
+cell_center_y = false
+
+[node name="GridMapWalls" parent="Gridmaps" index="1"]
+cell_center_x = false
+cell_center_y = false
+cell_center_z = false
+
+[node name="GridMapCeiling" parent="Gridmaps" index="2"]
+cell_center_y = false
+
 [node name="MainMenu" parent="." index="6" instance=ExtResource("2_ujyte")]

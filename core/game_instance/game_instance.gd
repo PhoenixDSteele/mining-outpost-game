@@ -9,7 +9,8 @@ var powered_areas : Dictionary = {
 	"hub_area": true,
 	"checkpoint_north": false,
 	"living_area": false,
-	"security": false
+	"security": false,
+	"mine_a_floor_1": false
 }
 
 ## Searches dictionary for the area provided, and sets it's power state.

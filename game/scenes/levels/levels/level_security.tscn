@@ -1,166 +1,60 @@
-[gd_scene load_steps=18 format=3 uid="uid://2q664d0blap4"]
+[gd_scene load_steps=6 format=3 uid="uid://2q664d0blap4"]
 
 [ext_resource type="PackedScene" uid="uid://dw8n0ir5hscjp" path="res://game/scenes/levels/level.tscn" id="1_du67l"]
-[ext_resource type="Script" path="res://game/scripts/interactable/doors/zone_door.gd" id="2_463st"]
-[ext_resource type="AudioStream" uid="uid://dj10gsc4fvlea" path="res://assets/audio/sfx/S_Sliding_Future_Door_Open.wav" id="3_5iqwv"]
-[ext_resource type="AudioStream" uid="uid://2sruocolw06x" path="res://assets/audio/sfx/S_Sliding_Future_Door_Close.wav" id="4_kd422"]
-[ext_resource type="AudioStream" uid="uid://b6aoqryx4rx2x" path="res://assets/audio/sfx/S_Door_Locked.wav" id="5_p4o3d"]
+[ext_resource type="MeshLibrary" uid="uid://c6i0xeit5bowu" path="res://assets/environment/mesh_libaries/asset_pack_001.meshlib" id="2_dl4oa"]
+[ext_resource type="PackedScene" uid="uid://bhijhscc5lduk" path="res://game/scenes/interactables/doors/zone_door.tscn" id="3_cok5t"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_eipsb"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3x41n"]
+albedo_color = Color(0.698039, 0.52549, 0.254902, 1)
 
-[sub_resource type="Sky" id="Sky_k435u"]
-sky_material = SubResource("ProceduralSkyMaterial_eipsb")
-
-[sub_resource type="Environment" id="Environment_igrw4"]
-background_mode = 2
-sky = SubResource("Sky_k435u")
-ambient_light_source = 1
-reflected_light_source = 1
-tonemap_mode = 2
-glow_enabled = true
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_xwcbq"]
-size = Vector3(0.15, 3, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gvcxv"]
-albedo_color = Color(0.504, 0.5733, 0.63, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_p70h6"]
-material = SubResource("StandardMaterial3D_gvcxv")
-size = Vector3(0.15, 3, 2)
-
-[sub_resource type="Animation" id="Animation_jabor"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 1.5, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_hfqi6"]
-resource_name = "close_door"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 4.5, 0), Vector3(0, 1.5, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_cr8fq"]
-resource_name = "open_door"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 1.5, 0), Vector3(0, 4.5, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_4w42h"]
-_data = {
-"RESET": SubResource("Animation_jabor"),
-"close_door": SubResource("Animation_hfqi6"),
-"open_door": SubResource("Animation_cr8fq")
-}
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_upxdy"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_xtuwp"]
-material = SubResource("StandardMaterial3D_upxdy")
-size = Vector3(0.11, 2.9, 1.8)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8btex"]
+albedo_color = Color(0.603922, 0.603922, 0.603922, 1)
 
 [node name="level_security" instance=ExtResource("1_du67l")]
 level_name = "security"
 level_music = "temp05"
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Enviro#Lighting" index="0"]
-environment = SubResource("Environment_igrw4")
-
-[node name="SpotLight3D" type="SpotLight3D" parent="Enviro#Lighting" index="1"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.8, 0)
-
-[node name="SpotLight3D2" type="SpotLight3D" parent="Enviro#Lighting" index="2"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -5.03193, 3.62079, 4.10416)
-
-[node name="Floor" type="CSGBox3D" parent="StaticScenery" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-use_collision = true
-size = Vector3(20, 1, 10)
-
-[node name="Ceiling" type="CSGBox3D" parent="StaticScenery" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 0)
-use_collision = true
-size = Vector3(20, 1, 10)
-
-[node name="Wall01" type="CSGBox3D" parent="StaticScenery" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 5.5)
-use_collision = true
-size = Vector3(20, 6, 1)
-
-[node name="to_checkpoint_north" type="StaticBody3D" parent="Doors" index="0"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 0, 5)
-collision_layer = 4
-collision_mask = 0
-script = ExtResource("2_463st")
-target_level = "checkpoint_north"
-open_sound = ExtResource("3_5iqwv")
-close_sound = ExtResource("4_kd422")
-locked_sound = ExtResource("5_p4o3d")
-prompt_message = "Door"
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Doors/to_checkpoint_north" index="0"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Doors/to_checkpoint_north" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-shape = SubResource("BoxShape3D_xwcbq")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Doors/to_checkpoint_north/CollisionShape3D" index="0"]
-mesh = SubResource("BoxMesh_p70h6")
-skeleton = NodePath("../..")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Doors/to_checkpoint_north" index="2"]
-libraries = {
-"": SubResource("AnimationLibrary_4w42h")
+[node name="GridMapFloor" parent="Gridmaps" index="0"]
+mesh_library = ExtResource("2_dl4oa")
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(0, 65535, 917524, 65535, 65535, 917524, 0, 65534, 917524, 65535, 65534, 917524, 65534, 65534, 917524, 65534, 65535, 917524, 1, 65535, 917524, 1, 65534, 917524, 1, 65533, 917524, 0, 65533, 917524, 65535, 65533, 917524, 65534, 65533, 917524, 65533, 65535, 917524, 65533, 65534, 917524, 65533, 65533, 917524, 65533, 65532, 917524, 65534, 65532, 917524, 65535, 65532, 917524, 0, 65532, 917524, 1, 65532, 917524, 2, 65532, 917524, 2, 65533, 917524, 2, 65534, 917524, 2, 65535, 917524, 4, 65535, 917524, 5, 65535, 917524, 6, 65535, 917524, 7, 65535, 917524, 8, 65535, 917524, 9, 65535, 917524, 8, 65534, 917524, 7, 65534, 917524, 6, 65534, 917524, 5, 65534, 917524, 4, 65534, 917524, 9, 65534, 917524, 4, 65533, 917524, 4, 65532, 917524, 8, 65532, 917524, 9, 65532, 917524, 9, 65533, 917524, 8, 65533, 917524, 7, 65532, 917524, 6, 65532, 917524, 6, 65533, 917524, 7, 65533, 917524, 5, 65532, 917524, 5, 65533, 917524, 10, 65534, 262164, 10, 65533, 262164, 10, 65532, 262164, 11, 65532, 262164, 12, 65532, 262164, 13, 65532, 262164, 14, 65532, 262164, 15, 65532, 262164, 15, 65533, 262164, 15, 65534, 262164, 15, 65535, 262164, 15, 0, 262164, 14, 0, 262164, 14, 1, 262164, 13, 1, 262164, 13, 0, 262164, 12, 0, 262164, 15, 1, 262164, 12, 1, 262164, 11, 1, 262164, 13, 65535, 262164, 14, 65535, 262164, 14, 65534, 262164, 14, 65533, 262164, 13, 65533, 262164, 12, 65533, 262164, 12, 65534, 262164, 11, 65534, 262164, 11, 65535, 262164, 12, 65535, 262164, 13, 65534, 262164, 11, 65533, 262164, 10, 65535, 262164, 11, 0, 262164, 10, 0, 262164, 10, 1, 262164, 10, 2, 262164, 10, 3, 262164, 10, 4, 262164, 10, 5, 262164, 11, 5, 262164, 11, 4, 262164, 11, 3, 262164, 11, 2, 262164, 8, 2, 262164, 8, 3, 262164, 8, 4, 262164, 8, 5, 262164, 7, 5, 262164, 6, 5, 262164, 6, 4, 262164, 5, 4, 262164, 4, 4, 262164, 4, 5, 262164, 3, 5, 262164, 3, 4, 262164, 3, 3, 262164, 4, 3, 262164, 4, 2, 262164, 5, 2, 262164, 6, 2, 262164, 7, 2, 262164, 7, 3, 262164, 7, 4, 262164, 5, 3, 262164, 6, 3, 262164, 5, 5, 262164, 3, 2, 262164, 6, 8, 262164, 6, 9, 262164, 6, 10, 262164, 6, 11, 262164, 7, 12, 262164, 7, 13, 262164, 6, 13, 262164, 6, 12, 262164, 8, 13, 262164, 9, 13, 262164, 10, 13, 262164, 11, 13, 262164, 12, 13, 262164, 13, 13, 262164, 14, 13, 262164, 15, 12, 262164, 15, 11, 262164, 15, 10, 262164, 14, 10, 262164, 14, 9, 262164, 15, 9, 262164, 15, 8, 262164, 14, 8, 262164, 13, 8, 262164, 12, 8, 262164, 11, 8, 262164, 10, 8, 262164, 10, 9, 262164, 9, 8, 262164, 8, 8, 262164, 8, 9, 262164, 7, 9, 262164, 7, 10, 262164, 8, 10, 262164, 8, 11, 262164, 9, 11, 262164, 10, 10, 262164, 9, 10, 262164, 9, 9, 262164, 7, 8, 262164, 7, 11, 262164, 9, 12, 262164, 8, 12, 262164, 10, 12, 262164, 10, 11, 262164, 11, 10, 262164, 11, 9, 262164, 12, 9, 262164, 13, 9, 262164, 13, 10, 262164, 12, 10, 262164, 13, 11, 262164, 12, 11, 262164, 12, 12, 262164, 11, 12, 262164, 11, 11, 262164, 13, 12, 262164, 14, 12, 262164, 14, 11, 262164, 15, 13, 262164)
 }
 
-[node name="SpawnPoint" type="Node3D" parent="Doors/to_checkpoint_north" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+[node name="GridMapWalls" parent="Gridmaps" index="1"]
+mesh_library = ExtResource("2_dl4oa")
+cell_center_x = false
+cell_center_y = false
+cell_center_z = false
+data = {
+"cells": PackedInt32Array(0, 0, 917515, 0, 65532, 262191, 65534, 0, 917551, 65533, 65535, 1245231, 65533, 65533, 1245231, 65534, 65532, 262191, 2, 65532, 262191, 2, 0, 917551, 3, 65535, 1507339, 4, 65535, 1245195, 5, 0, 917551, 7, 0, 917551, 9, 0, 917551, 5, 65532, 262191, 7, 65532, 262191, 9, 65532, 262191, 10, 1, 1245231, 10, 3, 1245231, 10, 5, 1245195, 9, 5, 1507339, 9, 3, 1507375, 8, 2, 262191, 6, 2, 262191, 8, 6, 917551, 6, 6, 917551, 4, 6, 917551, 3, 5, 1245231, 3, 3, 1245231, 4, 2, 262191, 11, 65532, 262191, 13, 65532, 262191, 15, 65532, 262191, 16, 65533, 1507375, 16, 1, 1507375, 15, 2, 917551, 13, 2, 917551, 12, 3, 1507375, 16, 65535, 1507339, 12, 5, 1507375, 12, 7, 1507375, 10, 7, 1245231, 9, 8, 262191, 7, 8, 262191, 6, 9, 1245231, 6, 11, 1245231, 6, 13, 1245231, 7, 14, 917551, 9, 14, 917551, 11, 14, 917551, 13, 14, 917551, 15, 14, 917551, 14, 14, 917551, 16, 13, 1507375, 16, 11, 1507375, 16, 9, 1507375, 15, 8, 262191, 13, 8, 262191, 10, 8, 262146, 6, 8, 262146, 6, 14, 262146, 16, 8, 262146, 12, 8, 262146, 16, 14, 262146, 11, 6, 917511, 11, 8, 262151, 10, 6, 262144, 12, 6, 262144, 9, 6, 262144, 3, 6, 262144, 9, 2, 262144, 3, 2, 262144, 10, 0, 262144, 12, 2, 262144, 16, 2, 262144, 16, 65532, 262144, 4, 0, 262144, 3, 0, 262144, 4, 65532, 262144, 65533, 65532, 262144, 65533, 0, 262144, 3, 65532, 262144, 4, 65534, 262144, 3, 65533, 1507336, 3, 65534, 1507328)
+}
 
-[node name="Marker3D" type="Marker3D" parent="Doors/to_checkpoint_north/SpawnPoint" index="0"]
+[node name="GridMapCeiling" parent="Gridmaps" index="2"]
+mesh_library = ExtResource("2_dl4oa")
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(131076, 65532, 1114149, 131076, 65533, 1114149, 131076, 65534, 1114149, 131076, 65535, 1114149, 131077, 65535, 1114149, 131077, 65534, 1114149, 131077, 65533, 1114149, 131077, 65532, 1114149, 131078, 65533, 1114149, 131074, 65535, 1114149, 131073, 65535, 1114149, 131072, 65535, 1114149, 196607, 65535, 1114149, 196606, 65535, 1114149, 196605, 65535, 1114149, 196605, 65534, 1114149, 196605, 65533, 1114149, 196606, 65533, 1114149, 196606, 65532, 1114149, 196607, 65533, 1114149, 131072, 65533, 1114149, 131072, 65534, 1114149, 196607, 65534, 1114149, 196606, 65534, 1114149, 196605, 65532, 1114149, 196607, 65532, 1114149, 131072, 65532, 1114149, 131073, 65532, 1114149, 131073, 65533, 1114149, 131073, 65534, 1114149, 131074, 65534, 1114149, 131074, 65533, 1114149, 131074, 65532, 1114149, 131075, 2, 1114149, 131076, 2, 1114149, 131077, 2, 1114149, 131078, 2, 1114149, 131079, 2, 1114149, 131079, 3, 1114149, 131080, 3, 1114149, 131080, 2, 1114149, 131080, 4, 1114149, 131080, 5, 1114149, 131079, 5, 1114149, 131078, 5, 1114149, 131077, 5, 1114149, 131076, 5, 1114149, 131076, 4, 1114149, 131075, 4, 1114149, 131075, 3, 1114149, 131076, 3, 1114149, 131077, 3, 1114149, 131078, 3, 1114149, 131078, 4, 1114149, 131079, 4, 1114149, 131077, 4, 1114149, 131075, 5, 1114149, 131082, 5, 1114149, 131082, 4, 1114149, 131082, 3, 1114149, 131082, 2, 1114149, 131082, 1, 1114149, 131082, 0, 1114149, 131083, 0, 1114149, 131083, 1, 1114149, 131083, 2, 1114149, 131083, 3, 1114149, 131083, 4, 1114149, 131083, 5, 1114149, 131083, 65535, 1114149, 131084, 0, 1114149, 131084, 1, 1114149, 131085, 65535, 1114149, 131086, 65535, 1114149, 131086, 0, 1114149, 131086, 1, 1114149, 131085, 1, 1114149, 131085, 0, 1114149, 131087, 0, 1114149, 131087, 1, 1114149, 131086, 65534, 1114149, 131087, 65533, 1114149, 131087, 65534, 1114149, 131087, 65535, 1114149, 131087, 65532, 1114149, 131086, 65532, 1114149, 131085, 65532, 1114149, 131084, 65532, 1114149, 131083, 65532, 1114149, 131082, 65532, 1114149, 131081, 65532, 1114149, 131080, 65532, 1114149, 131079, 65532, 1114149, 131079, 65533, 1114149, 131078, 65534, 1114149, 131078, 65535, 1114149, 131079, 65535, 1114149, 131080, 65535, 1114149, 131080, 65534, 1114149, 131081, 65534, 1114149, 131080, 65533, 1114149, 131078, 65532, 1114149, 131079, 65534, 1114149, 131082, 65534, 1114149, 131081, 65533, 1114149, 131082, 65533, 1114149, 131083, 65533, 1114149, 131084, 65533, 1114149, 131085, 65533, 1114149, 131084, 65534, 1114149, 131083, 65534, 1114149, 131082, 65535, 1114149, 131081, 65535, 1114149, 131085, 65534, 1114149, 131086, 65533, 1114149, 131084, 65535, 1114149, 131078, 8, 1114149, 131078, 9, 1114149, 131078, 10, 1114149, 131078, 11, 1114149, 131078, 12, 1114149, 131078, 13, 1114149, 131079, 13, 1114149, 131080, 13, 1114149, 131081, 13, 1114149, 131082, 13, 1114149, 131083, 13, 1114149, 131084, 13, 1114149, 131085, 13, 1114149, 131086, 13, 1114149, 131087, 13, 1114149, 131087, 12, 1114149, 131087, 11, 1114149, 131087, 10, 1114149, 131087, 9, 1114149, 131087, 8, 1114149, 131086, 8, 1114149, 131085, 8, 1114149, 131084, 8, 1114149, 131083, 8, 1114149, 131082, 8, 1114149, 131081, 8, 1114149, 131080, 8, 1114149, 131079, 8, 1114149, 131079, 9, 1114149, 131079, 10, 1114149, 131080, 10, 1114149, 131080, 9, 1114149, 131081, 9, 1114149, 131082, 9, 1114149, 131083, 9, 1114149, 131084, 9, 1114149, 131085, 9, 1114149, 131086, 9, 1114149, 131086, 10, 1114149, 131085, 10, 1114149, 131084, 10, 1114149, 131083, 10, 1114149, 131082, 10, 1114149, 131081, 10, 1114149, 131079, 11, 1114149, 131079, 12, 1114149, 131080, 12, 1114149, 131081, 12, 1114149, 131082, 11, 1114149, 131083, 11, 1114149, 131084, 11, 1114149, 131081, 11, 1114149, 131080, 11, 1114149, 131082, 12, 1114149, 131085, 11, 1114149, 131086, 11, 1114149, 131083, 12, 1114149, 131085, 12, 1114149, 131086, 12, 1114149, 131084, 12, 1114149)
+}
+metadata/_editor_floor_ = Vector3(0, 2, 0)
 
-[node name="DoorName" type="Label3D" parent="Doors/to_checkpoint_north" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.69999, 0)
-billboard = 1
-no_depth_test = true
-text = "default door text"
-font_size = 64
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticScenery" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.07092, 2, -6.15912)
+use_collision = true
+size = Vector3(1.90356, 5, 4.68176)
+material = SubResource("StandardMaterial3D_3x41n")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Doors/to_checkpoint_north" index="5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
-mesh = SubResource("BoxMesh_xtuwp")
-skeleton = NodePath("../..")
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticScenery/CSGBox3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.323822, -0.511223, 0.122477)
+operation = 2
+size = Vector3(2.31744, 2.81999, 2.74591)
+material = SubResource("StandardMaterial3D_8btex")
 
-[connection signal="interacted" from="Doors/to_checkpoint_north" to="Doors/to_checkpoint_north" method="_on_interacted"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="StaticScenery/CSGBox3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17421, -0.0132561, 0.13228)
+operation = 2
+size = Vector3(3.31351, 1.82406, 2.83601)
+
+[node name="to_checkpoint_north" parent="Doors" index="0" instance=ExtResource("3_cok5t")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 1)
+target_level = "checkpoint_north"

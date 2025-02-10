@@ -41,7 +41,9 @@ func set_area_name():
 			area_name = "Living Area"
 		"security":
 			area_name = "Security"
-	
+		"mine_a_floor_1":
+			area_name = "Mine A - Floor 1"
+			
 	current_area.text = "Current Area: " + area_name
 
 func check_area_power():

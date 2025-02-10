@@ -23,7 +23,8 @@ var known_scenes: Dictionary = {
 	"hub_area": preload("res://game/scenes/levels/levels/level_hub_area.tscn"),
 	"checkpoint_north": preload("res://game/scenes/levels/levels/level_checkpoint_north.tscn"),
 	"living_area": preload("res://game/scenes/levels/levels/level_living_area.tscn"),
-	"security": preload("res://game/scenes/levels/levels/level_security.tscn")
+	"security": preload("res://game/scenes/levels/levels/level_security.tscn"),
+	"mine_a_floor_1": preload("res://game/scenes/levels/levels/level_mine_a_floor_1.tscn")
 }
 
 const level_main_menu:String = "main_menu" ## Main Menu
@@ -32,6 +33,7 @@ const level_hub_area:String = "hub_area" ## Hub Area
 const level_checkpoint_north:String = "checkpoint_north" ## Checkpoint North
 const level_living_area:String = "living_area" ## Living Area
 const level_security:String = "security" ## Security
+const level_mine_a_floor_1:String = "level_mine_a_floor_1" ## Mine A - Floor 1
 
 ## Main Menu Check Boolean; Used to prevent pausing on main menu.
 var on_main_menu : bool = false

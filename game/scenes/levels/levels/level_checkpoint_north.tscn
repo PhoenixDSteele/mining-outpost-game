@@ -1,26 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://b44g4q5sr311o"]
+[gd_scene load_steps=7 format=3 uid="uid://b44g4q5sr311o"]
 
 [ext_resource type="PackedScene" uid="uid://dw8n0ir5hscjp" path="res://game/scenes/levels/level.tscn" id="1_4dd7x"]
 [ext_resource type="PackedScene" uid="uid://bhijhscc5lduk" path="res://game/scenes/interactables/doors/zone_door.tscn" id="2_b7v6y"]
+[ext_resource type="MeshLibrary" uid="uid://c6i0xeit5bowu" path="res://assets/environment/mesh_libaries/asset_pack_001.meshlib" id="2_qrygg"]
 [ext_resource type="PackedScene" uid="uid://bbnhw4pcy7l0k" path="res://game/scenes/scene_lighting/powered_light.tscn" id="3_vgbmc"]
-[ext_resource type="PackedScene" uid="uid://dr038k11r1a4h" path="res://game/scenes/interactables/doors/normal_door.tscn" id="4_lbqgo"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6rrr8"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-
-[sub_resource type="Sky" id="Sky_gduj5"]
-sky_material = SubResource("ProceduralSkyMaterial_6rrr8")
-
-[sub_resource type="Environment" id="Environment_46ue6"]
-background_mode = 2
-sky = SubResource("Sky_gduj5")
-ambient_light_source = 2
-ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 0.01
-reflected_light_source = 1
-tonemap_mode = 2
-glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0rblt"]
 albedo_color = Color(0.3045, 0.308292, 0.35, 1)
@@ -30,90 +13,72 @@ albedo_color = Color(0, 0, 0, 1)
 
 [node name="level_checkpoint_north" instance=ExtResource("1_4dd7x")]
 level_name = "checkpoint_north"
-level_music = "temp02"
+level_music = "main_menu"
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Enviro#Lighting" index="0"]
-environment = SubResource("Environment_46ue6")
-
-[node name="SpotLight3D" type="SpotLight3D" parent="Enviro#Lighting" index="1"]
+[node name="SpotLight3D" type="SpotLight3D" parent="Enviro#Lighting" index="0"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 8.16807, 3.62079, -13.0744)
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="Enviro#Lighting" index="2"]
+[node name="SpotLight3D2" type="SpotLight3D" parent="Enviro#Lighting" index="1"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.6699, 3.62079, -2.60131)
 
-[node name="SpotLight3D3" type="SpotLight3D" parent="Enviro#Lighting" index="3"]
+[node name="SpotLight3D3" type="SpotLight3D" parent="Enviro#Lighting" index="2"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -11.5523, 3.62079, 0.00451803)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="StaticScenery" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.5, 2.5)
-use_collision = true
-size = Vector3(26, 1, 34)
-metadata/_edit_lock_ = true
+[node name="GridMapFloor" parent="Gridmaps" index="0"]
+mesh_library = ExtResource("2_qrygg")
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(8, 65529, 1507346, 7, 65529, 1507350, 6, 65529, 1507350, 5, 65529, 262162, 8, 65530, 917526, 7, 65530, 1245200, 6, 65530, 1245200, 5, 65530, 262166, 8, 65531, 917526, 8, 65532, 917526, 8, 65533, 917526, 8, 65534, 917526, 8, 65535, 917526, 7, 65535, 1245200, 7, 0, 1245206, 8, 0, 917522, 6, 0, 1245206, 5, 0, 1245202, 4, 0, 262164, 3, 0, 1245204, 2, 0, 1507348, 1, 0, 1507348, 0, 0, 262164, 65535, 0, 262164, 65534, 0, 262164, 65533, 0, 1245204, 65533, 65535, 262164, 65533, 65534, 917524, 65534, 65534, 262164, 65535, 65534, 1245204, 65535, 65533, 262164, 0, 65533, 917524, 0, 65532, 917524, 65535, 65532, 262164, 65534, 65532, 917524, 65534, 65533, 262164, 65533, 65533, 1245204, 65534, 65535, 1507348, 65535, 65535, 1507348, 0, 65534, 1245204, 1, 65533, 1507348, 65533, 65532, 1245204, 2, 65533, 1507348, 0, 65535, 1245204, 1, 65535, 262164, 2, 65535, 1245204, 3, 65535, 917524, 3, 65534, 1507348, 2, 65534, 917524, 1, 65534, 917524, 4, 65535, 262164, 4, 65534, 262164, 5, 65535, 262166, 6, 65535, 1245200, 5, 65534, 262166, 6, 65534, 1245200, 6, 65533, 1245200, 7, 65533, 1245200, 7, 65532, 1245200, 7, 65534, 1245200, 7, 65531, 1245200, 6, 65531, 1245200, 5, 65531, 262166, 5, 65532, 262166, 4, 65532, 262164, 3, 65532, 262164, 3, 65533, 1507348, 6, 65532, 1245200, 1, 65532, 1507348, 5, 65533, 262166, 4, 65533, 262164, 2, 65532, 262164, 65532, 65529, 1507346, 65531, 65529, 262162, 65531, 4, 1245201, 8, 4, 1245201, 7, 4, 1245201, 6, 4, 1245201, 5, 4, 1245201, 4, 4, 1245201, 3, 4, 262161, 2, 4, 1245201, 1, 4, 262161, 0, 4, 1245201, 65535, 4, 1245201, 65534, 4, 1245201, 65533, 4, 917521, 65532, 4, 1245201, 65531, 3, 1245201, 65531, 2, 1245201, 65531, 1, 1245201, 65531, 0, 1245202, 65531, 65535, 262166, 65531, 65534, 262166, 65531, 65533, 262166, 65531, 65532, 262166, 65531, 65531, 262166, 65531, 65530, 262166, 65532, 65530, 917526, 65532, 65531, 917526, 65532, 65532, 917526, 65532, 65533, 917526, 65532, 65534, 917526, 65532, 65535, 917526, 65532, 0, 917522, 8, 1, 1245201, 8, 2, 1507345, 8, 3, 262161, 65533, 1, 1245201, 4, 1, 1245201, 3, 1, 1245201, 65534, 1, 1245201, 65535, 1, 917521, 0, 1, 917521, 1, 1, 1245201, 2, 1, 1245201, 65535, 2, 1245201, 0, 2, 1507345, 1, 2, 262161, 2, 2, 1507345, 2, 3, 917521, 1, 3, 1245201, 0, 3, 1507345, 65535, 3, 1507345, 65534, 2, 262161, 65534, 3, 1507345, 65533, 3, 1507345, 65533, 2, 262161, 65532, 3, 917521, 65532, 2, 1245201, 65532, 1, 262161, 3, 3, 1245201, 4, 3, 917521, 5, 3, 1507345, 6, 3, 917521, 7, 3, 1245201, 7, 2, 917521, 7, 1, 1245201, 6, 1, 917521, 5, 1, 1245201, 3, 2, 1507345, 4, 2, 1507345, 5, 2, 917521, 6, 2, 917521, 65533, 65531, 262164, 65533, 65530, 262164, 65534, 65530, 1507348, 65535, 65530, 917524, 65535, 65531, 262164, 0, 65531, 917524, 1, 65531, 1245204, 2, 65531, 262164, 2, 65530, 262164, 3, 65530, 262164, 1, 65530, 917524, 1, 65529, 1507348, 0, 65530, 917524, 0, 65529, 1507348, 65535, 65529, 1507348, 65534, 65529, 917524, 65533, 65529, 262164, 65533, 65528, 262164, 65534, 65528, 1507348, 65535, 65528, 917524, 0, 65528, 1245204, 1, 65528, 1245204, 2, 65528, 1507348, 3, 65528, 1507348, 3, 65529, 1507348, 4, 65528, 1507348, 4, 65529, 917524, 4, 65530, 262164, 2, 65529, 262164, 3, 65531, 1507348, 4, 65531, 1507348, 65534, 65531, 917524)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="StaticScenery" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 9.5, 2.5)
-use_collision = true
-size = Vector3(26, 1, 34)
-metadata/_edit_lock_ = true
+[node name="GridMapWalls" parent="Gridmaps" index="1"]
+mesh_library = ExtResource("2_qrygg")
+cell_center_x = false
+cell_center_y = false
+cell_center_z = false
+data = {
+"cells": PackedInt32Array(8, 65529, 262191, 6, 65529, 262155, 5, 65529, 262145, 65532, 65529, 262191, 65533, 65529, 262145, 9, 65530, 1507375, 9, 65532, 1507375, 9, 65534, 1507375, 65531, 65530, 1245231, 65531, 65532, 1245231, 65531, 65534, 1245231, 65531, 2, 1245231, 9, 2, 1507375, 65531, 0, 1245195, 9, 0, 1507339, 9, 4, 1507375, 8, 5, 917551, 6, 5, 917551, 4, 5, 917551, 2, 5, 917551, 0, 5, 917551, 65534, 5, 917551, 65532, 5, 917551, 65531, 4, 1245231, 65531, 5, 1245184, 65531, 65529, 1245184, 9, 65529, 1245184, 9, 5, 1245184)
+}
+metadata/_editor_floor_ = Vector3(0, 2, 0)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="StaticScenery" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 4.5, 2.5)
-use_collision = true
-size = Vector3(1, 11, 34)
-metadata/_edit_lock_ = true
+[node name="GridMapCeiling" parent="Gridmaps" index="2"]
+mesh_library = ExtResource("2_qrygg")
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(196603, 4, 1114143, 196603, 3, 1114143, 196603, 2, 1114143, 196603, 1, 1114143, 196604, 1, 1114149, 196605, 1, 1114143, 196606, 1, 1114143, 196607, 1, 1114143, 131072, 1, 1114143, 131073, 1, 1114143, 131074, 1, 1114149, 131075, 1, 1114149, 131076, 1, 1114143, 131077, 1, 1114149, 131078, 1, 1114149, 131079, 1, 1114143, 131080, 1, 1114143, 131080, 2, 1114143, 131080, 3, 1114143, 131080, 4, 1114143, 131079, 4, 1114143, 131078, 4, 1114143, 131077, 4, 1114143, 131076, 4, 1114143, 131075, 4, 1114143, 131074, 4, 1114143, 131073, 4, 1114143, 131072, 4, 1114143, 196607, 4, 1114143, 196606, 4, 1114143, 196605, 4, 1114143, 196604, 4, 1114143, 196604, 3, 1114143, 196604, 2, 1114143, 196605, 2, 1114143, 196606, 2, 1114143, 196607, 2, 1114143, 131072, 2, 1114143, 131073, 2, 1114143, 131074, 2, 1114143, 131075, 2, 1114143, 131076, 2, 1114143, 131077, 2, 1114143, 131078, 2, 1114143, 131079, 2, 1114143, 131079, 3, 1114143, 131078, 3, 1114143, 131077, 3, 1114143, 131076, 3, 1114143, 131075, 3, 1114143, 196606, 3, 1114143, 196605, 3, 1114143, 196607, 3, 1114143, 131072, 3, 1114143, 131073, 3, 1114143, 131074, 3, 1114143, 131080, 0, 1114149, 131080, 65535, 1114149, 131080, 65534, 1114149, 131080, 65533, 1114149, 131080, 65532, 1114149, 131080, 65531, 1114149, 131080, 65530, 1114149, 131080, 65529, 1114149, 131079, 65529, 1114149, 131078, 65529, 1114149, 131077, 65529, 1114149, 131076, 65529, 1114149, 131075, 65529, 1114149, 131074, 65529, 1114149, 131073, 65529, 1114149, 131072, 65529, 1114149, 196607, 65529, 1114149, 196606, 65529, 1114149, 196605, 65529, 1114149, 196604, 65529, 1114149, 196603, 65529, 1114149, 196603, 65530, 1114149, 196603, 65531, 1114149, 196603, 65532, 1114149, 196603, 65533, 1114149, 196603, 65534, 1114149, 196603, 65535, 1114149, 196603, 0, 1114149, 196604, 0, 1114149, 196604, 65535, 1114149, 196604, 65534, 1114149, 196604, 65533, 1114149, 196604, 65532, 1114149, 196604, 65531, 1114149, 196604, 65530, 1114149, 196605, 65530, 1114149, 196606, 65530, 1114149, 196606, 65531, 1114149, 196607, 65531, 1114149, 196607, 65532, 1114149, 196607, 65533, 1114149, 196606, 65533, 1114149, 196606, 65534, 1114149, 196606, 65535, 1114149, 196606, 0, 1114149, 196607, 0, 1114149, 131072, 0, 1114149, 131072, 65535, 1114149, 131072, 65534, 1114149, 131073, 65533, 1114149, 131073, 65532, 1114149, 131072, 65532, 1114149, 131072, 65531, 1114149, 131072, 65530, 1114149, 196607, 65530, 1114149, 196605, 65531, 1114149, 196605, 65532, 1114149, 196605, 65535, 1114149, 196607, 65535, 1114149, 131072, 65533, 1114149, 196606, 65532, 1114149, 196605, 65533, 1114149, 196605, 65534, 1114149, 196605, 0, 1114149, 196607, 65534, 1114149, 131073, 65535, 1114149, 131073, 0, 1114149, 131073, 65534, 1114149, 131074, 65534, 1114149, 131074, 65535, 1114149, 131074, 0, 1114149, 131075, 0, 1114149, 131075, 65535, 1114149, 131075, 65534, 1114149, 131074, 65533, 1114149, 131076, 65535, 1114149, 131076, 65534, 1114149, 131075, 65533, 1114149, 131075, 65532, 1114149, 131074, 65532, 1114149, 131073, 65531, 1114149, 131074, 65531, 1114149, 131075, 65531, 1114149, 131076, 65531, 1114149, 131077, 65531, 1114149, 131078, 65531, 1114149, 131079, 65531, 1114149, 131078, 65530, 1114149, 131077, 65530, 1114149, 131076, 65530, 1114149, 131075, 65530, 1114149, 131074, 65530, 1114149, 131073, 65530, 1114149, 131079, 65530, 1114149, 131079, 65532, 1114149, 131079, 65533, 1114149, 131079, 65534, 1114149, 131078, 65535, 1114149, 131079, 65535, 1114149, 131078, 0, 1114149, 131079, 0, 1114149, 131077, 0, 1114149, 131076, 0, 1114149, 131077, 65534, 1114149, 131078, 65534, 1114149, 131077, 65535, 1114149, 131077, 65533, 1114149, 131078, 65533, 1114149, 131076, 65533, 1114149, 131076, 65532, 1114149, 131077, 65532, 1114149, 131078, 65532, 1114149)
+}
+metadata/_editor_floor_ = Vector3(0, 2, 0)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="StaticScenery" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 4.5, 2.5)
-use_collision = true
-size = Vector3(1, 11, 34)
-metadata/_edit_lock_ = true
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="StaticScenery" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 4.5, -14.9682)
-use_collision = true
-size = Vector3(26, 11, 1)
-metadata/_edit_lock_ = true
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="StaticScenery" index="5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 4.5, 20.0318)
-use_collision = true
-size = Vector3(26, 11, 1)
-metadata/_edit_lock_ = true
-
-[node name="NorthGate" type="CSGCombiner3D" parent="StaticScenery" index="6"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
-metadata/_edit_lock_ = true
+[node name="NorthGate" type="CSGCombiner3D" parent="StaticScenery" index="0"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.578523, 0, 0)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="StaticScenery/NorthGate" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5, 4.5, -1.00536e-06)
-size = Vector3(1, 10, 19)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5, 1.87228, -1.40231)
+size = Vector3(1, 4.74457, 16.1954)
 material = SubResource("StandardMaterial3D_0rblt")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="StaticScenery/NorthGate" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.026, 1.51018, -1.00536e-06)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.026, 1.38903, -1.47522)
 operation = 2
-size = Vector3(0.384888, 5.10797, 13)
+size = Vector3(0.384888, 4.86568, 15.9504)
 material = SubResource("StandardMaterial3D_ecepm")
 
 [node name="to_living_area" parent="Doors" index="0" instance=ExtResource("2_b7v6y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 0)
 door_id = 1
 target_level = "living_area"
 
 [node name="to_hub_area" parent="Doors" index="1" instance=ExtResource("2_b7v6y")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.13774, 0, -13.9533)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12, 0, -15)
 door_id = 2
 target_level = "hub_area"
 
 [node name="to_security" parent="Doors" index="2" instance=ExtResource("2_b7v6y")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 11.5377, 0, -2.6845)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 19, 0, 0)
 target_level = "security"
 
 [node name="PoweredLight" parent="PoweredNodes" index="0" instance=ExtResource("3_vgbmc")]
 
 [node name="SpotLight3D" type="SpotLight3D" parent="PoweredNodes/PoweredLight" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 3)
-
-[node name="NormalDoor" parent="PoweredNodes" index="1" instance=ExtResource("4_lbqgo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.00826, 0, 0)
-locked = false
