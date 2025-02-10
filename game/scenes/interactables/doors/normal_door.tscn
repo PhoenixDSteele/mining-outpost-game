@@ -220,7 +220,6 @@ shadow_mesh = SubResource("ArrayMesh_3vbk2")
 collision_layer = 5
 collision_mask = 0
 script = ExtResource("1_62071")
-locked = true
 open_sound = ExtResource("2_cegxl")
 close_sound = ExtResource("3_6x5wx")
 locked_sound = ExtResource("4_lowci")
