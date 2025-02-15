@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://bf10yrvke83rs"]
+
+[ext_resource type="PackedScene" uid="uid://dl5kmm06rr82v" path="res://spider_hand.tscn" id="1_i03w6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wf70m"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_rw8cr"]
+sky_material = SubResource("ProceduralSkyMaterial_wf70m")
+
+[sub_resource type="Environment" id="Environment_yvbf6"]
+background_mode = 2
+sky = SubResource("Sky_rw8cr")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Node" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yvbf6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Geometry" type="Node" parent="."]
+
+[node name="Floor" type="CSGBox3D" parent="Geometry"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(25, 1, 25)
+
+[node name="Ceiling" type="CSGBox3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23.5, 0)
+use_collision = true
+size = Vector3(25, 1, 25)
+
+[node name="Wall1" type="CSGBox3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 11.5, 0)
+use_collision = true
+size = Vector3(1, 25, 25)
+
+[node name="Wall4" type="CSGBox3D" parent="Geometry"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 11.5, -13)
+use_collision = true
+size = Vector3(1, 25, 25)
+
+[node name="Wall2" type="CSGBox3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 11.5, 0)
+use_collision = true
+size = Vector3(1, 25, 25)
+
+[node name="Wall3" type="CSGBox3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 11.5, 0)
+use_collision = true
+size = Vector3(1, 25, 25)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Geometry"]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 10.9768, 0, 0)
+use_collision = true
+polygon = PackedVector2Array(7.05395, 10.6525, -6.9214, 7.61715, -11.7031, -3.84272, 4.26817, -4.5025)
+depth = 11.02
+
+[node name="SpiderHand" parent="." instance=ExtResource("1_i03w6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1)
