@@ -1346,10 +1346,13 @@ _data = {
 slide_on_ceiling = false
 wall_min_slide_angle = 0.0
 script = ExtResource("1_jf6yu")
+move_speed = 3.0
 
 [node name="PlayerCamera" parent="." instance=ExtResource("2_72s5d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.201955, 0)
 camera_arm_length = 2.0
+pitch_max = 17.0
+pitch_min = -70.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
@@ -1580,6 +1583,9 @@ bus = &"SFX"
 [node name="AttachCD" type="Timer" parent="."]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.863556, 0)
 
 [connection signal="timeout" from="StepSound/Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="AttachCD" to="." method="_on_attach_cd_timeout"]

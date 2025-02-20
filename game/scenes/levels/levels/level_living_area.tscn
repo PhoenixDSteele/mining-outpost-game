@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cn7g28k3l3ssy"]
+[gd_scene load_steps=8 format=3 uid="uid://cn7g28k3l3ssy"]
 
 [ext_resource type="PackedScene" uid="uid://dw8n0ir5hscjp" path="res://game/scenes/levels/level.tscn" id="1_4ictq"]
 [ext_resource type="MeshLibrary" uid="uid://c6i0xeit5bowu" path="res://assets/environment/mesh_libaries/asset_pack_001.meshlib" id="2_c8j4e"]
@@ -7,9 +7,17 @@
 [ext_resource type="PackedScene" uid="uid://cnykhwjt037ak" path="res://game/scenes/scene_lighting/single_door/single_door_light.tscn" id="5_pvr31"]
 [ext_resource type="PackedScene" uid="uid://01tbguhdf3cr" path="res://assets/environment/scenery/prop_single_door.tscn" id="5_qlhjv"]
 
+[sub_resource type="Environment" id="Environment_0nld0"]
+background_mode = 2
+tonemap_mode = 2
+glow_enabled = true
+
 [node name="level_living_area" instance=ExtResource("1_4ictq")]
 level_name = "living_area"
 level_music = "main_menu"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
+environment = SubResource("Environment_0nld0")
 
 [node name="GridMapFloor" parent="Gridmaps" index="0"]
 mesh_library = ExtResource("2_c8j4e")
@@ -46,11 +54,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 
 [node name="NormalDoor" parent="PoweredNodes" index="0" instance=ExtResource("3_pjctk")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8, 0, 13)
-locked = false
 
 [node name="SingleDoorLight" parent="PoweredNodes/NormalDoor" index="5" instance=ExtResource("5_pvr31")]
 
-[node name="Door_Single_Plane_001" parent="." index="7" instance=ExtResource("5_qlhjv")]
+[node name="Door_Single_Plane_001" parent="." index="8" instance=ExtResource("5_qlhjv")]
 transform = Transform3D(1.94707e-07, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, 1.94707e-07, -8.51093e-15, 2, 0, -28)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.9988, 1.22377, 19.7265)
+light_color = Color(0, 0.9, 1, 1)
+light_energy = 2.441
+light_specular = 11.311
 
 [editable path="Doors/ZoneDoor"]

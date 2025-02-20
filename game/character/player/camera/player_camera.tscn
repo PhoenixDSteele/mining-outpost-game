@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://b20fckocvf0xf"]
+[gd_scene load_steps=4 format=3 uid="uid://b20fckocvf0xf"]
 
 [ext_resource type="Script" path="res://game/character/player/camera/player_camera.gd" id="1_4sxyx"]
 [ext_resource type="PackedScene" uid="uid://ckdrpe78mknwr" path="res://game/character/player/camera/interaction_ray.tscn" id="2_aujkq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_me3pq"]
+radius = 0.1
 
 [node name="PlayerCamera" type="Node3D"]
 script = ExtResource("1_4sxyx")
@@ -15,6 +18,7 @@ unique_name_in_owner = true
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraYaw/CameraPitch"]
 unique_name_in_owner = true
+shape = SubResource("SphereShape3D_me3pq")
 spring_length = 5.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraYaw/CameraPitch/SpringArm3D"]

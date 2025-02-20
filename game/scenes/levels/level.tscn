@@ -15,6 +15,10 @@ script = ExtResource("1_hsdj0")
 
 [node name="GridMapCeiling" type="GridMap" parent="Gridmaps"]
 
+[node name="GridMapVents" type="GridMap" parent="Gridmaps"]
+
+[node name="GridMapTrim" type="GridMap" parent="Gridmaps"]
+
 [node name="StaticScenery" type="Node" parent="."]
 
 [node name="KeyItems" type="Node" parent="."]

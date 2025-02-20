@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bhijhscc5lduk" path="res://game/scenes/interactables/doors/zone_door.tscn" id="2_q6xqr"]
 [ext_resource type="PackedScene" uid="uid://baq4gd5fw1htt" path="res://game/scenes/interactables/key_items/key_item.tscn" id="3_1nei0"]
 [ext_resource type="Script" path="res://game/scenes/objects/LooseBody.gd" id="5_sdelt"]
+[ext_resource type="PackedScene" uid="uid://dl5kmm06rr82v" path="res://spider_hand.tscn" id="6_tbq4s"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1fwe4"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -46,8 +47,7 @@ emission_energy_multiplier = 0.2
 albedo_texture = ExtResource("2_mtwh1")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o6yke"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_owq5o"]
+size = Vector3(0.8, 0.8, 0.8)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2lbbm"]
 size = Vector3(2, 2, 2)
@@ -131,6 +131,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 10, -17)
 use_collision = true
 size = Vector3(15, 1, 15)
 
+[node name="CSGBox3D7" type="CSGBox3D" parent="StaticScenery" index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -9)
+use_collision = true
+size = Vector3(3, 3, 9)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticScenery/CSGBox3D7" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -2, 0)
+size = Vector3(1, 1, 9)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="StaticScenery/CSGBox3D7" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -2, 0)
+size = Vector3(1, 1, 3)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="StaticScenery/CSGBox3D7" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+size = Vector3(3, 3, 9)
+
 [node name="KeyItem" parent="KeyItems" index="0" instance=ExtResource("3_1nei0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.967949, 0.565062, 0.629322)
 item_name = "battery"
@@ -147,9 +164,6 @@ script = ExtResource("5_sdelt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Box" index="0"]
 shape = SubResource("BoxShape3D_o6yke")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Box" index="1"]
-mesh = SubResource("BoxMesh_owq5o")
 
 [node name="HeavyBox" type="RigidBody3D" parent="." index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5, -6)
@@ -174,3 +188,6 @@ mesh = SubResource("SphereMesh_ps6in")
 
 [node name="ManualSpawnLocation" parent="." index="10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="SpiderHand" parent="." index="11" instance=ExtResource("6_tbq4s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.787702, 0)
