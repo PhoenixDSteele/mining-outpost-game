@@ -48,17 +48,20 @@ func on_enter() -> void:
 #region VIDEO CONTROLS
 ## Triggered when the fullscreen checkbox toggled. Updates the screen mode.
 func _on_fullscreen_changed(toggled_on: bool) -> void:
-	var window_mode: DisplayServer.WindowMode = DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN
-	if not toggled_on:
-		window_mode = DisplayServer.WINDOW_MODE_WINDOWED
+	if toggled_on:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+	elif not toggled_on:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		
 	OptionsManager.fullscreen = toggled_on
 	OptionsManager.update_video()
 
 func _on_resolution_changed(index: int) -> void:
-	OptionsManager.resolution = index
+	for res in OptionsManager.Resolutions.values():
+		if res == index:
+			OptionsManager.resolution = res
 	OptionsManager.update_video()
-	
+
 #endregion
 #region AUDIO CONTROLS
 ## Triggered when the master volume slider value is changed. Updates the master audio bus volume.

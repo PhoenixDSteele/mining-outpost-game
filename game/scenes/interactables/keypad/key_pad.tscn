@@ -548,14 +548,14 @@ transform = Transform3D(1.00011, 0, 0, 0, 1.00011, 0, 0, 0, 1.00011, 0.0025999, 
 shape = SubResource("BoxShape3D_aw35k")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Screen"]
-transform = Transform3D(2.05254, 0, 0, 0, 2.05254, 0, 0, 0, 2.05254, 0, 0, 0.0696853)
+transform = Transform3D(2.05254, 0, 0, 0, 2.05254, 0, 0, 0, 2.05254, 0, 0, 0.269878)
 light_color = Color(0, 1, 0.717647, 1)
 light_energy = 0.1
 omni_range = 1.0
 omni_attenuation = 0.6
 
 [node name="ScreenCamera" parent="." instance=ExtResource("5_u8exo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0396729, -0.503592)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0396729, -0.610037)
 
 [node name="CorrectWrongAudio" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

@@ -11,7 +11,6 @@ class_name ScreenName extends Node3D
 
 @onready var yaw_node: Node3D = %CamYaw
 @onready var pitch_node: Node3D = %CamPitch
-@onready var spring_arm: SpringArm3D = %SpringArm3D
 @onready var camera: Camera3D = %Camera3D
 
 var yaw : float = 0

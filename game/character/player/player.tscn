@@ -9969,7 +9969,7 @@ turn_speed = 1.0
 
 [node name="JumpState" type="Node" parent="StateMachine" index="3"]
 script = ExtResource("6_vlmxj")
-jump_height = 3.5
+jump_height = 4.0
 air_move_speed = 2.5
 acceleration = 3.0
 decceleration = 0.1
@@ -9987,6 +9987,7 @@ script = ExtResource("11_x6r1t")
 [node name="PlayerCamera" type="Node3D" parent="." index="6" node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+top_level = true
 script = ExtResource("7_h0o73")
 player = NodePath("..")
 camera_arm_length = 3.5

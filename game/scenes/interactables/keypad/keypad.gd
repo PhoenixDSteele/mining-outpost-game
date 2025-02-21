@@ -1,6 +1,7 @@
 class_name KeyPad extends Interactable
 signal successful
 
+@export var door : NormalDoor
 @export var correct_code : int = 1337
 
 @onready var button_01: ScreenButton = %BUTTON_01
@@ -114,6 +115,8 @@ func process_code(correct:bool):
 		t.tween_callback(func(): processing = false)
 		t.tween_callback(func(): successful.emit())
 		t.tween_callback(func(): current_code_input.text = "")
+		door.toggle_lock(false)
+		door._on_interacted()
 	else:
 		t.tween_property(current_code_input, "theme_override_colors/font_uneditable_color", Color.RED, 0.1)
 		t.tween_property(current_code_input, "theme_override_colors/font_uneditable_color", default_color, 0.1)

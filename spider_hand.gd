@@ -111,6 +111,7 @@ func _physics_process(delta: float) -> void:
 		
 		move_and_slide()
 
+@warning_ignore("unused_parameter")
 func align_to_new_normal(new_normal:Vector3, attach_point:Vector3):
 	if can_attach:
 		can_dettach = false

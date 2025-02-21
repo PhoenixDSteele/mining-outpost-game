@@ -32,7 +32,7 @@ class_name BodyBase extends CharacterBody3D
 var can_breath : bool = true
 
 ## Personal Body Gravity
-@export var gravity : float = 8
+@export var gravity : float = 9
 var gravity_enabled : bool = true
 
 @onready var player_camera: PlayerCamera = %PlayerCamera
@@ -48,6 +48,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	
+	player_camera.global_position = lerp(player_camera.global_position, Vector3(self.global_position.x, self.global_position.y + 1.5, self.global_position.z), 10 * delta)
+	
 	# Add the gravity if it's enabled.
 	if not is_on_floor() and (gravity_enabled == true):
 		velocity.y -= gravity * delta

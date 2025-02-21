@@ -38,6 +38,18 @@ func toggle_power(power_state:bool) -> void:
 				light_source.powered_on_unlocked()
 			prompt_message = "Open Door"
 
+func toggle_lock(locked_status:bool) -> void:
+	if locked_status:
+		locked = true
+		if light_source:
+			light_source.powered_on_locked()
+		prompt_message = "LOCKED"
+	elif not locked_status:
+		locked = false
+		if light_source:
+			light_source.powered_on_unlocked()
+		prompt_message = "Open Door"
+
 func _on_interacted() -> void:
 	if not powered_on:
 		return

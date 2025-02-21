@@ -1,18 +1,26 @@
-[gd_scene load_steps=17 format=3 uid="uid://due6gjicxdioy"]
+[gd_scene load_steps=20 format=3 uid="uid://due6gjicxdioy"]
 
 [ext_resource type="PackedScene" uid="uid://dw8n0ir5hscjp" path="res://game/scenes/levels/level.tscn" id="1_43wqk"]
+[ext_resource type="MeshLibrary" uid="uid://s1pa0evn3pyc" path="res://assets/environment/mesh_libaries/wall_vent_v2.meshlib" id="2_2fmbh"]
 [ext_resource type="Texture2D" uid="uid://4u0h7r84s3tu" path="res://icon.svg" id="2_mtwh1"]
 [ext_resource type="PackedScene" uid="uid://bhijhscc5lduk" path="res://game/scenes/interactables/doors/zone_door.tscn" id="2_q6xqr"]
 [ext_resource type="PackedScene" uid="uid://baq4gd5fw1htt" path="res://game/scenes/interactables/key_items/key_item.tscn" id="3_1nei0"]
 [ext_resource type="Script" path="res://game/scenes/objects/LooseBody.gd" id="5_sdelt"]
 [ext_resource type="PackedScene" uid="uid://beb6lip5hi5lo" path="res://game/scenes/interactables/keypad/key_pad.tscn" id="6_uo3ht"]
+[ext_resource type="PackedScene" uid="uid://dr038k11r1a4h" path="res://game/scenes/interactables/doors/normal_door.tscn" id="7_0nce2"]
 
-[sub_resource type="Environment" id="Environment_lfxu7"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_48b65"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_paq6x"]
+sky_material = SubResource("ProceduralSkyMaterial_48b65")
+
+[sub_resource type="Environment" id="Environment_12biw"]
 background_mode = 2
+sky = SubResource("Sky_paq6x")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jvfel"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bimoo"]
 transparency = 1
@@ -50,89 +58,60 @@ level_music = "main_menu"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Enviro#Lighting" index="0"]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-visible = false
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Enviro#Lighting" index="1"]
-environment = SubResource("Environment_lfxu7")
+environment = SubResource("Environment_12biw")
 
-[node name="Floor" type="CSGBox3D" parent="StaticScenery" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00880122, 0)
-use_collision = true
-size = Vector3(50, 1, 50)
-material = SubResource("StandardMaterial3D_jvfel")
+[node name="GridMapFloor" parent="Gridmaps" index="0"]
+mesh_library = ExtResource("2_2fmbh")
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(1, 1, 9, 1, 2, 9, 1, 3, 9, 1, 4, 9, 2, 4, 9, 2, 3, 9, 3, 3, 9, 3, 2, 9, 4, 2, 9, 4, 1, 9, 3, 0, 9, 2, 0, 9, 1, 0, 9, 0, 1, 9, 0, 2, 9, 0, 3, 9, 4, 0, 9, 3, 65535, 9, 2, 65535, 9, 1, 65535, 9, 0, 65535, 9, 0, 0, 9, 65535, 0, 9, 65535, 1, 9, 65534, 2, 9, 65534, 3, 9, 65535, 3, 9, 0, 4, 9, 3, 1, 9, 65535, 65535, 9, 65534, 0, 9, 65533, 0, 9, 65533, 1, 9, 65532, 1, 9, 65532, 2, 9, 65532, 3, 9, 65532, 4, 9, 65533, 4, 9, 65534, 4, 9, 65535, 4, 9, 2, 2, 9, 65534, 1, 9, 65533, 2, 9, 2, 1, 9, 5, 0, 9, 5, 1, 9, 6, 1, 9, 5, 2, 9, 65535, 5, 9, 65534, 5, 9, 0, 5, 9, 1, 5, 9, 3, 4, 9, 4, 4, 9, 5, 4, 9, 5, 3, 9, 6, 3, 9, 7, 3, 9, 6, 4, 9, 3, 5, 9, 2, 5, 9, 0, 6, 9, 65535, 6, 9, 65534, 6, 9, 4, 3, 9, 65533, 3, 9, 65532, 5, 9, 65532, 6, 9, 65533, 6, 9, 65533, 5, 9, 65535, 2, 9, 65532, 0, 9, 65532, 65535, 9, 65531, 65535, 9, 65531, 65534, 9, 65532, 65534, 9, 65533, 65534, 9, 65534, 65534, 9, 65534, 65535, 9, 65535, 65534, 9, 0, 65534, 9, 1, 65534, 9, 2, 65534, 9, 3, 65534, 9, 4, 65534, 9, 5, 65534, 9, 5, 65535, 9, 6, 65534, 9, 6, 65535, 9, 7, 65535, 9, 8, 65535, 9, 8, 0, 9, 7, 0, 9, 7, 1, 9, 6, 2, 9, 7, 4, 9, 8, 3, 9, 8, 2, 9, 9, 2, 9, 9, 1, 9, 10, 1, 9, 10, 0, 9, 8, 1, 9, 7, 2, 9, 9, 0, 9, 9, 65535, 9, 7, 5, 9, 6, 5, 9, 5, 5, 9, 4, 5, 9, 3, 6, 9, 2, 6, 9, 1, 6, 9, 4, 6, 9, 5, 6, 9, 6, 6, 9, 7, 6, 9, 6, 0, 9, 4, 65535, 9, 65533, 65535, 9, 7, 65534, 9, 0, 7, 9, 0, 8, 9, 1, 7, 9, 1, 8, 9, 2, 7, 9, 2, 8, 9, 3, 7, 9, 3, 8, 9, 4, 7, 9, 4, 8, 9, 5, 7, 9, 5, 8, 9, 6, 7, 9, 6, 8, 9, 7, 7, 9, 7, 8, 9, 8, 4, 9, 8, 5, 9, 8, 6, 9, 8, 7, 9, 8, 8, 9, 9, 3, 9, 9, 4, 9, 9, 5, 9, 9, 6, 9, 9, 7, 9, 9, 8, 9, 10, 2, 9, 10, 3, 9, 10, 4, 9, 10, 5, 9, 10, 6, 9, 10, 7, 9, 10, 8, 9, 11, 0, 9, 11, 1, 9, 11, 2, 9, 11, 3, 9, 11, 4, 9, 11, 5, 9, 11, 6, 9, 11, 7, 9, 11, 8, 9, 65535, 8, 9, 65534, 8, 9, 65533, 8, 9, 65532, 8, 9, 65531, 8, 9, 65530, 8, 9, 65529, 8, 9, 65529, 7, 9, 65528, 7, 9, 65527, 7, 9, 65526, 7, 9, 65525, 0, 9, 65525, 1, 9, 65525, 2, 9, 65525, 3, 9, 65525, 4, 9, 65525, 5, 9, 65525, 6, 9, 65525, 7, 9, 65525, 8, 9, 65526, 0, 9, 65526, 1, 9, 65526, 2, 9, 65526, 3, 9, 65526, 4, 9, 65526, 5, 9, 65526, 6, 9, 65526, 8, 9, 65527, 0, 9, 65527, 1, 9, 65527, 2, 9, 65527, 3, 9, 65527, 4, 9, 65527, 5, 9, 65527, 6, 9, 65527, 8, 9, 65528, 0, 9, 65528, 1, 9, 65528, 2, 9, 65528, 3, 9, 65528, 4, 9, 65528, 5, 9, 65528, 6, 9, 65528, 8, 9, 65529, 0, 9, 65529, 1, 9, 65529, 2, 9, 65529, 3, 9, 65529, 4, 9, 65529, 5, 9, 65529, 6, 9, 65530, 0, 9, 65530, 1, 9, 65530, 2, 9, 65530, 3, 9, 65530, 4, 9, 65530, 5, 9, 65530, 6, 9, 65530, 7, 9, 65531, 0, 9, 65531, 1, 9, 65531, 2, 9, 65531, 3, 9, 65531, 4, 9, 65531, 5, 9, 65531, 6, 9, 65531, 7, 9, 65532, 7, 9, 65533, 7, 9, 65534, 7, 9, 65535, 7, 9, 65525, 65527, 9, 65525, 65528, 9, 65525, 65529, 9, 65525, 65530, 9, 65525, 65531, 9, 65525, 65532, 9, 65525, 65533, 9, 65525, 65534, 9, 65525, 65535, 9, 65526, 65527, 9, 65526, 65528, 9, 65526, 65529, 9, 65526, 65530, 9, 65526, 65531, 9, 65526, 65532, 9, 65526, 65533, 9, 65526, 65534, 9, 65526, 65535, 9, 65527, 65527, 9, 65527, 65528, 9, 65527, 65529, 9, 65527, 65530, 9, 65527, 65531, 9, 65527, 65532, 9, 65527, 65533, 9, 65527, 65534, 9, 65527, 65535, 9, 65528, 65527, 9, 65528, 65528, 9, 65528, 65529, 9, 65528, 65530, 9, 65528, 65531, 9, 65528, 65532, 9, 65528, 65533, 9, 65528, 65534, 9, 65528, 65535, 9, 65529, 65527, 9, 65529, 65528, 9, 65529, 65529, 9, 65529, 65530, 9, 65529, 65531, 9, 65529, 65532, 9, 65529, 65533, 9, 65529, 65534, 9, 65529, 65535, 9, 65530, 65527, 9, 65530, 65528, 9, 65530, 65529, 9, 65530, 65530, 9, 65530, 65531, 9, 65530, 65532, 9, 65530, 65533, 9, 65530, 65534, 9, 65530, 65535, 9, 65531, 65527, 9, 65531, 65528, 9, 65531, 65529, 9, 65531, 65530, 9, 65531, 65531, 9, 65531, 65532, 9, 65531, 65533, 9, 65532, 65527, 9, 65532, 65528, 9, 65532, 65529, 9, 65532, 65530, 9, 65532, 65531, 9, 65532, 65532, 9, 65532, 65533, 9, 65533, 65527, 9, 65533, 65528, 9, 65533, 65529, 9, 65533, 65530, 9, 65533, 65531, 9, 65533, 65532, 9, 65533, 65533, 9, 65534, 65527, 9, 65534, 65528, 9, 65534, 65529, 9, 65534, 65530, 9, 65534, 65531, 9, 65534, 65532, 9, 65534, 65533, 9, 65535, 65527, 9, 65535, 65528, 9, 65535, 65529, 9, 65535, 65530, 9, 65535, 65531, 9, 65535, 65532, 9, 65535, 65533, 9, 0, 65527, 9, 0, 65528, 9, 0, 65529, 9, 0, 65530, 9, 0, 65531, 9, 0, 65532, 9, 0, 65533, 9, 1, 65527, 9, 1, 65528, 9, 1, 65529, 9, 1, 65530, 9, 1, 65531, 9, 1, 65532, 9, 1, 65533, 9, 2, 65527, 9, 2, 65528, 9, 2, 65529, 9, 2, 65530, 9, 2, 65531, 9, 2, 65532, 9, 2, 65533, 9, 3, 65527, 9, 3, 65528, 9, 3, 65529, 9, 3, 65530, 9, 3, 65531, 9, 3, 65532, 9, 3, 65533, 9, 4, 65527, 9, 4, 65528, 9, 4, 65529, 9, 4, 65530, 9, 4, 65531, 9, 4, 65532, 9, 4, 65533, 9, 5, 65527, 9, 5, 65528, 9, 5, 65529, 9, 5, 65530, 9, 5, 65531, 9, 5, 65532, 9, 5, 65533, 9, 6, 65527, 9, 6, 65528, 9, 6, 65529, 9, 6, 65530, 9, 6, 65531, 9, 6, 65532, 9, 6, 65533, 9, 7, 65527, 9, 7, 65528, 9, 7, 65529, 9, 7, 65530, 9, 7, 65531, 9, 7, 65532, 9, 7, 65533, 9, 8, 65527, 9, 8, 65528, 9, 8, 65529, 9, 8, 65530, 9, 8, 65531, 9, 8, 65532, 9, 8, 65533, 9, 8, 65534, 9, 9, 65527, 9, 9, 65528, 9, 9, 65529, 9, 9, 65530, 9, 9, 65531, 9, 9, 65532, 9, 9, 65533, 9, 9, 65534, 9, 10, 65527, 9, 10, 65528, 9, 10, 65529, 9, 10, 65530, 9, 10, 65531, 9, 10, 65532, 9, 10, 65533, 9, 10, 65534, 9, 10, 65535, 9, 11, 65527, 9, 11, 65528, 9, 11, 65529, 9, 11, 65530, 9, 11, 65531, 9, 11, 65532, 9, 11, 65533, 9, 11, 65534, 9, 11, 65535, 9)
+}
 
-[node name="Floor2" type="CSGBox3D" parent="StaticScenery" index="1"]
+[node name="GridMapWalls" parent="Gridmaps" index="1"]
+mesh_library = ExtResource("2_2fmbh")
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(2, 65534, 1441804, 0, 65534, 1441795)
+}
+
+[node name="Floor2" type="CSGBox3D" parent="StaticScenery" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 10, 0)
 use_collision = true
 size = Vector3(13, 1, 15)
 material = SubResource("StandardMaterial3D_bimoo")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="StaticScenery" index="2"]
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticScenery" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 1.5, 6.5)
 use_collision = true
 size = Vector3(2, 2, 2)
 material = SubResource("StandardMaterial3D_oi1nk")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="StaticScenery" index="3"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="StaticScenery" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 3.5, 2.5)
 use_collision = true
 size = Vector3(2, 2, 2)
 material = SubResource("StandardMaterial3D_p220d")
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="StaticScenery" index="4"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="StaticScenery" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 5.5, -1.5)
 use_collision = true
 size = Vector3(2, 2, 2)
 material = SubResource("StandardMaterial3D_7ia0t")
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="StaticScenery" index="5"]
+[node name="CSGBox3D5" type="CSGBox3D" parent="StaticScenery" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 5.5, -1.5)
 use_collision = true
 size = Vector3(2, 2, 2)
 material = SubResource("StandardMaterial3D_k23dj")
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="StaticScenery" index="6"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="StaticScenery" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 7.5, -5.5)
 use_collision = true
 size = Vector3(2, 2, 2)
 material = SubResource("StandardMaterial3D_pgrwi")
-
-[node name="Room" type="CSGCombiner3D" parent="StaticScenery" index="7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0548439, 0, -0.013422)
-use_collision = true
-
-[node name="Wall2" type="CSGBox3D" parent="StaticScenery/Room" index="0"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -16.5, 5.5, -24)
-use_collision = true
-size = Vector3(15, 1, 10)
-
-[node name="Wall" type="CSGBox3D" parent="StaticScenery/Room" index="1"]
-transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, -24.5521, 5.5, -17)
-use_collision = true
-size = Vector3(15, 1, 10)
-
-[node name="Ceiling" type="CSGBox3D" parent="StaticScenery/Room" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 10, -17)
-use_collision = true
-size = Vector3(15, 1, 15)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="StaticScenery" index="8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -9)
-use_collision = true
-size = Vector3(3, 3, 9)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="StaticScenery/CSGBox3D7" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -2, 0)
-size = Vector3(1, 1, 9)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="StaticScenery/CSGBox3D7" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -2, 0)
-size = Vector3(1, 1, 3)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="StaticScenery/CSGBox3D7" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
-size = Vector3(3, 3, 9)
 
 [node name="KeyItem" parent="KeyItems" index="0" instance=ExtResource("3_1nei0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.967949, 0.565062, 0.629322)
@@ -144,10 +123,19 @@ door_id = 4
 target_door_id = 2
 target_level = "hub_area"
 
-[node name="Keypad" parent="PoweredNodes" index="0" instance=ExtResource("6_uo3ht")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.71777, -4.518)
+[node name="Keypad" parent="PoweredNodes" index="0" node_paths=PackedStringArray("door") instance=ExtResource("6_uo3ht")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8839, 1.36483, -3.8444)
+door = NodePath("../NormalDoor")
+correct_code = 6969
 
-[node name="HeavyBox" type="RigidBody3D" parent="." index="6"]
+[node name="NormalDoor" parent="PoweredNodes" index="1" instance=ExtResource("7_0nce2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0, -4)
+locked = true
+
+[node name="ManualSpawnLocation" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="HeavyBox" type="RigidBody3D" parent="." index="8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5, -6)
 mass = 5.0
 script = ExtResource("5_sdelt")
@@ -157,6 +145,3 @@ shape = SubResource("BoxShape3D_2lbbm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="HeavyBox" index="1"]
 mesh = SubResource("BoxMesh_1uota")
-
-[node name="ManualSpawnLocation" parent="." index="8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
