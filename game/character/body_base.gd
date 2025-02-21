@@ -16,6 +16,9 @@ class_name BodyBase extends CharacterBody3D
 ## Set if controlled by player; to send input to the statemachine.
 @export var player_controller : PlayerController = null
 
+## Set if controlled by player; to send input to the statemachine.
+@export var ui_controller : UIController = null
+
 ## Set if controlled by player; to send ledge climbing information to statemachine.
 @export var climb_checker : ClimbChecker = null
 
@@ -32,12 +35,16 @@ var can_breath : bool = true
 @export var gravity : float = 8
 var gravity_enabled : bool = true
 
+@onready var player_camera: PlayerCamera = %PlayerCamera
+
 
 func _ready() -> void:
 	#if anim_player == null:
 		#anim_player = find_anim_player()
 	if collision == null:
 		collision = find_collision()
+	
+	player_camera.camera.make_current()
 
 
 func _physics_process(delta: float) -> void:

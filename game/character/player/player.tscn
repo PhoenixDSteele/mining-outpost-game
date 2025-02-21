@@ -8761,11 +8761,12 @@ _data = {
 "walk": SubResource("Animation_g4qgo")
 }
 
-[node name="Player" node_paths=PackedStringArray("anim_player", "collision", "player_controller", "climb_checker", "stats") groups=["player"] instance=ExtResource("1_heyne")]
+[node name="Player" node_paths=PackedStringArray("anim_player", "collision", "player_controller", "ui_controller", "climb_checker", "stats") groups=["player"] instance=ExtResource("1_heyne")]
 collision_layer = 2
 anim_player = NodePath("Visual/greygoober_combined/AnimationPlayer")
 collision = NodePath("Collision")
 player_controller = NodePath("PlayerController")
+ui_controller = NodePath("UIController")
 climb_checker = NodePath("Visual/ClimbChecker")
 stats = NodePath("Stats")
 
@@ -10006,15 +10007,17 @@ spring_length = 5.0
 [node name="Camera3D" type="Camera3D" parent="PlayerCamera/CameraYaw/CameraPitch/SpringArm3D" index="0"]
 unique_name_in_owner = true
 
-[node name="InteractionRay" parent="PlayerCamera/CameraYaw/CameraPitch/SpringArm3D/Camera3D" index="0" instance=ExtResource("8_wnmaa")]
+[node name="InteractionRay" parent="PlayerCamera/CameraYaw/CameraPitch/SpringArm3D/Camera3D" index="0" node_paths=PackedStringArray("camera_user") instance=ExtResource("8_wnmaa")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.5)
 exclude_parent = true
 target_position = Vector3(0, 0, -1.5)
 collision_mask = 4
+camera_user = NodePath("../../../../../..")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.26823, 0)
+visible = false
 light_energy = 0.25
 light_specular = 0.0
 light_cull_mask = 4293918721

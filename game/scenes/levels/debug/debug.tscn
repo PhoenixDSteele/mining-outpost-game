@@ -1,22 +1,14 @@
-[gd_scene load_steps=22 format=3 uid="uid://due6gjicxdioy"]
+[gd_scene load_steps=17 format=3 uid="uid://due6gjicxdioy"]
 
 [ext_resource type="PackedScene" uid="uid://dw8n0ir5hscjp" path="res://game/scenes/levels/level.tscn" id="1_43wqk"]
 [ext_resource type="Texture2D" uid="uid://4u0h7r84s3tu" path="res://icon.svg" id="2_mtwh1"]
 [ext_resource type="PackedScene" uid="uid://bhijhscc5lduk" path="res://game/scenes/interactables/doors/zone_door.tscn" id="2_q6xqr"]
 [ext_resource type="PackedScene" uid="uid://baq4gd5fw1htt" path="res://game/scenes/interactables/key_items/key_item.tscn" id="3_1nei0"]
 [ext_resource type="Script" path="res://game/scenes/objects/LooseBody.gd" id="5_sdelt"]
-[ext_resource type="PackedScene" uid="uid://dl5kmm06rr82v" path="res://spider_hand.tscn" id="6_tbq4s"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1fwe4"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-
-[sub_resource type="Sky" id="Sky_fuymo"]
-sky_material = SubResource("ProceduralSkyMaterial_1fwe4")
+[ext_resource type="PackedScene" uid="uid://beb6lip5hi5lo" path="res://game/scenes/interactables/keypad/key_pad.tscn" id="6_uo3ht"]
 
 [sub_resource type="Environment" id="Environment_lfxu7"]
 background_mode = 2
-sky = SubResource("Sky_fuymo")
 tonemap_mode = 2
 glow_enabled = true
 
@@ -46,18 +38,11 @@ emission_energy_multiplier = 0.2
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pgrwi"]
 albedo_texture = ExtResource("2_mtwh1")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_o6yke"]
-size = Vector3(0.8, 0.8, 0.8)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_2lbbm"]
 size = Vector3(2, 2, 2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_1uota"]
 size = Vector3(2, 2, 2)
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_jf4bo"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_ps6in"]
 
 [node name="debug" instance=ExtResource("1_43wqk")]
 level_name = "debug"
@@ -65,6 +50,7 @@ level_music = "main_menu"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Enviro#Lighting" index="0"]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+visible = false
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Enviro#Lighting" index="1"]
@@ -158,14 +144,10 @@ door_id = 4
 target_door_id = 2
 target_level = "hub_area"
 
-[node name="Box" type="RigidBody3D" parent="." index="6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -6)
-script = ExtResource("5_sdelt")
+[node name="Keypad" parent="PoweredNodes" index="0" instance=ExtResource("6_uo3ht")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.71777, -4.518)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Box" index="0"]
-shape = SubResource("BoxShape3D_o6yke")
-
-[node name="HeavyBox" type="RigidBody3D" parent="." index="7"]
+[node name="HeavyBox" type="RigidBody3D" parent="." index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5, -6)
 mass = 5.0
 script = ExtResource("5_sdelt")
@@ -176,18 +158,5 @@ shape = SubResource("BoxShape3D_2lbbm")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="HeavyBox" index="1"]
 mesh = SubResource("BoxMesh_1uota")
 
-[node name="Ball" type="RigidBody3D" parent="." index="8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -6)
-script = ExtResource("5_sdelt")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ball" index="0"]
-shape = SubResource("SphereShape3D_jf4bo")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ball" index="1"]
-mesh = SubResource("SphereMesh_ps6in")
-
-[node name="ManualSpawnLocation" parent="." index="10"]
+[node name="ManualSpawnLocation" parent="." index="8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-
-[node name="SpiderHand" parent="." index="11" instance=ExtResource("6_tbq4s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.787702, 0)

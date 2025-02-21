@@ -45,15 +45,16 @@ func _ready() -> void:
 	await get_tree().physics_frame
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		if not in_menu:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-			yaw += -event.relative.x * yaw_sensitivity
-			pitch += -event.relative.y * pitch_sensitivity
-		elif in_menu:
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-			yaw += -event.relative.x * yaw_sensitivity * 0.1
-			pitch += -event.relative.y * pitch_sensitivity * 0.1
+	if camera.current:
+		if event is InputEventMouseMotion:
+			if not in_menu:
+				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+				yaw += -event.relative.x * yaw_sensitivity
+				pitch += -event.relative.y * pitch_sensitivity
+			elif in_menu:
+				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+				yaw += -event.relative.x * yaw_sensitivity * 0.1
+				pitch += -event.relative.y * pitch_sensitivity * 0.1
 
 ## Make menu visible, and moves camera to correct position.
 func enter_menu():
@@ -82,14 +83,15 @@ func transition_camera(target_pos:Vector3, target_fov:float):
 	tween.tween_property(camera,"fov",target_fov, 0.2)
 
 func _physics_process(delta: float) -> void:
-	# Camera Controls inside and out of menu.
-	if not in_menu:
-		pitch = clamp(pitch, pitch_min, pitch_max)
-		yaw_node.rotation_degrees.y = lerpf(yaw_node.rotation_degrees.y, yaw, yaw_acceleration * delta)
-		pitch_node.rotation_degrees.x = lerpf(pitch_node.rotation_degrees.x, pitch, pitch_acceleration * delta)
-		camera_rotation.emit(yaw_node.rotation.y)
-	elif in_menu:
-		yaw = clamp(yaw, menu_clamp_yaw - 5, menu_clamp_yaw + 5)
-		pitch = clamp(pitch, menu_clamp_pitch - 5, menu_clamp_pitch + 5)
-		yaw_node.rotation_degrees.y = lerpf(yaw_node.rotation_degrees.y, yaw, yaw_acceleration * delta)
-		pitch_node.rotation_degrees.x = lerpf(pitch_node.rotation_degrees.x, pitch, pitch_acceleration * delta)
+	if camera.current:
+		# Camera Controls inside and out of menu.
+		if not in_menu:
+			pitch = clamp(pitch, pitch_min, pitch_max)
+			yaw_node.rotation_degrees.y = lerpf(yaw_node.rotation_degrees.y, yaw, yaw_acceleration * delta)
+			pitch_node.rotation_degrees.x = lerpf(pitch_node.rotation_degrees.x, pitch, pitch_acceleration * delta)
+			camera_rotation.emit(yaw_node.rotation.y)
+		elif in_menu:
+			yaw = clamp(yaw, menu_clamp_yaw - 5, menu_clamp_yaw + 5)
+			pitch = clamp(pitch, menu_clamp_pitch - 5, menu_clamp_pitch + 5)
+			yaw_node.rotation_degrees.y = lerpf(yaw_node.rotation_degrees.y, yaw, yaw_acceleration * delta)
+			pitch_node.rotation_degrees.x = lerpf(pitch_node.rotation_degrees.x, pitch, pitch_acceleration * delta)

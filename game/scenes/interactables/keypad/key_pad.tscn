@@ -1,0 +1,565 @@
+[gd_scene load_steps=22 format=4 uid="uid://beb6lip5hi5lo"]
+
+[ext_resource type="Theme" uid="uid://dtej56pljgyf2" path="res://assets/ui_theme/temp_theme.tres" id="1_jx01b"]
+[ext_resource type="Script" path="res://game/scenes/interactables/keypad/key_pad_screen.gd" id="1_ske8h"]
+[ext_resource type="FontFile" uid="uid://csnmcna6ln5mk" path="res://assets/fonts/Ethnocentric Rg.otf" id="2_pxk0c"]
+[ext_resource type="Shader" path="res://assets/shaders/crt_vhs.gdshader" id="2_tex6b"]
+[ext_resource type="Script" path="res://game/scripts/object_components/powered.gd" id="2_uid2s"]
+[ext_resource type="Texture2D" uid="uid://m6138c3nudqw" path="res://assets/environment/scenery/keypad_texture_atlas_001.png" id="2_xmy0d"]
+[ext_resource type="Script" path="res://game/scenes/interactables/keypad/keypad.gd" id="3_o0qet"]
+[ext_resource type="Script" path="res://game/scenes/UI/screen_button.gd" id="4_ttjlp"]
+[ext_resource type="AudioStream" uid="uid://c8ap70ijjomlr" path="res://assets/audio/sfx/screen_sounds/keypad_clicked.wav" id="5_s28up"]
+[ext_resource type="PackedScene" uid="uid://ciw14m13fy8j6" path="res://game/scenes/interactables/keypad/screen_camera.tscn" id="5_u8exo"]
+[ext_resource type="AudioStream" uid="uid://c2mtiwh1jir6y" path="res://assets/audio/sfx/screen_sounds/del_keypad.wav" id="7_xs3xt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bidcn"]
+size = Vector3(0.415955, 0.471436, 0.177002)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o87ot"]
+resource_name = "texture_atlas"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("2_xmy0d")
+texture_filter = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4frbg"]
+resource_name = "screen"
+cull_mode = 2
+albedo_color = Color(0, 0.114849, 0.136356, 1)
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_nje4f"]
+_surfaces = [{
+"aabb": AABB(0, -0.2, -0.2, 0.146026, 0.5, 0.4),
+"format": 34896613377,
+"index_count": 72,
+"index_data": PackedByteArray("AgAHAAMAAgAGAAcABAABAAUABAAAAAEAAgAEAAYAAgAAAAQABwABAAMABwAFAAEABgAJAAcABgAIAAkABwAKAAUABwAJAAoABQALAAQABQAKAAsABAAIAAYABAALAAgACAANAAkACAAMAA0ACQAOAAoACQANAA4ACgAPAAsACgAOAA8ACwAMAAgACwAPAAwA"),
+"name": "texture_atlas",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AAAAAP//AAAAAP////8AAAAAAAAAAAAAAAD//wAAAABOrwAA//8AAE6v/////wAATq8AAAAAAABOr///AAAAAP//QRMRGAAA//+97BEYAAD//73s7ecAAP//QRPt5wAAKvDVHAokAAAq8CnjCiQAACrwKeP02wAAKvDVHPTbAAA=")
+}, {
+"aabb": AABB(0.136997, -0.143686, -0.143686, 1e-05, 0.387372, 0.287372),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAACAAEAAAADAAIA"),
+"name": "screen",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAAAAAAAP//AAAAAAAA/////wAAAAAAAP//AAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_wwrv0"]
+resource_name = "keypad_Cube_030"
+_surfaces = [{
+"aabb": AABB(0, -0.2, -0.2, 0.146026, 0.5, 0.4),
+"attribute_data": PackedByteArray("mLnMPJi5/z+YuTIzMrPMPP+/zDz/v/8//78yM5i5zDzMvMw8mLnMPJi5MjOYuTIzzLwyMzKz/z+Yucw8mLnMPMy8zDz/v8w8MrMyMzKzMjPMvDIzmLn/PzKzzDwys8w8zLPrM8yz6zPMs+szzLPrM8yzEzzMsxM8zLMTPMyzEzz+uBM8/rgTPP64Ezz+uBM8/rjrM/646zP+uOsz/rjrMxm0RzQZtEc0GbS3Oxm0tzuyuLc7sri3O7K4RzSyuEc0"),
+"format": 34896613399,
+"index_count": 72,
+"index_data": PackedByteArray("BAAUAAYABAAQABQACAACAAwACAAAAAIABQAJABEABQABAAkAFQADAAcAFQANAAMAEgAcABYAEgAYABwAFwAhAA8AFwAdACEADgAkAAoADgAgACQACwAZABMACwAlABkAGgAqAB4AGgAoACoAHwAtACMAHwArAC0AIgAuACYAIgAsAC4AJwApABsAJwAvACkA"),
+"material": SubResource("StandardMaterial3D_o87ot"),
+"name": "texture_atlas",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 48,
+"vertex_data": PackedByteArray("AAAAAP//AIAAAAAA//9U1QAA/////wCAAAD/////VNUAAAAAAAD//wAAAAAAAFTVAAD//wAA//8AAP//AABU1U6vAAD//wCATq8AAP//VNVOrwAA/////06vAAD//+jmTq//////AIBOr/////9U1U6v////////Tq//////6OZOrwAAAAD//06vAAAAAFTVTq8AAAAA//9OrwAAAADo5k6v//8AAP//Tq///wAAVNVOr///AAD//06v//8AAOjm//9BExEY/////0ETERjo5v//QRMRGP////9BExEYGPP//73sERj/////vewRGOjm//+97BEY/////73sERgY8///vezt5/////+97O3n6Ob//73s7ef/////vezt5xjz//9BE+3n/////0ET7efo5v//QRPt5/////9BE+3nGPMq8NUcCiT//yrw1RwKJBjzKvAp4wok//8q8CnjCiQY8yrwKeP02///KvAp4/TbGPMq8NUc9Nv//yrw1Rz02xjz/3///1RVVFX/f///VNWqKv9///9UVVRV/3///1TVqir/f///VFVUVaSh/3+JGEPM/3///1TVqiqEoXeAurOImP9///9UVVRVcQD4oYkYQ8z/f///VNWqKgAApKG6s4iYAACkoYkYQ8xXsfJ/bbkijQAApKG6s4iYO7GqfyINkMakof9/urOImKLO/38iDZDGpKH/f4kYQ8wUAJZObbkijVex839tuSKNP7G0fyINkMaizv9/Ig2QxhQAlk5tuSKN")
+}, {
+"aabb": AABB(0.136997, -0.143686, -0.143686, 1e-05, 0.387372, 0.287372),
+"attribute_data": PackedByteArray("GbRHNBm0tzuyuLc7srhHNA=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAACAAEAAAADAAIA"),
+"material": SubResource("StandardMaterial3D_4frbg"),
+"name": "screen",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAAAA//8AAP//AAD//wAA////////AAAAAP//////v/9//7//f/+//3//v/9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_nje4f")
+
+[sub_resource type="QuadMesh" id="QuadMesh_2yvdc"]
+size = Vector2(0.3, 0.41)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ijuip"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4flfx"]
+bg_color = Color(0, 1, 0.717, 0.5)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hcrvv"]
+shader = ExtResource("2_tex6b")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.02
+shader_parameter/grille_opacity = 0.15
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = false
+shader_parameter/roll = true
+shader_parameter/roll_speed = 1.0
+shader_parameter/roll_size = 1.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.01
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.15
+shader_parameter/aberration = 0.01
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = true
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aw35k"]
+size = Vector3(0.297302, 0.406, 0.083252)
+
+[node name="Keypad" type="StaticBody3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("3_o0qet")
+
+[node name="Powered" type="Node" parent="."]
+script = ExtResource("2_uid2s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00106812, 0.0477295, 0.0968018)
+shape = SubResource("BoxShape3D_bidcn")
+
+[node name="keypad" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Cube" type="MeshInstance3D" parent="keypad"]
+mesh = SubResource("ArrayMesh_wwrv0")
+skeleton = NodePath("")
+
+[node name="Screen" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.974404, 0, 0, 0, 0.974404, 0, 0, 0, 0.974404, -0.000564128, 0.0493959, 0.140884)
+mesh = SubResource("QuadMesh_2yvdc")
+script = ExtResource("1_ske8h")
+
+[node name="SubViewport" type="SubViewport" parent="Screen"]
+unique_name_in_owner = true
+transparent_bg = true
+size = Vector2i(600, 800)
+size_2d_override_stretch = true
+
+[node name="Keypad" type="Control" parent="Screen/SubViewport"]
+custom_minimum_size = Vector2(600, 800)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_jx01b")
+
+[node name="ColorRect" type="ColorRect" parent="Screen/SubViewport/Keypad"]
+layout_mode = 0
+offset_right = 600.0
+offset_bottom = 800.0
+mouse_default_cursor_shape = 2
+color = Color(0, 0.22, 0.157667, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Screen/SubViewport/Keypad/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(550, 150)
+layout_mode = 2
+color = Color(0, 0.53, 0.38, 0.5)
+
+[node name="CurrentCodeInput" type="LineEdit" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer/VBoxContainer/ColorRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_colors/font_uneditable_color = Color(0, 1, 0.717647, 1)
+theme_override_fonts/font = ExtResource("2_pxk0c")
+theme_override_font_sizes/font_size = 140
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ijuip")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_ijuip")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ijuip")
+alignment = 1
+max_length = 4
+editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+drag_and_drop_selection_enabled = false
+flat = true
+caret_blink = true
+
+[node name="GridContainer" type="GridContainer" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 3
+
+[node name="BUTTON_01" type="Button" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 1, 0.717647, 1)
+theme_override_fonts/font = ExtResource("2_pxk0c")
+theme_override_font_sizes/font_size = 96
+text = "1"
+script = ExtResource("4_ttjlp")
+clicked = ExtResource("5_s28up")
+
+[node name="Panel" type="Panel" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer/VBoxContainer/GridContainer/BUTTON_01"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4flfx")
+
+[node name="BUTTON_02" type="Button" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 1, 0.717647, 1)
+theme_override_fonts/font = ExtResource("2_pxk0c")
+theme_override_font_sizes/font_size = 96
+text = "2"
+script = ExtResource("4_ttjlp")
+clicked = ExtResource("5_s28up")
+
+[node name="Panel" type="Panel" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer/VBoxContainer/GridContainer/BUTTON_02"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4flfx")
+
+[node name="BUTTON_03" type="Button" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 1, 0.717647, 1)
+theme_override_fonts/font = ExtResource("2_pxk0c")
+theme_override_font_sizes/font_size = 96
+text = "3"
+script = ExtResource("4_ttjlp")
+clicked = ExtResource("5_s28up")
+
+[node name="Panel" type="Panel" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer/VBoxContainer/GridContainer/BUTTON_03"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4flfx")
+
+[node name="BUTTON_04" type="Button" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 1, 0.717647, 1)
+theme_override_fonts/font = ExtResource("2_pxk0c")
+theme_override_font_sizes/font_size = 96
+text = "4"
+script = ExtResource("4_ttjlp")
+clicked = ExtResource("5_s28up")
+
+[node name="Panel" type="Panel" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer/VBoxContainer/GridContainer/BUTTON_04"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4flfx")
+
+[node name="BUTTON_05" type="Button" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 1, 0.717647, 1)
+theme_override_fonts/font = ExtResource("2_pxk0c")
+theme_override_font_sizes/font_size = 96
+text = "5"
+script = ExtResource("4_ttjlp")
+clicked = ExtResource("5_s28up")
+
+[node name="Panel" type="Panel" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer/VBoxContainer/GridContainer/BUTTON_05"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4flfx")
+
+[node name="BUTTON_06" type="Button" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 1, 0.717647, 1)
+theme_override_fonts/font = ExtResource("2_pxk0c")
+theme_override_font_sizes/font_size = 96
+text = "6"
+script = ExtResource("4_ttjlp")
+clicked = ExtResource("5_s28up")
+
+[node name="Panel" type="Panel" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer/VBoxContainer/GridContainer/BUTTON_06"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4flfx")
+
+[node name="BUTTON_07" type="Button" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 1, 0.717647, 1)
+theme_override_fonts/font = ExtResource("2_pxk0c")
+theme_override_font_sizes/font_size = 96
+text = "7"
+script = ExtResource("4_ttjlp")
+clicked = ExtResource("5_s28up")
+
+[node name="Panel" type="Panel" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer/VBoxContainer/GridContainer/BUTTON_07"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4flfx")
+
+[node name="BUTTON_08" type="Button" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 1, 0.717647, 1)
+theme_override_fonts/font = ExtResource("2_pxk0c")
+theme_override_font_sizes/font_size = 96
+text = "8"
+script = ExtResource("4_ttjlp")
+clicked = ExtResource("5_s28up")
+
+[node name="Panel" type="Panel" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer/VBoxContainer/GridContainer/BUTTON_08"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4flfx")
+
+[node name="BUTTON_09" type="Button" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 1, 0.717647, 1)
+theme_override_fonts/font = ExtResource("2_pxk0c")
+theme_override_font_sizes/font_size = 96
+text = "9"
+script = ExtResource("4_ttjlp")
+clicked = ExtResource("5_s28up")
+
+[node name="Panel" type="Panel" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer/VBoxContainer/GridContainer/BUTTON_09"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4flfx")
+
+[node name="BUTTON_DEL" type="Button" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 1, 0.717647, 1)
+theme_override_fonts/font = ExtResource("2_pxk0c")
+theme_override_font_sizes/font_size = 45
+text = "×
+DEL"
+script = ExtResource("4_ttjlp")
+clicked = ExtResource("7_xs3xt")
+
+[node name="Panel" type="Panel" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer/VBoxContainer/GridContainer/BUTTON_DEL"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4flfx")
+
+[node name="BUTTON_00" type="Button" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 1, 0.717647, 1)
+theme_override_fonts/font = ExtResource("2_pxk0c")
+theme_override_font_sizes/font_size = 96
+text = "0"
+script = ExtResource("4_ttjlp")
+clicked = ExtResource("5_s28up")
+
+[node name="Panel" type="Panel" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer/VBoxContainer/GridContainer/BUTTON_00"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4flfx")
+
+[node name="BUTTON_ENT" type="Button" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.64, 0.394667, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 1, 0.717647, 1)
+theme_override_fonts/font = ExtResource("2_pxk0c")
+theme_override_font_sizes/font_size = 45
+text = "▲
+ENT"
+script = ExtResource("4_ttjlp")
+
+[node name="Panel" type="Panel" parent="Screen/SubViewport/Keypad/ColorRect/MarginContainer/VBoxContainer/GridContainer/BUTTON_ENT"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4flfx")
+
+[node name="MenuEffect" type="ColorRect" parent="Screen/SubViewport"]
+material = SubResource("ShaderMaterial_hcrvv")
+custom_minimum_size = Vector2(600, 800)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+mouse_filter = 2
+mouse_default_cursor_shape = 2
+
+[node name="Area3D" type="Area3D" parent="Screen"]
+unique_name_in_owner = true
+input_capture_on_drag = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Screen/Area3D"]
+transform = Transform3D(1.00011, 0, 0, 0, 1.00011, 0, 0, 0, 1.00011, 0.0025999, 0, 0.0284425)
+shape = SubResource("BoxShape3D_aw35k")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Screen"]
+transform = Transform3D(2.05254, 0, 0, 0, 2.05254, 0, 0, 0, 2.05254, 0, 0, 0.0696853)
+light_color = Color(0, 1, 0.717647, 1)
+light_energy = 0.1
+omni_range = 1.0
+omni_attenuation = 0.6
+
+[node name="ScreenCamera" parent="." instance=ExtResource("5_u8exo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0396729, -0.503592)
+
+[node name="CorrectWrongAudio" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+volume_db = -10.0
+bus = &"UI"
+
+[connection signal="interacted" from="." to="." method="_on_interacted"]

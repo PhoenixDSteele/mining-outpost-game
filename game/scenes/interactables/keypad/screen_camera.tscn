@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://ciw14m13fy8j6"]
+
+[ext_resource type="Script" path="res://game/scenes/interactables/keypad/screen_camera.gd" id="1_1ddvx"]
+
+[node name="ScreenCamera" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.221109)
+script = ExtResource("1_1ddvx")
+
+[node name="CamYaw" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CamPitch" type="Node3D" parent="CamYaw"]
+unique_name_in_owner = true
+
+[node name="Camera3D" type="Camera3D" parent="CamYaw/CamPitch"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.37579)

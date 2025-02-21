@@ -1354,6 +1354,11 @@ camera_arm_length = 1.2
 pitch_max = 17.0
 pitch_min = -70.0
 
+[node name="InteractionRay" parent="PlayerCamera/CameraYaw/CameraPitch/SpringArm3D/Camera3D" index="0" node_paths=PackedStringArray("camera_user")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2)
+target_position = Vector3(0, 0, -0.5)
+camera_user = NodePath("../../../../../..")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 shape = SubResource("SphereShape3D_rue2q")
@@ -1602,3 +1607,5 @@ target_position = Vector3(0, -0.05, 0)
 [connection signal="timeout" from="AttachCD" to="." method="_on_attach_cd_timeout"]
 [connection signal="timeout" from="DettachCD" to="." method="_on_dettach_cd_timeout"]
 [connection signal="timeout" from="ClingRelease" to="." method="_on_cling_release_timeout"]
+
+[editable path="PlayerCamera"]

@@ -10,14 +10,17 @@ class_name UIController extends Node
 var pause_menu_instance : PauseScreen
 const PAUSE_SCREEN = preload("res://core/ui/pause_menu/pause_screen.tscn")
 
+var pause_disabled : bool = false
+var menu_disabled : bool = false
+
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause"):
+	if event.is_action_pressed("pause") and not pause_disabled:
 		if !get_tree().paused:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 			pause_game()
 		else:
 			pause_menu_instance.resume_game()
-	if event.is_action_pressed("inventory"):
+	if event.is_action_pressed("inventory") and not menu_disabled:
 		if (player_menu.visible == false):
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 			open_menu()
