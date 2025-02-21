@@ -14,6 +14,7 @@ var last_event_pos2D := Vector2()
 ## The time of the last event in seconds since engine start.
 var last_event_time := -1.0
 
+@onready var menu_effect: ColorRect = %MenuEffect
 @onready var menu_viewport: SubViewport = %MenuViewport
 @onready var menu_area: Area3D = %menu_area
 
@@ -121,5 +122,8 @@ func _mouse_input_event(_camera: Camera3D, event: InputEvent, event_position: Ve
 	menu_viewport.push_input(event)
 
 func _on_visibility_changed() -> void:
+	
+	menu_effect.visible = self.visible
+	
 	if (self.visible == true):
 		information_screen.check_game_instance()

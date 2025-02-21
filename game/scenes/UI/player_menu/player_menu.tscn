@@ -1,10 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://bq5ggtlx3irif"]
+[gd_scene load_steps=7 format=3 uid="uid://bq5ggtlx3irif"]
 
 [ext_resource type="Script" path="res://game/scripts/UI/player_menu/player_menu.gd" id="1_4olg0"]
 [ext_resource type="PackedScene" uid="uid://bpoh2c6b0lro4" path="res://game/scenes/UI/player_menu/information_screen.tscn" id="2_e2mv3"]
+[ext_resource type="Shader" path="res://assets/shaders/crt_vhs.gdshader" id="3_5er60"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_rjvcv"]
 size = Vector2(4, 2.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k531x"]
+shader = ExtResource("3_5er60")
+shader_parameter/overlay = false
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.02
+shader_parameter/grille_opacity = 0.15
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = false
+shader_parameter/roll = true
+shader_parameter/roll_speed = 1.0
+shader_parameter/roll_size = 1.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.01
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.15
+shader_parameter/aberration = 0.01
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = true
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_io1tc"]
 size = Vector3(3.98239, 2.34637, 0.103774)
@@ -15,6 +40,18 @@ visible = false
 mesh = SubResource("QuadMesh_rjvcv")
 skeleton = NodePath("../../..")
 script = ExtResource("1_4olg0")
+
+[node name="MenuEffect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_k531x")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="MenuViewport" type="SubViewport" parent="."]
 unique_name_in_owner = true

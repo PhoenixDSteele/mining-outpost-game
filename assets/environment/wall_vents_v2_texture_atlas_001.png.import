@@ -3,23 +3,22 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7nn6cxffwc1v"
-path.s3tc="res://.godot/imported/wall_vents_v2_texture_atlas_001.png-669746c272ac58539e18805f1325d8ac.s3tc.ctex"
+path="res://.godot/imported/wall_vents_v2_texture_atlas_001.png-669746c272ac58539e18805f1325d8ac.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
-"md5": "fc4ce2f3799fa89436a37e7787bf13f0"
+"md5": "38c572803748521f86c08a038532879b"
 }
 
 [deps]
 
 source_file="res://assets/environment/wall_vents_v2_texture_atlas_001.png"
-dest_files=["res://.godot/imported/wall_vents_v2_texture_atlas_001.png-669746c272ac58539e18805f1325d8ac.s3tc.ctex"]
+dest_files=["res://.godot/imported/wall_vents_v2_texture_atlas_001.png-669746c272ac58539e18805f1325d8ac.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
