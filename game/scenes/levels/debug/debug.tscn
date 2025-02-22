@@ -74,11 +74,26 @@ data = {
 mesh_library = ExtResource("2_2fmbh")
 cell_center_y = false
 data = {
-"cells": PackedInt32Array(2, 65534, 1441804, 0, 65534, 1441795)
+"cells": PackedInt32Array(2, 65534, 1441804, 0, 65534, 1441817, 2, 65535, 655363, 1, 65535, 1048579, 65535, 65535, 1048579, 65535, 65534, 3)
 }
 
+[node name="GridMapCeiling" parent="Gridmaps" index="2"]
+mesh_library = ExtResource("2_2fmbh")
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(2, 65535, 14, 2, 65534, 1048590, 65535, 65534, 655374, 1, 65535, 1441807, 0, 65535, 1441807, 1, 65534, 1048591, 0, 65534, 1048591)
+}
+
+[node name="GridMapVents" parent="Gridmaps" index="3"]
+mesh_library = ExtResource("2_2fmbh")
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(196607, 65535, 1441820, 196607, 65534, 1048598, 131073, 65534, 1441814, 131072, 65534, 655360)
+}
+metadata/_editor_floor_ = Vector3(0, 2, 0)
+
 [node name="Floor2" type="CSGBox3D" parent="StaticScenery" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 10, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.238, 10, 0)
 use_collision = true
 size = Vector3(13, 1, 15)
 material = SubResource("StandardMaterial3D_bimoo")
@@ -96,13 +111,13 @@ size = Vector3(2, 2, 2)
 material = SubResource("StandardMaterial3D_p220d")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="StaticScenery" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 5.5, -1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.93622, 5.5, -1.5)
 use_collision = true
 size = Vector3(2, 2, 2)
 material = SubResource("StandardMaterial3D_7ia0t")
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="StaticScenery" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 5.5, -1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.68395, 5.5, -0.494293)
 use_collision = true
 size = Vector3(2, 2, 2)
 material = SubResource("StandardMaterial3D_k23dj")
@@ -133,7 +148,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0, 
 locked = true
 
 [node name="ManualSpawnLocation" parent="." index="7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.59447, 0.5, -2.17838)
 
 [node name="HeavyBox" type="RigidBody3D" parent="." index="8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5, -6)

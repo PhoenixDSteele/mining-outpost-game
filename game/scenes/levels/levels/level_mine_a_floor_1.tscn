@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dr038k11r1a4h" path="res://game/scenes/interactables/doors/normal_door.tscn" id="4_a58yb"]
 [ext_resource type="PackedScene" uid="uid://baq4gd5fw1htt" path="res://game/scenes/interactables/key_items/key_item.tscn" id="4_xcdh2"]
 [ext_resource type="PackedScene" uid="uid://cnykhwjt037ak" path="res://game/scenes/scene_lighting/single_door/single_door_light.tscn" id="5_pk32n"]
-[ext_resource type="PackedScene" uid="uid://dl5kmm06rr82v" path="res://spider_hand.tscn" id="6_m78mg"]
+[ext_resource type="PackedScene" uid="uid://dl5kmm06rr82v" path="res://game/character/player/handv2/spider_hand.tscn" id="6_m78mg"]
 [ext_resource type="AudioStream" uid="uid://xfmk1qykouao" path="res://assets/audio/music/FearTheOre.mp3" id="9_0d7vn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nvfcj"]

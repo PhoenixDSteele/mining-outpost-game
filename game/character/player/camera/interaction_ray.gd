@@ -8,13 +8,13 @@ class_name InteractionRay extends RayCast3D
 
 var interacted_object : Interactable = null
 
-func _ready() -> void:
-	interact_text.text = ""
+var buffer_array : Array
 
 func _process(_delta: float) -> void:
 	
 	if is_colliding():
 		var collider = get_collider()
+
 		if collider is Interactable:
 			
 			interact_text.text = collider.get_prompt()
@@ -30,11 +30,16 @@ func _process(_delta: float) -> void:
 						camera_user.ui_controller.menu_disabled = true
 						target_info.visible = false
 					if camera_user is SpiderHand:
+						print('spider_used')
 						camera_user.disabled = true
 						target_info.visible = false
-		
-		else:
-			interact_text.text = ""
+		elif collider is Area3D:
+			if collider.name == "SpiderReturn":
+				interact_text.text = "Return"
+				if Input.is_action_just_pressed("interact"):
+					if camera_user is SpiderHand:
+						camera_user.state_ref.return_to_idle()
+						self.queue_free()
 	else:
 		interact_text.text = ""
 
@@ -53,4 +58,4 @@ func return_control() -> void:
 		camera_user.player_controller.input_disabled = false
 		camera_user.ui_controller.menu_disabled = false
 	if camera_user is SpiderHand:
-		camera_user.disabled = true
+		camera_user.disabled = false

@@ -16,7 +16,10 @@ func handle_input(input) -> void:
 		if (input is bool) and (body.is_on_floor()):
 			if input == true:
 				Transition.emit(self, "jumpstate")
-
+		if (input is String) and (body.is_on_floor()):
+			if input == "spider_toggle":
+				if body.spawn_allowed:
+					Transition.emit(self, "spiderhandstate")
 
 func update_process(_delta) -> void:
 	pass

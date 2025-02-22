@@ -3,6 +3,7 @@ class_name HUD extends Control
 @onready var current_area : Label = $Panel/MarginContainer/VBoxContainer/HBoxContainer3/CurrentArea
 @onready var area_power : Label = $Panel/MarginContainer/VBoxContainer/HBoxContainer/AreaPower
 @onready var oxygen : ProgressBar = $Panel/MarginContainer/VBoxContainer/HBoxContainer2/ProgressBar
+@onready var fade: ColorRect = %Fade
 
 var current_level : Level
 
@@ -14,7 +15,6 @@ func _ready() -> void:
 	for node in get_parent().get_children():
 		if node is Stats:
 			stats = node
-	
 	
 	if get_tree().current_scene is Level:
 		current_level = get_tree().current_scene
@@ -51,3 +51,11 @@ func check_area_power():
 		area_power.text = "Area Power: ON"
 	else:
 		area_power.text = "Area Power: OFF"
+
+func fade_out():
+	var t = get_tree().create_tween()
+	t.tween_property(fade,"color", Color(0,0,0,1.0), 0.5)
+
+func fade_in():
+	var t = get_tree().create_tween()
+	t.tween_property(fade,"color", Color(0,0,0,0), 1.0)

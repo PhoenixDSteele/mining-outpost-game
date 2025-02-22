@@ -80,10 +80,10 @@ func state_transition(state:State, next_state:String) -> void:
 
 
 func _process(delta: float) -> void:
-	if current_state != null:
-		current_state.update_process(delta)
+		if current_state != null:
+			current_state.update_process(delta)
 
 
 func _physics_process(delta: float) -> void:
-	if current_state != null:
-		current_state.update_physics(delta)
+		if current_state != null:
+			current_state.update_physics(delta)

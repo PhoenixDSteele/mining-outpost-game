@@ -28,6 +28,16 @@ class_name BodyBase extends CharacterBody3D
 ## HUD REF
 @onready var hud: HUD = %HUD
 
+## Spider Stuff
+@onready var spider_spawn_position: Marker3D = %SpiderSpawnPosition
+@onready var spider_spawn_check: Area3D = %SpiderSpawnCheck
+var spawn_allowed : bool = true
+var colliding_spider_array : Array = []
+var spiderhand : SpiderHand = null
+
+@onready var check_debug_spider: MeshInstance3D = $Visual/SpiderSpawnCheck/CheckDebugSpider
+
+
 ## Whether or not the character can breath.
 var can_breath : bool = true
 
@@ -83,3 +93,26 @@ func find_collision() -> CollisionShape3D:
 	printerr("No collision found on current body: " + str(self.name))
 	get_tree().quit()
 	return
+
+func spider_hand_cancel():
+	ui_controller.menu_disabled = false
+	player_controller.input_disabled = false
+	player_camera.interaction_ray.target_info.visible = true
+
+func _on_spider_spawn_check_body_entered(body: Node3D) -> void:
+	if (body is StaticBody3D) or (body is CSGShape3D):
+		if body.get_collision_layer_value(1) == true:
+			colliding_spider_array.append(body)
+			spawn_allowed = false
+			var mat : StandardMaterial3D = check_debug_spider.get_active_material(0)
+			mat.albedo_color = Color(1,0,0,0.2)
+
+func _on_spider_spawn_check_body_exited(body: Node3D) -> void:
+	if body is StaticBody3D or (body is CSGShape3D):
+		if body.get_collision_layer_value(1) == true:
+			if colliding_spider_array.has(body):
+				colliding_spider_array.erase(body)
+				if colliding_spider_array.is_empty():
+					spawn_allowed = true
+					var mat : StandardMaterial3D = check_debug_spider.get_active_material(0)
+					mat.albedo_color = Color(0,1,0,0.2)

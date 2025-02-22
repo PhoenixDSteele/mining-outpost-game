@@ -39,3 +39,6 @@ func _physics_process(_delta: float) -> void:
 			input.emit("grapple_reel")
 		if Input.is_action_just_released("reel_in_grapple"):
 			input.emit("grapple_reel_stop")
+
+		if Input.is_action_pressed("spider_toggle"):
+			input.emit("spider_toggle")

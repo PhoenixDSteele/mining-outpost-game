@@ -13,7 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://c2mtiwh1jir6y" path="res://assets/audio/sfx/screen_sounds/del_keypad.wav" id="7_xs3xt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bidcn"]
-size = Vector3(0.415955, 0.471436, 0.177002)
+size = Vector3(0.415955, 0.516907, 0.19104)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o87ot"]
 resource_name = "texture_atlas"
@@ -131,7 +131,7 @@ script = ExtResource("3_o0qet")
 script = ExtResource("2_uid2s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00106812, 0.0477295, 0.0968018)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.053, 0.09)
 shape = SubResource("BoxShape3D_bidcn")
 
 [node name="keypad" type="Node3D" parent="."]
@@ -541,6 +541,7 @@ mouse_default_cursor_shape = 2
 
 [node name="Area3D" type="Area3D" parent="Screen"]
 unique_name_in_owner = true
+collision_mask = 0
 input_capture_on_drag = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Screen/Area3D"]

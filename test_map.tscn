@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bf10yrvke83rs"]
 
-[ext_resource type="PackedScene" uid="uid://dl5kmm06rr82v" path="res://spider_hand.tscn" id="1_i03w6"]
+[ext_resource type="PackedScene" uid="uid://dl5kmm06rr82v" path="res://game/character/player/handv2/spider_hand.tscn" id="1_i03w6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wf70m"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)

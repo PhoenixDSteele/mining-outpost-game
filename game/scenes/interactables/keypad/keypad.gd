@@ -138,11 +138,9 @@ func toggle_power(power_state:bool) -> void:
 
 func _on_interacted() -> void:
 	if not powered_on:
-		print("no power")
 		return
 	elif powered_on:
 		swap_cameras()
-		print('used')
 
 func swap_cameras():
 	player_camera = get_viewport().get_camera_3d()

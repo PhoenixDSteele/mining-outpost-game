@@ -42,6 +42,12 @@ func handle_input(input) -> void:
 				move_speed = jog_speed
 			if input == "not_sprinting":
 				move_speed = walk_speed
+		
+		if (input is String) and (body.is_on_floor()):
+			if input == "spider_toggle":
+				if body.spawn_allowed:
+					body.velocity = Vector3.ZERO
+					Transition.emit(self, "spiderhandstate")
 
 
 
