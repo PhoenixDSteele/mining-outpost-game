@@ -1,0 +1,203 @@
+[gd_scene load_steps=11 format=3 uid="uid://bx2b51ttrbn61"]
+
+[ext_resource type="Script" path="res://computer.gd" id="1_p1nu0"]
+[ext_resource type="Script" path="res://game/scripts/object_components/powered.gd" id="2_u75lo"]
+[ext_resource type="PackedScene" uid="uid://ciw14m13fy8j6" path="res://game/scenes/interactables/keypad/screen_camera.tscn" id="3_vta66"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_rft0r"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4r3aa"]
+size = Vector3(0.8, 0.8, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1jef"]
+albedo_color = Color(0, 0, 0.1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vekxg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kmnk0"]
+bg_color = Color(1, 0, 0.6, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_gvmem"]
+thickness = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j5kst"]
+bg_color = Color(1, 0, 0.6, 1)
+
+[node name="Computer" type="StaticBody3D"]
+script = ExtResource("1_p1nu0")
+
+[node name="Powered" type="Node" parent="."]
+script = ExtResource("2_u75lo")
+
+[node name="ComputerMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_rft0r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ComputerMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.463621)
+mesh = SubResource("BoxMesh_4r3aa")
+surface_material_override/0 = SubResource("StandardMaterial3D_p1jef")
+
+[node name="ScreenCamera" parent="." instance=ExtResource("3_vta66")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 0.941176, 1)
+
+[node name="Email" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Email"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/Email/VBoxContainer"]
+layout_mode = 2
+
+[node name="PageHeader" type="Label" parent="Control/Email/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 80
+text = "JOHN DOE"
+
+[node name="VSeparator" type="VSeparator" parent="Control/Email/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 100
+theme_override_styles/separator = SubResource("StyleBoxEmpty_vekxg")
+
+[node name="Panel" type="Panel" parent="Control/Email/VBoxContainer/HBoxContainer2/VSeparator"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -7.0
+offset_top = 14.0
+offset_right = 8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kmnk0")
+
+[node name="PageHeader2" type="Label" parent="Control/Email/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 80
+text = "EMAIL"
+
+[node name="HSeparator" type="HSeparator" parent="Control/Email/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_gvmem")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Email/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/Email/VBoxContainer/HBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(450, 700)
+layout_mode = 2
+
+[node name="EmailTitleContainer" type="VBoxContainer" parent="Control/Email/VBoxContainer/HBoxContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="EmailSubject" type="HBoxContainer" parent="Control/Email/VBoxContainer/HBoxContainer/ScrollContainer/EmailTitleContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Control/Email/VBoxContainer/HBoxContainer/ScrollContainer/EmailTitleContainer/EmailSubject"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kmnk0")
+
+[node name="EmailTitle" type="Label" parent="Control/Email/VBoxContainer/HBoxContainer/ScrollContainer/EmailTitleContainer/EmailSubject"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "Remember To Gert "
+text_overrun_behavior = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/Email/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Email/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="MessageTitle" type="Label" parent="Control/Email/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "RESOURCE TEXT TITLE"
+
+[node name="Panel" type="Panel" parent="Control/Email/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_j5kst")
+
+[node name="MessageDate" type="Label" parent="Control/Email/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "DATE"
+
+[node name="Panel" type="Panel" parent="Control/Email/VBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(1400, 700)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/Email/VBoxContainer/HBoxContainer/VBoxContainer2/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Email/VBoxContainer/HBoxContainer/VBoxContainer2/Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Label" type="Label" parent="Control/Email/VBoxContainer/HBoxContainer/VBoxContainer2/Panel/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+autowrap_mode = 1
+
+[node name="Button" type="Button" parent="Control/Email/VBoxContainer"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 48
+text = "RETURN"

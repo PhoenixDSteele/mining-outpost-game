@@ -28,7 +28,7 @@ const KEYPAD_WRONG = preload("res://assets/audio/sfx/screen_sounds/keypad_wrong.
 var powered : Powered
 var powered_on : bool = false
 
-@onready var screen: KeyPadScreen = $Screen
+@onready var screen: KeyPadScreen = $KeyPadScreen
 @onready var screen_camera: ScreenName = $ScreenCamera
 var player_camera : Camera3D
 

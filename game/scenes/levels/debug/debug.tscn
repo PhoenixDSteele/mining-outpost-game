@@ -148,7 +148,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0, 
 locked = true
 
 [node name="ManualSpawnLocation" parent="." index="7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.59447, 0.5, -2.17838)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.59447, 0.5, -7.17838)
 
 [node name="HeavyBox" type="RigidBody3D" parent="." index="8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5, -6)
