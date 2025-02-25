@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://due6gjicxdioy"]
+[gd_scene load_steps=19 format=3 uid="uid://due6gjicxdioy"]
 
 [ext_resource type="PackedScene" uid="uid://dw8n0ir5hscjp" path="res://game/scenes/levels/level.tscn" id="1_43wqk"]
 [ext_resource type="MeshLibrary" uid="uid://s1pa0evn3pyc" path="res://assets/environment/mesh_libaries/wall_vent_v2.meshlib" id="2_2fmbh"]
@@ -8,17 +8,10 @@
 [ext_resource type="Script" path="res://game/scenes/objects/LooseBody.gd" id="5_sdelt"]
 [ext_resource type="PackedScene" uid="uid://beb6lip5hi5lo" path="res://game/scenes/interactables/keypad/key_pad.tscn" id="6_uo3ht"]
 [ext_resource type="PackedScene" uid="uid://dr038k11r1a4h" path="res://game/scenes/interactables/doors/normal_door.tscn" id="7_0nce2"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_48b65"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-
-[sub_resource type="Sky" id="Sky_paq6x"]
-sky_material = SubResource("ProceduralSkyMaterial_48b65")
+[ext_resource type="PackedScene" uid="uid://bx2b51ttrbn61" path="res://game/scenes/interactables/computer/computer.tscn" id="8_ntcax"]
 
 [sub_resource type="Environment" id="Environment_12biw"]
 background_mode = 2
-sky = SubResource("Sky_paq6x")
 tonemap_mode = 2
 glow_enabled = true
 
@@ -58,6 +51,7 @@ level_music = "main_menu"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Enviro#Lighting" index="0"]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+visible = false
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Enviro#Lighting" index="1"]
@@ -139,13 +133,16 @@ target_door_id = 2
 target_level = "hub_area"
 
 [node name="Keypad" parent="PoweredNodes" index="0" node_paths=PackedStringArray("door") instance=ExtResource("6_uo3ht")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8839, 1.36483, -3.8444)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8839, 1.36483, -3.85093)
 door = NodePath("../NormalDoor")
 correct_code = 6969
 
 [node name="NormalDoor" parent="PoweredNodes" index="1" instance=ExtResource("7_0nce2")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0, -4)
 locked = true
+
+[node name="Computer" parent="PoweredNodes" index="2" instance=ExtResource("8_ntcax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.473327, 1.79309, -3.78951)
 
 [node name="ManualSpawnLocation" parent="." index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.59447, 0.5, -7.17838)

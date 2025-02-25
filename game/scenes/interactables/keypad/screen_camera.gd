@@ -8,6 +8,7 @@ class_name ScreenName extends Node3D
 @export_range(0, 90) var pitch_max : float = 180
 @export_range(-90, 0) var pitch_min : float = -180
 
+@export var clmp : int = 2
 
 @onready var yaw_node: Node3D = %CamYaw
 @onready var pitch_node: Node3D = %CamPitch
@@ -43,7 +44,7 @@ func exit_menu():
 
 func _physics_process(delta: float) -> void:
 	if camera.current:
-		yaw = clamp(yaw, menu_clamp_yaw - 2, menu_clamp_yaw + 2)
-		pitch = clamp(pitch, menu_clamp_pitch - 2, menu_clamp_pitch + 2)
+		yaw = clamp(yaw, menu_clamp_yaw - clmp, menu_clamp_yaw + clmp)
+		pitch = clamp(pitch, menu_clamp_pitch - clmp, menu_clamp_pitch + clmp)
 		yaw_node.rotation_degrees.y = lerpf(yaw_node.rotation_degrees.y, yaw, yaw_acceleration * delta)
 		pitch_node.rotation_degrees.x = lerpf(pitch_node.rotation_degrees.x, pitch, pitch_acceleration * delta)

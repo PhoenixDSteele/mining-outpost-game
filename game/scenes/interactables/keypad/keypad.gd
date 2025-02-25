@@ -115,8 +115,9 @@ func process_code(correct:bool):
 		t.tween_callback(func(): processing = false)
 		t.tween_callback(func(): successful.emit())
 		t.tween_callback(func(): current_code_input.text = "")
-		door.toggle_lock(false)
-		door._on_interacted()
+		if door:
+			door.toggle_lock(false)
+			door._on_interacted()
 	else:
 		t.tween_property(current_code_input, "theme_override_colors/font_uneditable_color", Color.RED, 0.1)
 		t.tween_property(current_code_input, "theme_override_colors/font_uneditable_color", default_color, 0.1)

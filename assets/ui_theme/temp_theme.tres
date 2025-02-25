@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dtej56pljgyf2"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dtej56pljgyf2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mn7vs"]
 
@@ -15,6 +15,19 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yf5lp"]
+bg_color = Color(0, 1, 0.717647, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbip8"]
+content_margin_top = 15.0
+content_margin_bottom = 15.0
+border_width_left = 10
+border_color = Color(0.8, 0.8, 0.8, 0)
+
 [resource]
 Button/colors/font_color = Color(0, 1, 0.718, 1)
 Button/colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
@@ -27,3 +40,5 @@ Button/styles/pressed = SubResource("StyleBoxEmpty_mn7vs")
 Label/colors/font_color = Color(0, 1, 0.717647, 1)
 Label/fonts/font = null
 Panel/styles/panel = SubResource("StyleBoxFlat_exm11")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_yf5lp")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_pbip8")

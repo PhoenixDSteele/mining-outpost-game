@@ -1,12 +1,14 @@
 class_name ComputerScreen extends Interactable
 
+@export var login_password : String = ""
+@export var data_array : Array[DataBase] = []
+
 var powered : Powered
 var powered_on : bool = false
 
-@onready var screen: KeyPadScreen = $KeyPadScreen
+@onready var computer_screen: ComputerScreenQuad = %ComputerScreen
 @onready var screen_camera: ScreenName = $ScreenCamera
 var player_camera : Camera3D
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,9 +21,11 @@ func _ready() -> void:
 func toggle_power(power_state:bool) -> void:
 	powered_on = power_state
 	if not powered_on:
+		computer_screen.visible = false
 		prompt_message = "NO POWER"
 	elif powered_on:
-		prompt_message = "USE KEYPAD"
+		computer_screen.visible = true
+		prompt_message = "USE COMPUTER"
 
 func _on_interacted() -> void:
 	if not powered_on:

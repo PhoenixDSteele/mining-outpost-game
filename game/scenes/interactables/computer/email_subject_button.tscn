@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://b11iqejgk4xcj"]
+
+[ext_resource type="Script" path="res://game/scenes/interactables/computer/email_subject_button.gd" id="1_p1t4e"]
+[ext_resource type="FontFile" uid="uid://csnmcna6ln5mk" path="res://assets/fonts/Ethnocentric Rg.otf" id="1_ud70o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kmnk0"]
+bg_color = Color(0, 1, 0.716667, 0.827451)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="EmailSubject" type="HBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+script = ExtResource("1_p1t4e")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kmnk0")
+
+[node name="Panel2" type="Panel" parent="."]
+custom_minimum_size = Vector2(400, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EmailTitle" type="Button" parent="Panel2"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 1, 0.718, 1)
+theme_override_fonts/font = ExtResource("1_ud70o")
+theme_override_font_sizes/font_size = 32
+text = "Remember To Gert "
+text_overrun_behavior = 3

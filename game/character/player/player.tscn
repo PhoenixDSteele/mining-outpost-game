@@ -10074,6 +10074,7 @@ omni_range = 2.0
 
 [node name="HUD" parent="." index="8" instance=ExtResource("14_daw6m")]
 unique_name_in_owner = true
+mouse_filter = 1
 
 [connection signal="body_entered" from="Visual/SpiderSpawnCheck" to="." method="_on_spider_spawn_check_body_entered"]
 [connection signal="body_exited" from="Visual/SpiderSpawnCheck" to="." method="_on_spider_spawn_check_body_exited"]

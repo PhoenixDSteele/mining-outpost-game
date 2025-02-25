@@ -21,7 +21,7 @@ func _process(_delta: float) -> void:
 			
 			if Input.is_action_just_pressed("interact"):
 				collider.interact()
-				if collider is KeyPad:
+				if collider is KeyPad or ComputerScreen:
 					interacted_object = collider
 					collider.connect("successful", return_control)
 					if camera_user is BodyBase:
@@ -50,7 +50,7 @@ func return_control() -> void:
 	target_info.visible = true
 	camera_user.player_camera.camera.make_current()
 	
-	if interacted_object is KeyPad:
+	if interacted_object is KeyPad or ComputerScreen:
 		interacted_object.disconnect("successful", return_control)
 	
 	if camera_user is BodyBase:
