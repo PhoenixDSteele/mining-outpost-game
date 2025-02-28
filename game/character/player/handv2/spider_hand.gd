@@ -8,6 +8,12 @@ class_name SpiderHand extends CharacterBody3D
 
 @onready var wall_change_detection: RayCast3D = %WallChangeDetection
 
+
+@onready var menu_effect: ShaderMaterial = %MenuEffect.material
+@onready var zoom_flare: TextureRect = %ZoomFlare
+
+
+
 @onready var player_camera: PlayerCamera = $PlayerCamera
 @onready var hand: Node3D = $hand
 @onready var anim: AnimationPlayer = $hand/AnimationPlayer
@@ -29,6 +35,8 @@ var can_attach : bool = true
 var can_dettach : bool = true
 var checking_cling_state : bool = false
 
+var cam_zoom_on : bool = false
+
 var disabled : bool = false
 
 var state_ref : SpiderHandState
@@ -48,11 +56,36 @@ func _input(event: InputEvent) -> void:
 			pause_game()
 		else:
 			pause_menu_instance.resume_game()
+	
+	if event.is_action_pressed("spider_zoom"):
+			zoom_cam_toggle()
 
 ## Call pause menu. The rest will be handled by the pause menu node itself.
 func pause_game():
 	pause_menu_instance = PAUSE_SCREEN.instantiate()
 	add_child(pause_menu_instance)
+
+func zoom_cam_toggle():
+	var stored_spring_length
+	if cam_zoom_on == false:
+		zoom_flare.visible = true
+		menu_effect.set("shader_parameter/warp_amount", 5)
+		player_camera.camera.fov = 50
+		player_camera.pitch_max = 90
+		player_camera.pitch_min = -90
+		stored_spring_length = player_camera.spring_arm.spring_length
+		player_camera.spring_arm.spring_length = 0
+		hand.visible = false
+		cam_zoom_on = true
+	else:
+		zoom_flare.visible = false
+		menu_effect.set("shader_parameter/warp_amount", 0)
+		player_camera.camera.fov = 75
+		player_camera.pitch_max = 17
+		player_camera.pitch_min = -70
+		player_camera.spring_arm.spring_length = 1.2
+		hand.visible = true
+		cam_zoom_on = false
 
 func _physics_process(delta: float) -> void:
 	if not disabled:

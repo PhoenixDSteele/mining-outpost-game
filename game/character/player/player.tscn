@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://dfqcqf6cw5gkp"]
+[gd_scene load_steps=45 format=4 uid="uid://dfqcqf6cw5gkp"]
 
 [ext_resource type="PackedScene" uid="uid://r0rsvd7xkcoh" path="res://game/character/body_base.tscn" id="1_heyne"]
 [ext_resource type="PackedScene" uid="uid://buxi3fgts6clp" path="res://game/character/components/grapple/grapple.tscn" id="2_6rfct"]
@@ -8780,6 +8780,17 @@ albedo_color = Color(0, 1, 0, 0.2)
 radius = 0.32
 height = 1.19
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vwfxd"]
+transparency = 1
+albedo_color = Color(1, 0.45, 0, 0.5)
+emission_enabled = true
+emission = Color(1, 0.45098, 0, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_il3ic"]
+material = SubResource("StandardMaterial3D_vwfxd")
+radius = 0.3
+
 [node name="Player" node_paths=PackedStringArray("anim_player", "collision", "player_controller", "ui_controller", "climb_checker", "stats") groups=["player"] instance=ExtResource("1_heyne")]
 collision_layer = 2
 anim_player = NodePath("Visual/greygoober_combined/AnimationPlayer")
@@ -10029,8 +10040,9 @@ script = ExtResource("11_3piow")
 [node name="PlayerController" type="Node" parent="." index="4"]
 script = ExtResource("2_lusoa")
 
-[node name="UIController" type="Node" parent="." index="5"]
+[node name="UIController" type="Node" parent="." index="5" node_paths=PackedStringArray("player")]
 script = ExtResource("11_x6r1t")
+player = NodePath("..")
 
 [node name="PlayerCamera" type="Node3D" parent="." index="6" node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
@@ -10055,6 +10067,7 @@ spring_length = 5.0
 
 [node name="Camera3D" type="Camera3D" parent="PlayerCamera/CameraYaw/CameraPitch/SpringArm3D" index="0"]
 unique_name_in_owner = true
+cull_mask = 1048063
 
 [node name="InteractionRay" parent="PlayerCamera/CameraYaw/CameraPitch/SpringArm3D/Camera3D" index="0" node_paths=PackedStringArray("camera_user") instance=ExtResource("8_wnmaa")]
 unique_name_in_owner = true
@@ -10075,6 +10088,57 @@ omni_range = 2.0
 [node name="HUD" parent="." index="8" instance=ExtResource("14_daw6m")]
 unique_name_in_owner = true
 mouse_filter = 1
+
+[node name="3DMap" type="Control" parent="." index="9"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="3DMap" index="0"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 512.0
+offset_top = -515.0
+offset_right = 934.0
+offset_bottom = -267.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="3DMap/SubViewportContainer" index="0"]
+unique_name_in_owner = true
+handle_input_locally = false
+size = Vector2i(422, 248)
+render_target_update_mode = 4
+
+[node name="MapCamRoot" type="Node3D" parent="3DMap/SubViewportContainer/SubViewport" index="0"]
+unique_name_in_owner = true
+
+[node name="SpringArm3D" type="SpringArm3D" parent="3DMap/SubViewportContainer/SubViewport/MapCamRoot" index="0"]
+transform = Transform3D(0.707107, 0.454519, -0.541675, 0, 0.766044, 0.642788, 0.707107, -0.454519, 0.541675, 0, 0, 0)
+collision_mask = 0
+spring_length = 50.0
+
+[node name="3DMapCam" type="Camera3D" parent="3DMap/SubViewportContainer/SubViewport/MapCamRoot/SpringArm3D" index="0"]
+unique_name_in_owner = true
+cull_mask = 512
+fov = 37.8493
+
+[node name="MapMarker" type="MeshInstance3D" parent="." index="10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+layers = 512
+sorting_offset = 5.0
+mesh = SubResource("CapsuleMesh_il3ic")
 
 [connection signal="body_entered" from="Visual/SpiderSpawnCheck" to="." method="_on_spider_spawn_check_body_entered"]
 [connection signal="body_exited" from="Visual/SpiderSpawnCheck" to="." method="_on_spider_spawn_check_body_exited"]

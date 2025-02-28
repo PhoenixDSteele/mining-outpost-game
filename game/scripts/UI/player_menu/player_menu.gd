@@ -26,6 +26,13 @@ func _ready() -> void:
 	# Sets the texture manually to avoid a known bug. https://www.reddit.com/r/godot/comments/13d93o1/godot_4_viewport_texture_error/
 	set_viewport_mat(self, menu_viewport)
 
+func setup_map_cam(player:BodyBase):
+	player.map_viewport.reparent(information_screen.map.map_container)
+	information_screen.map.held_viewport = player.map_viewport
+
+func return_map_cam() -> SubViewport:
+	return information_screen.map.held_viewport
+
 func set_viewport_mat(display_mesh : MeshInstance3D, sub_viewport : SubViewport, surface_id : int = 0):
 	var mat : StandardMaterial3D = StandardMaterial3D.new()
 	mat.resource_local_to_scene = true
@@ -123,7 +130,7 @@ func _mouse_input_event(_camera: Camera3D, event: InputEvent, event_position: Ve
 
 func _on_visibility_changed() -> void:
 	
-	menu_effect.visible = self.visible
+	#menu_effect.visible = self.visible
 	
 	if (self.visible == true):
 		information_screen.check_game_instance()

@@ -1,9 +1,14 @@
 class_name HUD extends Control
 
-@onready var current_area : Label = $Panel/MarginContainer/VBoxContainer/HBoxContainer3/CurrentArea
+@onready var current_area: Label = %CurrentArea
 @onready var area_power : Label = $Panel/MarginContainer/VBoxContainer/HBoxContainer/AreaPower
-@onready var oxygen : ProgressBar = $Panel/MarginContainer/VBoxContainer/HBoxContainer2/ProgressBar
 @onready var fade: ColorRect = %Fade
+
+@onready var hud_off: TextureRect = %HUD_off
+@onready var hud_on: TextureRect = %HUD_on
+
+@onready var oxygen_bar: ShaderMaterial = %OxygenBar.material
+@onready var vignette: ShaderMaterial = $Vignette.material
 
 var current_level : Level
 
@@ -24,7 +29,10 @@ func _ready() -> void:
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	oxygen.value = stats.oxygen
+	oxygen_bar.set("shader_parameter/progress", stats.oxygen / 100)
+	oxygen_bar.set("shader_parameter/particle_speed", (stats.oxygen / 100) / 2)
+	if stats.oxygen != 100:
+		vignette.set("shader_parameter/vignette_strength", (100 - stats.oxygen) / 100)
 	if stats.oxygen <= 0:
 		print("player died")
 
@@ -44,13 +52,15 @@ func set_area_name():
 		"mine_a_floor_1":
 			area_name = "Mine A - Floor 1"
 			
-	current_area.text = "Current Area: " + area_name
+	current_area.text = area_name
 
 func check_area_power():
 	if GameInstance.powered_areas[current_level.level_name] == true:
-		area_power.text = "Area Power: ON"
+		hud_on.visible = true
+		hud_off.visible = false
 	else:
-		area_power.text = "Area Power: OFF"
+		hud_off.visible = true
+		hud_on.visible = false
 
 func fade_out():
 	var t = get_tree().create_tween()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://ctjsqlhrgq5y"]
+[gd_scene load_steps=17 format=4 uid="uid://ctjsqlhrgq5y"]
 
 [ext_resource type="PackedScene" uid="uid://dw8n0ir5hscjp" path="res://game/scenes/levels/level.tscn" id="1_frgcl"]
 [ext_resource type="MeshLibrary" uid="uid://s1pa0evn3pyc" path="res://assets/environment/mesh_libaries/wall_vent_v2.meshlib" id="2_27mmp"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://dr038k11r1a4h" path="res://game/scenes/interactables/doors/normal_door.tscn" id="4_a58yb"]
 [ext_resource type="PackedScene" uid="uid://baq4gd5fw1htt" path="res://game/scenes/interactables/key_items/key_item.tscn" id="4_xcdh2"]
 [ext_resource type="PackedScene" uid="uid://cnykhwjt037ak" path="res://game/scenes/scene_lighting/single_door/single_door_light.tscn" id="5_pk32n"]
-[ext_resource type="PackedScene" uid="uid://dl5kmm06rr82v" path="res://game/character/player/handv2/spider_hand.tscn" id="6_m78mg"]
 [ext_resource type="AudioStream" uid="uid://xfmk1qykouao" path="res://assets/audio/music/FearTheOre.mp3" id="9_0d7vn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nvfcj"]
@@ -178,10 +177,7 @@ transform = Transform3D(1.5, 0, 0, 0, 1.322, 0, 0, 0, 1.873, 4, -0.136498, 35.06
 mesh = SubResource("ArrayMesh_gq2ae")
 skeleton = NodePath("")
 
-[node name="SpiderHand" parent="." index="11" instance=ExtResource("6_m78mg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.27345, 0.725167, 29.3587)
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="12"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="11"]
 stream = ExtResource("9_0d7vn")
 volume_db = -10.0
 autoplay = true

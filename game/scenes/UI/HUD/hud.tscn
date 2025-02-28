@@ -1,16 +1,82 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3enlx341w1qs"]
+[gd_scene load_steps=16 format=3 uid="uid://b3enlx341w1qs"]
 
+[ext_resource type="Theme" uid="uid://dtej56pljgyf2" path="res://assets/ui_theme/temp_theme.tres" id="1_6d38i"]
 [ext_resource type="Script" path="res://game/scripts/UI/HUD/hud.gd" id="1_7weg7"]
+[ext_resource type="FontFile" uid="uid://csnmcna6ln5mk" path="res://assets/fonts/Ethnocentric Rg.otf" id="3_ralim"]
+[ext_resource type="Shader" path="res://assets/shaders/particle_bar.gdshader" id="4_fl677"]
+[ext_resource type="Texture2D" uid="uid://c15euck5oia3m" path="res://assets/ui_theme/hud_v1.png" id="5_2k21j"]
+[ext_resource type="Shader" path="res://assets/shaders/crt_vhs.gdshader" id="5_hu6yv"]
+[ext_resource type="Texture2D" uid="uid://dgxv116d4g8fm" path="res://assets/ui_theme/hud_v1_powered.png" id="6_oroeq"]
+[ext_resource type="Shader" path="res://assets/shaders/vignette.gdshader" id="8_5ipvx"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdskl"]
-bg_color = Color(0.002, 0, 0.054, 0.5)
-corner_radius_top_right = 25
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eb5jf"]
+shader = ExtResource("8_5ipvx")
+shader_parameter/inner_radius = -1.0
+shader_parameter/outer_radius = 0.3
+shader_parameter/vignette_strength = 0.1
+shader_parameter/dither_strength = 0.03
+shader_parameter/vignette_color = Color(0.0556348, 7.52043e-10, 2.25613e-09, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j8ckh"]
-bg_color = Color(0.3024, 0.31296, 0.36, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s6rkl"]
+shader = ExtResource("5_hu6yv")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.2
+shader_parameter/scanlines_width = 0.1
+shader_parameter/grille_opacity = 0.05
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.016
+shader_parameter/distort_intensity = 0.0
+shader_parameter/noise_opacity = 0.05
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.01
+shader_parameter/brightness = 1.0
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.0
+shader_parameter/vignette_opacity = 0.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0q3i5"]
-bg_color = Color(0.374, 0.5984, 0.68, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3ces"]
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="Gradient" id="Gradient_h8lol"]
+offsets = PackedFloat32Array(0, 0.574359, 1)
+colors = PackedColorArray(0.625414, 0.000872009, 0.000478083, 1, 0.378, 0.7, 0.6195, 1, 0.317316, 0.720962, 0.515019, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_egvsn"]
+gradient = SubResource("Gradient_h8lol")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8hj0a"]
+shader = ExtResource("4_fl677")
+shader_parameter/progress = 0.5
+shader_parameter/background_color = Color(0, 0, 0, 0.2)
+shader_parameter/wave_amplitude = 0.005
+shader_parameter/wave_frequency = 2.0
+shader_parameter/wave_speed = 1.0
+shader_parameter/particle_speed = 0.05
+shader_parameter/particle_lifetime = 5.0
+shader_parameter/particle_softness = 0.01
+shader_parameter/particle_spacing = 0.2
+shader_parameter/particle_offset = Vector2(0, 0)
+shader_parameter/particle_start_scale = Vector2(0.015, 0.2)
+shader_parameter/particle_end_scale = Vector2(0.008, 0.1)
+shader_parameter/particle_scale_randomness = 0.5
+shader_parameter/particle_amount = 20
+shader_parameter/color_gradient = SubResource("GradientTexture2D_egvsn")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_61w5a"]
 
 [node name="HUD" type="Control"]
 z_index = -1
@@ -21,63 +87,101 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("1_6d38i")
 script = ExtResource("1_7weg7")
+
+[node name="Vignette" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_eb5jf")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -288.0
-offset_right = 530.0
+offset_left = 121.0
+offset_top = -66.0
+offset_right = 446.0
+offset_bottom = -16.0
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_gdskl")
+
+[node name="GlitchEffect" type="Panel" parent="Panel"]
+material = SubResource("ShaderMaterial_s6rkl")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t3ces")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+[node name="CurrentArea" type="Label" parent="Panel/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="CurrentArea" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Current Area: HUB"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="AreaPower" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Area Power: ON"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Oxygen" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Oxygen
+theme_override_fonts/font = ExtResource("3_ralim")
+theme_override_font_sizes/font_size = 18
+text = "HUB
 "
 
-[node name="ProgressBar" type="ProgressBar" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(375, 32)
-layout_mode = 2
-size_flags_horizontal = 4
+[node name="OxygenBar" type="Panel" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_8hj0a")
+custom_minimum_size = Vector2(235.525, 25)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -921.263
+offset_top = 426.5
+offset_right = -497.153
+offset_bottom = 461.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5708
 size_flags_vertical = 4
-theme_override_styles/background = SubResource("StyleBoxFlat_j8ckh")
-theme_override_styles/fill = SubResource("StyleBoxFlat_0q3i5")
-value = 100.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_61w5a")
+
+[node name="HUD_off" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -582.0
+offset_right = 507.0
+grow_vertical = 0
+texture = ExtResource("5_2k21j")
+
+[node name="HUD_on" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -582.0
+offset_right = 507.0
+grow_vertical = 0
+texture = ExtResource("6_oroeq")
 
 [node name="Fade" type="ColorRect" parent="."]
 unique_name_in_owner = true

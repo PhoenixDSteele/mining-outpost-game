@@ -18,7 +18,6 @@ func toggle_area_power(area_name:String, powered_state:bool):
 	if powered_areas.has(area_name):
 		powered_areas[area_name] = powered_state
 		if SceneManager.current_scene == area_name:
-			print("yooooooooooooo")
 			SceneManager.loaded_level.check_powered_objects()
 
 ## Key Items

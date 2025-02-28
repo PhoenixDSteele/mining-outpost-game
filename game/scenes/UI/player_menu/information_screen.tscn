@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bpoh2c6b0lro4"]
+[gd_scene load_steps=18 format=3 uid="uid://bpoh2c6b0lro4"]
 
 [ext_resource type="Script" path="res://game/scripts/UI/player_menu/inventory_screen.gd" id="1_m3kkg"]
 [ext_resource type="Theme" uid="uid://dtej56pljgyf2" path="res://assets/ui_theme/temp_theme.tres" id="2_ks75h"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://3u6ci5l75476" path="res://core/ui/feature_button.tscn" id="4_v7lk2"]
 [ext_resource type="FontFile" uid="uid://csnmcna6ln5mk" path="res://assets/fonts/Ethnocentric Rg.otf" id="5_camjc"]
 [ext_resource type="PackedScene" uid="uid://cyowhqjj5pq7j" path="res://game/scenes/UI/player_menu/inventory_menu.tscn" id="6_2cgkk"]
+[ext_resource type="Script" path="res://game/scenes/UI/player_menu/map.gd" id="6_tlrbk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xx6ww"]
 shader = ExtResource("3_jrvv0")
@@ -270,6 +271,7 @@ offset_left = 0.860001
 offset_right = -0.0700684
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("6_tlrbk")
 
 [node name="MarginContainer" type="MarginContainer" parent="Screen/MarginContainer/VBoxContainer/Menus/MAP"]
 layout_mode = 1
@@ -295,6 +297,48 @@ horizontal_alignment = 1
 [node name="Panel" type="Panel" parent="Screen/MarginContainer/VBoxContainer/Menus/MAP/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Screen/MarginContainer/VBoxContainer/Menus/MAP/MarginContainer/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Screen/MarginContainer/VBoxContainer/Menus/MAP/MarginContainer/VBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Screen/MarginContainer/VBoxContainer/Menus/MAP/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1152, 600)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+stretch = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Screen/MarginContainer/VBoxContainer/Menus/MAP/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="FULLMAP_Button" parent="Screen/MarginContainer/VBoxContainer/Menus/MAP/MarginContainer/VBoxContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_v7lk2")]
+custom_minimum_size = Vector2(400, 80)
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
+theme_override_colors/font_color = Color(0, 1, 0.717647, 1)
+theme_override_fonts/font = SubResource("FontVariation_5wtmr")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxFlat_s4rxw")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_lq8wa")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_lq8wa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lq8wa")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lq8wa")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sj4wr")
+text = "FULL MAP"
 
 [node name="INVENTORY" parent="Screen/MarginContainer/VBoxContainer/Menus" instance=ExtResource("6_2cgkk")]
 visible = false

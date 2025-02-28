@@ -5,7 +5,7 @@ class_name InformationScreen extends Control
 
 @onready var menus: Control = $Screen/MarginContainer/VBoxContainer/Menus
 @onready var arm: Control = $Screen/MarginContainer/VBoxContainer/Menus/ARM
-@onready var map: Control = $Screen/MarginContainer/VBoxContainer/Menus/MAP
+@onready var map: MapMenu = $Screen/MarginContainer/VBoxContainer/Menus/MAP
 @onready var inventory: InventoryMenu = $Screen/MarginContainer/VBoxContainer/Menus/INVENTORY
 @onready var data: Control = $Screen/MarginContainer/VBoxContainer/Menus/DATA
 

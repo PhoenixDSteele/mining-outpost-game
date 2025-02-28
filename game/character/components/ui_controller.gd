@@ -1,10 +1,14 @@
 class_name UIController extends Node
 ## All inputs that handle UI based input should be put here.
 
-@onready var player_menu: MeshInstance3D = %PlayerMenu
+@export var player: BodyBase
+
+@onready var player_menu: PlayerMenu = %PlayerMenu
 @onready var player_camera: PlayerCamera = %PlayerCamera
 @onready var player_controller: PlayerController = $"../PlayerController"
 @onready var hud: HUD = %HUD
+@onready var map_viewport_container: SubViewportContainer = %SubViewportContainer
+
 
 ## Canvas Node, to instantiate during the pause menu.
 var pause_menu_instance : PauseScreen
@@ -33,12 +37,16 @@ func pause_game():
 	add_child(pause_menu_instance)
 
 func open_menu():
+	player.disabled = true
 	player_camera.enter_menu()
+	player_menu.setup_map_cam(player)
 	player_menu.visible = true
 	hud.visible = false
 	player_controller.input_disabled = true
 
 func close_menu():
+	player_menu.return_map_cam().reparent(map_viewport_container)
+	player.disabled = false
 	player_camera.exit_menu()
 	player_menu.visible = false
 	hud.visible = true
