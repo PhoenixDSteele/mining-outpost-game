@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://due6gjicxdioy"]
+[gd_scene load_steps=36 format=3 uid="uid://due6gjicxdioy"]
 
 [ext_resource type="PackedScene" uid="uid://dw8n0ir5hscjp" path="res://game/scenes/levels/level.tscn" id="1_43wqk"]
 [ext_resource type="MeshLibrary" uid="uid://s1pa0evn3pyc" path="res://assets/environment/mesh_libaries/wall_vent_v2.meshlib" id="2_2fmbh"]
@@ -9,7 +9,21 @@
 [ext_resource type="PackedScene" uid="uid://beb6lip5hi5lo" path="res://game/scenes/interactables/keypad/key_pad.tscn" id="6_uo3ht"]
 [ext_resource type="PackedScene" uid="uid://dr038k11r1a4h" path="res://game/scenes/interactables/doors/normal_door.tscn" id="7_0nce2"]
 [ext_resource type="PackedScene" uid="uid://bx2b51ttrbn61" path="res://game/scenes/interactables/computer/computer.tscn" id="8_ntcax"]
-[ext_resource type="Script" path="res://game/scenes/levels/debug/trigger_zone.gd" id="10_0u5lw"]
+[ext_resource type="PackedScene" uid="uid://dhtfci4mdigt0" path="res://trigger_zone.tscn" id="10_0yk5y"]
+[ext_resource type="PackedScene" uid="uid://bf1ymgg26tl1w" path="res://assets/data_resource/dialogue/comm_line/comm_dialogue_structure.tscn" id="11_u6yx4"]
+[ext_resource type="Script" path="res://assets/data_resource/dialogue/comm_line/comm_line.gd" id="12_7t8qm"]
+[ext_resource type="Texture2D" uid="uid://7a2mhtba21cc" path="res://assets/portraits/portrait_shronk.png" id="13_dvkhy"]
+[ext_resource type="AudioStream" uid="uid://dltq75m328up3" path="res://assets/audio/voice/test/talker_a_01.mp3" id="13_kxdo6"]
+[ext_resource type="Texture2D" uid="uid://cx32c5ijl385x" path="res://assets/portraits/portrait_dunko.png" id="15_6rw6d"]
+[ext_resource type="AudioStream" uid="uid://m552yeyc51lh" path="res://assets/audio/voice/test/talker_b_01.mp3" id="16_ww08q"]
+[ext_resource type="AudioStream" uid="uid://cky1kucvk3spx" path="res://assets/audio/voice/test/talker_a_02.mp3" id="17_qiopr"]
+[ext_resource type="AudioStream" uid="uid://brw8s1eah3x1h" path="res://assets/audio/voice/test/talker_b_02.mp3" id="18_rihgn"]
+[ext_resource type="AudioStream" uid="uid://ctr2682bdca0q" path="res://assets/audio/voice/test/talker_a_03.mp3" id="19_iyk7c"]
+[ext_resource type="AudioStream" uid="uid://brvujx1alstkx" path="res://assets/audio/voice/test/talker_b_03.mp3" id="20_glm5p"]
+[ext_resource type="AudioStream" uid="uid://d04eixvtnkwc8" path="res://assets/audio/voice/test/talker_a_04.mp3" id="21_kmj7n"]
+[ext_resource type="AudioStream" uid="uid://b4cc5fbtt7xpt" path="res://assets/audio/voice/test/talker_b_04.mp3" id="22_kjaaw"]
+[ext_resource type="AudioStream" uid="uid://dxgnt3urpp1eo" path="res://assets/audio/voice/test/talker_a_05.mp3" id="23_h4v35"]
+[ext_resource type="AudioStream" uid="uid://fjmxgx60c87l" path="res://assets/audio/voice/test/talker_b_05.mp3" id="24_gcuwg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_faeox"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -55,19 +69,6 @@ size = Vector3(2, 2, 2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_1uota"]
 size = Vector3(2, 2, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ttgdp"]
-size = Vector3(1, 2, 3)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_38jsy"]
-transparency = 1
-albedo_color = Color(1, 0.65, 0, 0.7)
-emission_enabled = true
-emission = Color(1, 0.65098, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_nxleq"]
-material = SubResource("StandardMaterial3D_38jsy")
-size = Vector3(1, 2, 3)
 
 [node name="debug" instance=ExtResource("1_43wqk")]
 level_name = "debug"
@@ -179,16 +180,81 @@ shape = SubResource("BoxShape3D_2lbbm")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="HeavyBox" index="1"]
 mesh = SubResource("BoxMesh_1uota")
 
-[node name="Area3D" type="Area3D" parent="Triggers" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1488, 1.00714, -9)
-script = ExtResource("10_0u5lw")
+[node name="TriggerZone" parent="Triggers" index="0" node_paths=PackedStringArray("dialogue") instance=ExtResource("10_0yk5y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1, -9)
+dialogue = NodePath("CommDialogueStructure")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Triggers/Area3D" index="0"]
-shape = SubResource("BoxShape3D_ttgdp")
+[node name="CommDialogueStructure" parent="Triggers/TriggerZone" index="2" instance=ExtResource("11_u6yx4")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Triggers/Area3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0432549, 0.0245113, -0.0366449)
-mesh = SubResource("BoxMesh_nxleq")
+[node name="CommLine" type="Node" parent="Triggers/TriggerZone/CommDialogueStructure" index="0"]
+script = ExtResource("12_7t8qm")
+portrait = ExtResource("13_dvkhy")
+talker = "Shrek"
+dialogue = "For your information, there's a lot more to ogres than people think."
+audio = ExtResource("13_kxdo6")
+
+[node name="CommLine2" type="Node" parent="Triggers/TriggerZone/CommDialogueStructure" index="1"]
+script = ExtResource("12_7t8qm")
+portrait = ExtResource("15_6rw6d")
+talker = "Donkey"
+dialogue = "Example...?"
+audio = ExtResource("16_ww08q")
+
+[node name="CommLine3" type="Node" parent="Triggers/TriggerZone/CommDialogueStructure" index="2"]
+script = ExtResource("12_7t8qm")
+portrait = ExtResource("13_dvkhy")
+talker = "Shrek"
+dialogue = "Example? Okay, ummm... Ogres are- like onions!"
+audio = ExtResource("17_qiopr")
+
+[node name="CommLine4" type="Node" parent="Triggers/TriggerZone/CommDialogueStructure" index="3"]
+script = ExtResource("12_7t8qm")
+portrait = ExtResource("15_6rw6d")
+talker = "Donkey"
+dialogue = "*sniffs* They stink?"
+audio = ExtResource("18_rihgn")
+
+[node name="CommLine5" type="Node" parent="Triggers/TriggerZone/CommDialogueStructure" index="4"]
+script = ExtResource("12_7t8qm")
+portrait = ExtResource("13_dvkhy")
+talker = "Shrek"
+dialogue = "...yes. No!"
+audio = ExtResource("19_iyk7c")
+
+[node name="CommLine6" type="Node" parent="Triggers/TriggerZone/CommDialogueStructure" index="5"]
+script = ExtResource("12_7t8qm")
+portrait = ExtResource("15_6rw6d")
+talker = "Donkey"
+dialogue = "Oh! They make you cry?"
+audio = ExtResource("20_glm5p")
+
+[node name="CommLine7" type="Node" parent="Triggers/TriggerZone/CommDialogueStructure" index="6"]
+script = ExtResource("12_7t8qm")
+portrait = ExtResource("13_dvkhy")
+talker = "Shrek"
+dialogue = "Nooo!"
+audio = ExtResource("21_kmj7n")
+
+[node name="CommLine8" type="Node" parent="Triggers/TriggerZone/CommDialogueStructure" index="7"]
+script = ExtResource("12_7t8qm")
+portrait = ExtResource("15_6rw6d")
+talker = "Donkey"
+dialogue = "Ohhh, you leave'm out in the sun, they get all brown, and they start sprouting little white hairs..."
+audio = ExtResource("22_kjaaw")
+
+[node name="CommLine9" type="Node" parent="Triggers/TriggerZone/CommDialogueStructure" index="8"]
+script = ExtResource("12_7t8qm")
+portrait = ExtResource("13_dvkhy")
+talker = "Shrek"
+dialogue = "NOOO! Layers! ONIONS. HAVE. LAYERS. Ogres have layers! Onions have layers. You get it? We both have layers. *sighs*"
+audio = ExtResource("23_h4v35")
+
+[node name="CommLine10" type="Node" parent="Triggers/TriggerZone/CommDialogueStructure" index="9"]
+script = ExtResource("12_7t8qm")
+portrait = ExtResource("15_6rw6d")
+talker = "Donkey"
+dialogue = "Ohhh, you both have laaayers... Oh... *sniffs* Y'know not everybody like onions?"
+audio = ExtResource("24_gcuwg")
 
 [node name="ManualSpawnLocation" parent="." index="10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.59447, 0.5, -7.17838)

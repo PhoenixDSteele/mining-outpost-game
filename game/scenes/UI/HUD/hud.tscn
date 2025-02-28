@@ -20,10 +20,10 @@ shader_parameter/vignette_color = Color(0.0556348, 7.52043e-10, 2.25613e-09, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s6rkl"]
 shader = ExtResource("5_hu6yv")
 shader_parameter/overlay = true
-shader_parameter/scanlines_opacity = 0.2
-shader_parameter/scanlines_width = 0.1
+shader_parameter/scanlines_opacity = 0.02
+shader_parameter/scanlines_width = 0.04
 shader_parameter/grille_opacity = 0.05
-shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/resolution = Vector2(325, 50)
 shader_parameter/pixelate = false
 shader_parameter/roll = false
 shader_parameter/roll_speed = 8.0
@@ -100,6 +100,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="."]
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0

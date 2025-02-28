@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhtfci4mdigt0"]
+
+[ext_resource type="Script" path="res://game/scenes/levels/debug/trigger_zone.gd" id="1_25rks"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ttgdp"]
+size = Vector3(1, 2, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_38jsy"]
+transparency = 1
+albedo_color = Color(1, 0.65, 0, 0.7)
+emission_enabled = true
+emission = Color(1, 0.65098, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nxleq"]
+material = SubResource("StandardMaterial3D_38jsy")
+size = Vector3(1, 2, 3)
+
+[node name="TriggerZone" type="Area3D"]
+collision_layer = 7
+collision_mask = 2
+script = ExtResource("1_25rks")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ttgdp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0432549, 0.0245113, -0.0366449)
+mesh = SubResource("BoxMesh_nxleq")
+
+[connection signal="body_entered" from="." to="." method="_on_trigger_zone_entered"]
