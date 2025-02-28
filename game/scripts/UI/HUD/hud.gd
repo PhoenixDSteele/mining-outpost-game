@@ -1,7 +1,8 @@
 class_name HUD extends Control
 
+@onready var hud_dialogue: Control = $HUD_Dialogue
+
 @onready var current_area: Label = %CurrentArea
-@onready var area_power : Label = $Panel/MarginContainer/VBoxContainer/HBoxContainer/AreaPower
 @onready var fade: ColorRect = %Fade
 
 @onready var hud_off: TextureRect = %HUD_off

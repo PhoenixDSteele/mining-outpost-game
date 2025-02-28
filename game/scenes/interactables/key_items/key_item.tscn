@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://baq4gd5fw1htt"]
+[gd_scene load_steps=11 format=3 uid="uid://baq4gd5fw1htt"]
 
 [ext_resource type="Script" path="res://game/scripts/interactable/key_item/key_item.gd" id="1_6gh1l"]
+[ext_resource type="Script" path="res://game/scenes/interactables/keypad/rotating_mesh.gd" id="2_43i20"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s6iry"]
 size = Vector3(0.35, 0.35, 0.35)
@@ -27,6 +28,29 @@ top_radius = 0.1
 bottom_radius = 0.1
 height = 0.3
 
+[sub_resource type="FontFile" id="FontFile_eonfg"]
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ad5b8"]
+transparency = 1
+no_depth_test = true
+albedo_color = Color(0, 1, 0.718, 0.6)
+emission = Color(0, 1, 0.717647, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lqxuv"]
+material = SubResource("StandardMaterial3D_ad5b8")
+flip_faces = true
+size = Vector3(0.1, 0.1, 0.1)
+
 [node name="KeyItem" type="StaticBody3D"]
 collision_layer = 4
 collision_mask = 0
@@ -45,5 +69,26 @@ mesh = SubResource("CylinderMesh_lj8je")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Battery/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.167606, 7.32631e-09)
 mesh = SubResource("CylinderMesh_1ppic")
+
+[node name="VisorText" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.449732, 0)
+layers = 1024
+billboard = 1
+no_depth_test = true
+texture_filter = 0
+render_priority = 1
+modulate = Color(0, 1, 0.717647, 1)
+outline_modulate = Color(5.77569e-07, 0.210334, 0.139322, 1)
+text = "Battery Detected"
+font = SubResource("FontFile_eonfg")
+outline_size = 2
+vertical_alignment = 2
+
+[node name="VisorCube" type="MeshInstance3D" parent="VisorText"]
+transform = Transform3D(0.707107, -0.707107, 0, 0.5, 0.5, -0.707107, 0.5, 0.5, 0.707107, 0, -0.0707977, 0)
+layers = 1024
+sorting_offset = 15.0
+mesh = SubResource("BoxMesh_lqxuv")
+script = ExtResource("2_43i20")
 
 [connection signal="interacted" from="." to="." method="_on_interacted"]

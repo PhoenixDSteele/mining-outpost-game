@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://dfqcqf6cw5gkp"]
+[gd_scene load_steps=53 format=4 uid="uid://dfqcqf6cw5gkp"]
 
 [ext_resource type="PackedScene" uid="uid://r0rsvd7xkcoh" path="res://game/character/body_base.tscn" id="1_heyne"]
 [ext_resource type="PackedScene" uid="uid://buxi3fgts6clp" path="res://game/character/components/grapple/grapple.tscn" id="2_6rfct"]
@@ -17,6 +17,11 @@
 [ext_resource type="PackedScene" uid="uid://bq5ggtlx3irif" path="res://game/scenes/UI/player_menu/player_menu.tscn" id="11_h0okq"]
 [ext_resource type="Script" path="res://game/character/components/ui_controller.gd" id="11_x6r1t"]
 [ext_resource type="PackedScene" uid="uid://b3enlx341w1qs" path="res://game/scenes/UI/HUD/hud.tscn" id="14_daw6m"]
+[ext_resource type="Texture2D" uid="uid://35ggn51r1rf1" path="res://assets/ui_theme/map_frame_v1.png" id="18_5ceet"]
+[ext_resource type="Texture2D" uid="uid://4u0h7r84s3tu" path="res://icon.svg" id="19_hrvjw"]
+[ext_resource type="Script" path="res://game/character/player/hud_dialogue.gd" id="19_l2y8v"]
+[ext_resource type="FontFile" uid="uid://csnmcna6ln5mk" path="res://assets/fonts/Ethnocentric Rg.otf" id="20_fia20"]
+[ext_resource type="Script" path="res://game/scenes/interactables/keypad/rotating_mesh.gd" id="22_4ijxm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0t56c"]
 radius = 0.2
@@ -8791,6 +8796,29 @@ emission_energy_multiplier = 2.0
 material = SubResource("StandardMaterial3D_vwfxd")
 radius = 0.3
 
+[sub_resource type="FontFile" id="FontFile_1314y"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fcflc"]
+transparency = 1
+no_depth_test = true
+albedo_color = Color(0, 1, 0.718, 0.6)
+emission = Color(0, 1, 0.717647, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lcv2e"]
+material = SubResource("StandardMaterial3D_fcflc")
+flip_faces = true
+size = Vector3(0.1, 0.1, 0.1)
+
 [node name="Player" node_paths=PackedStringArray("anim_player", "collision", "player_controller", "ui_controller", "climb_checker", "stats") groups=["player"] instance=ExtResource("1_heyne")]
 collision_layer = 2
 anim_player = NodePath("Visual/greygoober_combined/AnimationPlayer")
@@ -10067,7 +10095,7 @@ spring_length = 5.0
 
 [node name="Camera3D" type="Camera3D" parent="PlayerCamera/CameraYaw/CameraPitch/SpringArm3D" index="0"]
 unique_name_in_owner = true
-cull_mask = 1048063
+cull_mask = 1047039
 
 [node name="InteractionRay" parent="PlayerCamera/CameraYaw/CameraPitch/SpringArm3D/Camera3D" index="0" node_paths=PackedStringArray("camera_user") instance=ExtResource("8_wnmaa")]
 unique_name_in_owner = true
@@ -10089,8 +10117,9 @@ omni_range = 2.0
 unique_name_in_owner = true
 mouse_filter = 1
 
-[node name="3DMap" type="Control" parent="." index="9"]
-layout_mode = 3
+[node name="3DMap" type="Control" parent="HUD" index="6"]
+show_behind_parent = true
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -10098,7 +10127,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="3DMap" index="0"]
+[node name="TextureRect" type="TextureRect" parent="HUD/3DMap" index="0"]
+layout_mode = 2
+offset_left = 1452.0
+offset_top = 7.0
+offset_right = 1914.0
+offset_bottom = 290.0
+texture = ExtResource("18_5ceet")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HUD/3DMap" index="1"]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.5)
 layout_mode = 1
@@ -10115,30 +10152,130 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="3DMap/SubViewportContainer" index="0"]
+[node name="SubViewport" type="SubViewport" parent="HUD/3DMap/SubViewportContainer" index="0"]
 unique_name_in_owner = true
 handle_input_locally = false
 size = Vector2i(422, 248)
 render_target_update_mode = 4
 
-[node name="MapCamRoot" type="Node3D" parent="3DMap/SubViewportContainer/SubViewport" index="0"]
+[node name="MapCamRoot" type="Node3D" parent="HUD/3DMap/SubViewportContainer/SubViewport" index="0"]
 unique_name_in_owner = true
 
-[node name="SpringArm3D" type="SpringArm3D" parent="3DMap/SubViewportContainer/SubViewport/MapCamRoot" index="0"]
+[node name="SpringArm3D" type="SpringArm3D" parent="HUD/3DMap/SubViewportContainer/SubViewport/MapCamRoot" index="0"]
 transform = Transform3D(0.707107, 0.454519, -0.541675, 0, 0.766044, 0.642788, 0.707107, -0.454519, 0.541675, 0, 0, 0)
 collision_mask = 0
 spring_length = 50.0
 
-[node name="3DMapCam" type="Camera3D" parent="3DMap/SubViewportContainer/SubViewport/MapCamRoot/SpringArm3D" index="0"]
+[node name="3DMapCam" type="Camera3D" parent="HUD/3DMap/SubViewportContainer/SubViewport/MapCamRoot/SpringArm3D" index="0"]
 unique_name_in_owner = true
 cull_mask = 512
 fov = 37.8493
 
-[node name="MapMarker" type="MeshInstance3D" parent="." index="10"]
+[node name="HUD_Dialogue" type="Control" parent="HUD" index="7"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("19_l2y8v")
+
+[node name="Subtitles" type="Label" parent="HUD/HUD_Dialogue" index="0"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = -280.0
+offset_right = 400.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "For your information there's a lot more to ogres than you think."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Panel" type="Panel" parent="HUD/HUD_Dialogue" index="1"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -380.0
+offset_top = -133.5
+offset_right = -157.0
+offset_bottom = 133.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/HUD_Dialogue/Panel" index="0"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -97.5
+offset_top = -119.5
+offset_right = 97.5
+offset_bottom = 119.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/HUD_Dialogue/Panel/MarginContainer" index="0"]
+layout_mode = 2
+
+[node name="TalkerPortrait" type="TextureRect" parent="HUD/HUD_Dialogue/Panel/MarginContainer/VBoxContainer" index="0"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("19_hrvjw")
+expand_mode = 4
+
+[node name="TalkerName" type="Label" parent="HUD/HUD_Dialogue/Panel/MarginContainer/VBoxContainer" index="1"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("20_fia20")
+theme_override_font_sizes/font_size = 32
+text = "Shronk"
+horizontal_alignment = 1
+
+[node name="MapMarker" type="MeshInstance3D" parent="." index="9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 layers = 512
 sorting_offset = 5.0
 mesh = SubResource("CapsuleMesh_il3ic")
+
+[node name="VisorText" type="Label3D" parent="." index="10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44452, 0.23526)
+layers = 1024
+billboard = 1
+no_depth_test = true
+texture_filter = 0
+render_priority = 1
+modulate = Color(0, 1, 0.717647, 1)
+outline_modulate = Color(5.77569e-07, 0.210334, 0.139322, 1)
+text = "<User Detected>"
+font = SubResource("FontFile_1314y")
+outline_size = 2
+vertical_alignment = 2
+
+[node name="VisorCube" type="MeshInstance3D" parent="VisorText" index="0"]
+transform = Transform3D(0.707107, -0.707107, 0, 0.5, 0.5, -0.707107, 0.5, 0.5, 0.707107, 0, -0.0707977, 0)
+layers = 1024
+sorting_offset = 15.0
+mesh = SubResource("BoxMesh_lcv2e")
+script = ExtResource("22_4ijxm")
 
 [connection signal="body_entered" from="Visual/SpiderSpawnCheck" to="." method="_on_spider_spawn_check_body_entered"]
 [connection signal="body_exited" from="Visual/SpiderSpawnCheck" to="." method="_on_spider_spawn_check_body_exited"]

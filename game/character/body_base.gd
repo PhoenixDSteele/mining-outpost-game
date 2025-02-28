@@ -48,11 +48,11 @@ var gravity_enabled : bool = true
 
 @onready var player_camera: PlayerCamera = %PlayerCamera
 
-@onready var map_cam_root: Node3D = %MapCamRoot
+@warning_ignore("unused_private_class_variable")
 @onready var _3d_map_cam: Camera3D = %"3DMapCam"
+@onready var map_cam_root: Node3D = %MapCamRoot
 @onready var map_viewport: SubViewport = %SubViewport
 @onready var map_cam_container: SubViewportContainer = %SubViewportContainer
-
 
 
 func _ready() -> void:
@@ -67,7 +67,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if not disabled:
 		map_cam_root.global_position = self.global_position
-		_3d_map_cam.look_at(map_cam_root.global_position, Vector3.UP)
+		#_3d_map_cam.look_at(map_cam_root.global_position, Vector3.UP)
 	player_camera.global_position = lerp(player_camera.global_position, Vector3(self.global_position.x, self.global_position.y + 1.5, self.global_position.z), 10 * delta)
 	
 	# Add the gravity if it's enabled.

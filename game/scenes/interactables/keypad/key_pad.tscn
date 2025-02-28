@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://beb6lip5hi5lo"]
+[gd_scene load_steps=26 format=4 uid="uid://beb6lip5hi5lo"]
 
 [ext_resource type="Theme" uid="uid://dtej56pljgyf2" path="res://assets/ui_theme/temp_theme.tres" id="1_jx01b"]
 [ext_resource type="Script" path="res://game/scenes/interactables/keypad/key_pad_screen.gd" id="1_ske8h"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://c8ap70ijjomlr" path="res://assets/audio/sfx/screen_sounds/keypad_clicked.wav" id="5_s28up"]
 [ext_resource type="PackedScene" uid="uid://ciw14m13fy8j6" path="res://game/scenes/interactables/keypad/screen_camera.tscn" id="5_u8exo"]
 [ext_resource type="AudioStream" uid="uid://c2mtiwh1jir6y" path="res://assets/audio/sfx/screen_sounds/del_keypad.wav" id="7_xs3xt"]
+[ext_resource type="Script" path="res://game/scenes/interactables/keypad/rotating_mesh.gd" id="12_wqxm7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bidcn"]
 size = Vector3(0.415955, 0.516907, 0.19104)
@@ -120,6 +121,29 @@ shader_parameter/vignette_opacity = 0.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_aw35k"]
 size = Vector3(0.297302, 0.406, 0.083252)
+
+[sub_resource type="FontFile" id="FontFile_5fpq1"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gov66"]
+transparency = 1
+no_depth_test = true
+albedo_color = Color(0, 1, 0.718, 0.6)
+emission = Color(0, 1, 0.717647, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bk1lv"]
+material = SubResource("StandardMaterial3D_gov66")
+flip_faces = true
+size = Vector3(0.1, 0.1, 0.1)
 
 [node name="Keypad" type="StaticBody3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -562,5 +586,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0396729, -0.610037)
 unique_name_in_owner = true
 volume_db = -10.0
 bus = &"UI"
+
+[node name="VisorText" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.570312, 0.172031)
+layers = 1024
+billboard = 1
+no_depth_test = true
+texture_filter = 0
+render_priority = 1
+modulate = Color(0, 1, 0.717647, 1)
+outline_modulate = Color(5.77569e-07, 0.210334, 0.139322, 1)
+text = "<Keypad Detected>"
+font = SubResource("FontFile_5fpq1")
+outline_size = 2
+vertical_alignment = 2
+
+[node name="VisorCube" type="MeshInstance3D" parent="VisorText"]
+transform = Transform3D(0.707107, -0.707107, 0, 0.5, 0.5, -0.707107, 0.5, 0.5, 0.707107, 0, -0.0707977, 0)
+layers = 1024
+sorting_offset = 15.0
+mesh = SubResource("BoxMesh_bk1lv")
+script = ExtResource("12_wqxm7")
 
 [connection signal="interacted" from="." to="." method="_on_interacted"]

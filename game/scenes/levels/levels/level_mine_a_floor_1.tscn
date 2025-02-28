@@ -9,16 +9,18 @@
 [ext_resource type="PackedScene" uid="uid://cnykhwjt037ak" path="res://game/scenes/scene_lighting/single_door/single_door_light.tscn" id="5_pk32n"]
 [ext_resource type="AudioStream" uid="uid://xfmk1qykouao" path="res://assets/audio/music/FearTheOre.mp3" id="9_0d7vn"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nvfcj"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3vkqm"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[sub_resource type="Sky" id="Sky_7ttwf"]
-sky_material = SubResource("ProceduralSkyMaterial_nvfcj")
+[sub_resource type="Sky" id="Sky_8syjm"]
+sky_material = SubResource("ProceduralSkyMaterial_3vkqm")
 
-[sub_resource type="Environment" id="Environment_48fj6"]
-background_mode = 2
-sky = SubResource("Sky_7ttwf")
+[sub_resource type="Environment" id="Environment_tknwm"]
+background_mode = 1
+sky = SubResource("Sky_8syjm")
+ambient_light_source = 3
+ambient_light_sky_contribution = 0.01
 tonemap_mode = 2
 glow_enabled = true
 
@@ -67,12 +69,8 @@ shadow_mesh = SubResource("ArrayMesh_ktmuh")
 level_name = "mine_a_floor_1"
 level_music = "temp05"
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
-environment = SubResource("Environment_48fj6")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="1"]
-transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-shadow_enabled = true
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Enviro#Lighting" index="0"]
+environment = SubResource("Environment_tknwm")
 
 [node name="GridMapFloor" parent="Gridmaps" index="0"]
 mesh_library = ExtResource("2_27mmp")
@@ -172,12 +170,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 34)
 
 [node name="SingleDoorLight" parent="PoweredNodes/StairwayDoor" index="5" instance=ExtResource("5_pk32n")]
 
-[node name="elevator_001" type="MeshInstance3D" parent="." index="10"]
+[node name="elevator_001" type="MeshInstance3D" parent="." index="8"]
 transform = Transform3D(1.5, 0, 0, 0, 1.322, 0, 0, 0, 1.873, 4, -0.136498, 35.0615)
 mesh = SubResource("ArrayMesh_gq2ae")
 skeleton = NodePath("")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="11"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="9"]
 stream = ExtResource("9_0d7vn")
 volume_db = -10.0
 autoplay = true

@@ -63,10 +63,10 @@ func return_to_login():
 	text_edit.editable = true
 	email.visible = false
 
-func _on_text_edit_text_changed(new_text: String) -> void:
+func _on_text_edit_text_changed(_new_text: String) -> void:
 	pass
 
-func _on_text_edit_text_submitted(new_text: String) -> void:
+func _on_text_edit_text_submitted(_new_text: String) -> void:
 	try_password()
 
 func _on_return_button_pressed() -> void:

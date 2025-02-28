@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://due6gjicxdioy"]
+[gd_scene load_steps=25 format=3 uid="uid://due6gjicxdioy"]
 
 [ext_resource type="PackedScene" uid="uid://dw8n0ir5hscjp" path="res://game/scenes/levels/level.tscn" id="1_43wqk"]
 [ext_resource type="MeshLibrary" uid="uid://s1pa0evn3pyc" path="res://assets/environment/mesh_libaries/wall_vent_v2.meshlib" id="2_2fmbh"]
@@ -9,9 +9,20 @@
 [ext_resource type="PackedScene" uid="uid://beb6lip5hi5lo" path="res://game/scenes/interactables/keypad/key_pad.tscn" id="6_uo3ht"]
 [ext_resource type="PackedScene" uid="uid://dr038k11r1a4h" path="res://game/scenes/interactables/doors/normal_door.tscn" id="7_0nce2"]
 [ext_resource type="PackedScene" uid="uid://bx2b51ttrbn61" path="res://game/scenes/interactables/computer/computer.tscn" id="8_ntcax"]
+[ext_resource type="Script" path="res://game/scenes/levels/debug/trigger_zone.gd" id="10_0u5lw"]
 
-[sub_resource type="Environment" id="Environment_12biw"]
-background_mode = 2
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_faeox"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_dugr8"]
+sky_material = SubResource("ProceduralSkyMaterial_faeox")
+
+[sub_resource type="Environment" id="Environment_3qnft"]
+background_mode = 1
+sky = SubResource("Sky_dugr8")
+ambient_light_source = 3
+ambient_light_sky_contribution = 0.01
 tonemap_mode = 2
 glow_enabled = true
 
@@ -45,17 +56,30 @@ size = Vector3(2, 2, 2)
 [sub_resource type="BoxMesh" id="BoxMesh_1uota"]
 size = Vector3(2, 2, 2)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ttgdp"]
+size = Vector3(1, 2, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_38jsy"]
+transparency = 1
+albedo_color = Color(1, 0.65, 0, 0.7)
+emission_enabled = true
+emission = Color(1, 0.65098, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nxleq"]
+material = SubResource("StandardMaterial3D_38jsy")
+size = Vector3(1, 2, 3)
+
 [node name="debug" instance=ExtResource("1_43wqk")]
 level_name = "debug"
 level_music = "main_menu"
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Enviro#Lighting" index="0"]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-visible = false
-shadow_enabled = true
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Enviro#Lighting" index="0"]
+environment = SubResource("Environment_3qnft")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Enviro#Lighting" index="1"]
-environment = SubResource("Environment_12biw")
+[node name="SpotLight3D" type="SpotLight3D" parent="Enviro#Lighting" index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 4, 14, 0)
+light_energy = 0.2
+spot_range = 30.0
 
 [node name="GridMapFloor" parent="Gridmaps" index="0"]
 mesh_library = ExtResource("2_2fmbh")
@@ -155,5 +179,16 @@ shape = SubResource("BoxShape3D_2lbbm")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="HeavyBox" index="1"]
 mesh = SubResource("BoxMesh_1uota")
 
-[node name="ManualSpawnLocation" parent="." index="9"]
+[node name="Area3D" type="Area3D" parent="Triggers" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1488, 1.00714, -9)
+script = ExtResource("10_0u5lw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Triggers/Area3D" index="0"]
+shape = SubResource("BoxShape3D_ttgdp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Triggers/Area3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0432549, 0.0245113, -0.0366449)
+mesh = SubResource("BoxMesh_nxleq")
+
+[node name="ManualSpawnLocation" parent="." index="10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.59447, 0.5, -7.17838)

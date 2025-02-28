@@ -25,6 +25,7 @@ func _process(_delta: float) -> void:
 					interacted_object = collider
 					collider.connect("successful", return_control)
 					if camera_user is BodyBase:
+						print('got this far')
 						camera_user.visual.visible = false
 						camera_user.player_controller.input_disabled = true
 						camera_user.ui_controller.menu_disabled = true

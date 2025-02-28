@@ -5,9 +5,11 @@ class_name KeyItem extends Interactable
 
 ## Current list of key items: "battery"
 @export var item_name : String = "SET THIS TEXT"
+@onready var visor_text: Label3D = $VisorText
 
 func _ready() -> void:
 	prompt_message = "Pick Up " + item_name.capitalize()
+	visor_text.text = "<" + item_name.to_lower() + " detected>"
 
 @warning_ignore("unused_parameter")
 func _on_interacted() -> void:

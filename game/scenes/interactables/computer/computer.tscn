@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bx2b51ttrbn61"]
+[gd_scene load_steps=36 format=3 uid="uid://bx2b51ttrbn61"]
 
 [ext_resource type="Script" path="res://game/scenes/interactables/computer/computer.gd" id="1_p1nu0"]
 [ext_resource type="Script" path="res://game/scripts/object_components/powered.gd" id="2_u75lo"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://c8ap70ijjomlr" path="res://assets/audio/sfx/screen_sounds/keypad_clicked.wav" id="12_aavmf"]
 [ext_resource type="AudioStream" uid="uid://dba6xp5w6g5bw" path="res://assets/audio/sfx/screen_sounds/keypad_right.wav" id="13_0opb2"]
 [ext_resource type="AudioStream" uid="uid://bxfachiwa7sgu" path="res://assets/audio/sfx/screen_sounds/keypad_wrong.wav" id="14_630lo"]
+[ext_resource type="Script" path="res://game/scenes/interactables/keypad/rotating_mesh.gd" id="15_vluvv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b41tm"]
 size = Vector3(1.2, 1.2, 1.13076)
@@ -97,6 +98,29 @@ clip_1/auto_advance = 0
 clip_2/name = &"Keypad Wrong"
 clip_2/stream = ExtResource("14_630lo")
 clip_2/auto_advance = 0
+
+[sub_resource type="FontFile" id="FontFile_qshau"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f4bbu"]
+transparency = 1
+no_depth_test = true
+albedo_color = Color(0, 1, 0.718, 0.6)
+emission = Color(0, 1, 0.717647, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_x0dpi"]
+material = SubResource("StandardMaterial3D_f4bbu")
+flip_faces = true
+size = Vector3(0.1, 0.1, 0.1)
 
 [node name="Computer" type="StaticBody3D"]
 collision_layer = 4
@@ -412,6 +436,27 @@ unique_name_in_owner = true
 stream = SubResource("AudioStreamInteractive_68bho")
 volume_db = -15.0
 bus = &"UI"
+
+[node name="VisorText" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.479891, 0.775525)
+layers = 1024
+billboard = 1
+no_depth_test = true
+texture_filter = 0
+render_priority = 1
+modulate = Color(0, 1, 0.717647, 1)
+outline_modulate = Color(5.77569e-07, 0.210334, 0.139322, 1)
+text = "<Console Detected>"
+font = SubResource("FontFile_qshau")
+outline_size = 2
+vertical_alignment = 2
+
+[node name="VisorCube" type="MeshInstance3D" parent="VisorText"]
+transform = Transform3D(0.707107, -0.707107, 0, 0.5, 0.5, -0.707107, 0.5, 0.5, 0.707107, 0, -0.0707977, 0)
+layers = 1024
+sorting_offset = 15.0
+mesh = SubResource("BoxMesh_x0dpi")
+script = ExtResource("15_vluvv")
 
 [connection signal="interacted" from="." to="." method="_on_interacted"]
 [connection signal="pressed" from="ComputerScreen/SubViewport/Control/Email/VBoxContainer/ReturnButton" to="ComputerScreen/SubViewport/Control" method="_on_return_button_pressed"]

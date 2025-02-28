@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://dl5kmm06rr82v"]
+[gd_scene load_steps=22 format=4 uid="uid://dl5kmm06rr82v"]
 
 [ext_resource type="Script" path="res://game/character/player/handv2/spider_hand.gd" id="1_jf6yu"]
 [ext_resource type="PackedScene" uid="uid://b20fckocvf0xf" path="res://game/character/player/camera/player_camera.tscn" id="2_72s5d"]
@@ -6,7 +6,9 @@
 [ext_resource type="AudioStream" uid="uid://bxblvxod0u7nn" path="res://assets/audio/sfx/hand_step.mp3" id="4_3wd26"]
 [ext_resource type="AudioStream" uid="uid://c3oodosqea6ou" path="res://assets/audio/sfx/hand_land2.mp3" id="5_ll5nl"]
 [ext_resource type="AudioStream" uid="uid://ci2s7xbxe0lj7" path="res://assets/audio/sfx/hand_jump.mp3" id="6_56acb"]
+[ext_resource type="AudioStream" uid="uid://cvhlk0iu0jygr" path="res://assets/audio/sfx/hand/hand_cam_zoom_in.mp3" id="7_gxt23"]
 [ext_resource type="Texture2D" uid="uid://c7vkfucw2ad1w" path="res://assets/ui_theme/hand_cam.png" id="7_sd3hs"]
+[ext_resource type="AudioStream" uid="uid://dl6yde1m4u6vg" path="res://assets/audio/sfx/hand/hand_cam_zoom_out.mp3" id="8_r56rh"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_rue2q"]
 radius = 0.08
@@ -1577,25 +1579,25 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cqisv"]
 shader = SubResource("Shader_aaqk6")
-shader_parameter/overlay = false
+shader_parameter/overlay = true
 shader_parameter/scanlines_opacity = 0.1
 shader_parameter/scanlines_width = 0.02
 shader_parameter/grille_opacity = 0.1
 shader_parameter/resolution = Vector2(640, 480)
 shader_parameter/pixelate = false
 shader_parameter/roll = true
-shader_parameter/roll_speed = 8.0
-shader_parameter/roll_size = 15.0
+shader_parameter/roll_speed = 7.935
+shader_parameter/roll_size = 20.0
 shader_parameter/roll_variation = 1.8
 shader_parameter/distort_intensity = 0.05
-shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_opacity = 0.04
 shader_parameter/noise_speed = 5.0
-shader_parameter/static_noise_intensity = 0.326
+shader_parameter/static_noise_intensity = 0.1
 shader_parameter/aberration = 4.75e-08
 shader_parameter/brightness = 1.0
 shader_parameter/discolor = true
 shader_parameter/warp_amount = 0.0
-shader_parameter/clip_warp = true
+shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.5
 
@@ -1614,7 +1616,7 @@ pitch_max = 17.0
 pitch_min = -70.0
 
 [node name="Camera3D" parent="PlayerCamera/CameraYaw/CameraPitch/SpringArm3D" index="0"]
-cull_mask = 1048063
+cull_mask = 1047039
 
 [node name="InteractionRay" parent="PlayerCamera/CameraYaw/CameraPitch/SpringArm3D/Camera3D" index="0" node_paths=PackedStringArray("camera_user")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2)
@@ -1832,22 +1834,36 @@ libraries = {
 "": SubResource("AnimationLibrary_dxtib")
 }
 
-[node name="StepSound" type="AudioStreamPlayer3D" parent="."]
+[node name="Sounds" type="Node" parent="."]
+
+[node name="StepSound" type="AudioStreamPlayer" parent="Sounds"]
+unique_name_in_owner = true
 stream = ExtResource("4_3wd26")
 bus = &"SFX"
 
-[node name="Timer" type="Timer" parent="StepSound"]
+[node name="Timer" type="Timer" parent="Sounds/StepSound"]
+unique_name_in_owner = true
 wait_time = 0.1
 autostart = true
 
-[node name="Land" type="AudioStreamPlayer3D" parent="."]
+[node name="Land" type="AudioStreamPlayer" parent="Sounds"]
+unique_name_in_owner = true
 stream = ExtResource("5_ll5nl")
 pitch_scale = 1.2
 bus = &"SFX"
 
-[node name="Jump" type="AudioStreamPlayer3D" parent="."]
+[node name="Jump" type="AudioStreamPlayer" parent="Sounds"]
+unique_name_in_owner = true
 stream = ExtResource("6_56acb")
 bus = &"SFX"
+
+[node name="ZoomIn" type="AudioStreamPlayer" parent="Sounds"]
+unique_name_in_owner = true
+stream = ExtResource("7_gxt23")
+
+[node name="ZoomOut" type="AudioStreamPlayer" parent="Sounds"]
+unique_name_in_owner = true
+stream = ExtResource("8_r56rh")
 
 [node name="AttachCD" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -1862,7 +1878,11 @@ wait_time = 0.2
 one_shot = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.863556, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.152348, 0)
+light_color = Color(0, 1, 0.717647, 1)
+light_energy = 0.01
+light_indirect_energy = 0.5
+omni_range = 0.5
 
 [node name="GroundCheckStairs" type="RayCast3D" parent="."]
 target_position = Vector3(0, -0.02, 0)
@@ -1878,6 +1898,7 @@ mouse_filter = 2
 
 [node name="MenuEffect" type="ColorRect" parent="SpiderHUD"]
 unique_name_in_owner = true
+visible = false
 material = SubResource("ShaderMaterial_cqisv")
 layout_mode = 1
 anchors_preset = 15
@@ -1888,9 +1909,8 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="ZoomFlare" type="TextureRect" parent="SpiderHUD"]
-unique_name_in_owner = true
-visible = false
+[node name="ZoomFlare" type="TextureRect" parent="SpiderHUD/MenuEffect"]
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1899,7 +1919,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_sd3hs")
 
-[connection signal="timeout" from="StepSound/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Sounds/StepSound/Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="AttachCD" to="." method="_on_attach_cd_timeout"]
 [connection signal="timeout" from="DettachCD" to="." method="_on_dettach_cd_timeout"]
 [connection signal="timeout" from="ClingRelease" to="." method="_on_cling_release_timeout"]

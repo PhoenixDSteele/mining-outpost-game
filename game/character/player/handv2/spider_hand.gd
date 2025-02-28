@@ -8,24 +8,27 @@ class_name SpiderHand extends CharacterBody3D
 
 @onready var wall_change_detection: RayCast3D = %WallChangeDetection
 
-
+@onready var effect_node: ColorRect = %MenuEffect
 @onready var menu_effect: ShaderMaterial = %MenuEffect.material
-@onready var zoom_flare: TextureRect = %ZoomFlare
-
-
+const SPIDER_HAND_FP_CAM = preload("res://assets/environments/cameras/spider_hand_fp_cam.tres")
 
 @onready var player_camera: PlayerCamera = $PlayerCamera
 @onready var hand: Node3D = $hand
 @onready var anim: AnimationPlayer = $hand/AnimationPlayer
-@onready var step_sound: AudioStreamPlayer3D = $StepSound
-@onready var timer: Timer = $StepSound/Timer
-@onready var land: AudioStreamPlayer3D = $Land
-@onready var jump: AudioStreamPlayer3D = $Jump
 @onready var attach_cd: Timer = %AttachCD
 @onready var dettach_cd: Timer = %DettachCD
 @onready var ground_check_stairs: RayCast3D = $GroundCheckStairs
 @onready var cling_release: Timer = $ClingRelease
 
+#Sounds
+@onready var step_sound: AudioStreamPlayer = %StepSound
+@onready var timer: Timer = %Timer
+@onready var land: AudioStreamPlayer = %Land
+@onready var jump: AudioStreamPlayer = %Jump
+@onready var zoom_in: AudioStreamPlayer = %ZoomIn
+@onready var zoom_out: AudioStreamPlayer = %ZoomOut
+
+#Bools
 var surface_moving : bool = false
 var clinging : bool = false
 var falling : bool = false
@@ -46,6 +49,8 @@ var pause_menu_instance : PauseScreen
 const PAUSE_SCREEN = preload("res://core/ui/pause_menu/pause_screen.tscn")
 
 
+
+
 func _ready() -> void:
 	player_camera.camera.make_current()
 
@@ -57,8 +62,9 @@ func _input(event: InputEvent) -> void:
 		else:
 			pause_menu_instance.resume_game()
 	
-	if event.is_action_pressed("spider_zoom"):
-			zoom_cam_toggle()
+	if not disabled:
+		if event.is_action_pressed("spider_zoom"):
+				zoom_cam_toggle()
 
 ## Call pause menu. The rest will be handled by the pause menu node itself.
 func pause_game():
@@ -66,20 +72,26 @@ func pause_game():
 	add_child(pause_menu_instance)
 
 func zoom_cam_toggle():
-	var stored_spring_length
 	if cam_zoom_on == false:
-		zoom_flare.visible = true
+		zoom_in.play()
+		player_camera.camera.set_cull_mask_value(11, true)
+		player_camera.camera.environment = SPIDER_HAND_FP_CAM
+		effect_node.visible = true
 		menu_effect.set("shader_parameter/warp_amount", 5)
+		menu_effect.set("shader_parameter/clip_warp", false)
 		player_camera.camera.fov = 50
 		player_camera.pitch_max = 90
 		player_camera.pitch_min = -90
-		stored_spring_length = player_camera.spring_arm.spring_length
 		player_camera.spring_arm.spring_length = 0
 		hand.visible = false
 		cam_zoom_on = true
 	else:
-		zoom_flare.visible = false
+		zoom_out.play()
+		player_camera.camera.set_cull_mask_value(11, false)
+		player_camera.camera.environment = null
+		effect_node.visible = false
 		menu_effect.set("shader_parameter/warp_amount", 0)
+		menu_effect.set("shader_parameter/clip_warp", true)
 		player_camera.camera.fov = 75
 		player_camera.pitch_max = 17
 		player_camera.pitch_min = -70
