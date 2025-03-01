@@ -114,14 +114,14 @@ cache/0/32/0/underline_position = 0.0
 cache/0/32/0/underline_thickness = 0.0
 cache/0/32/0/scale = 1.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f4bbu"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b1d7v"]
 transparency = 1
 no_depth_test = true
 albedo_color = Color(0, 1, 0.718, 0.6)
 emission = Color(0, 1, 0.717647, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_x0dpi"]
-material = SubResource("StandardMaterial3D_f4bbu")
+material = SubResource("StandardMaterial3D_b1d7v")
 flip_faces = true
 size = Vector3(0.1, 0.1, 0.1)
 
@@ -449,7 +449,7 @@ texture_filter = 0
 render_priority = 1
 modulate = Color(0, 1, 0.717647, 1)
 outline_modulate = Color(5.77569e-07, 0.210334, 0.139322, 1)
-text = "<Console Detected>"
+text = "<console detected>"
 font = SubResource("FontFile_qshau")
 outline_size = 2
 vertical_alignment = 2

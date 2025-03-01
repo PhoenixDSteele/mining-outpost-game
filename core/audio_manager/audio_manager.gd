@@ -13,7 +13,8 @@ var music_dict: Dictionary = {
 	"temp02": preload("res://assets/audio/music/DustyEyes.mp3"),
 	"temp03": preload("res://assets/audio/music/EnterTheForest.mp3"),
 	"temp04": preload("res://assets/audio/music/RainCantStopTheBeat.mp3"),
-	"temp05": preload("res://assets/audio/music/FearTheOre.mp3")
+	"temp05": preload("res://assets/audio/music/FearTheOre.mp3"),
+	"station_theme": preload("res://assets/audio/music/AO Station Theme test5.mp3")
 	
 }
 const music_main_menu : String = "main_menu" ## Main menu Music
@@ -24,6 +25,7 @@ const music_temp02 : String = "temp02" ## Temp Music 02
 const music_temp03 : String = "temp03" ## Temp Music 03
 const music_temp04 : String = "temp04" ## Temp Music 04
 const music_temp05 : String = "temp05" ## Temp Music 05
+const music_station_theme : String = "station_theme"
 
 ## Dictionary of UI Sounds. Add more as needed.
 var ui_sound_dict: Dictionary = {

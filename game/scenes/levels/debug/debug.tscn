@@ -41,6 +41,9 @@ ambient_light_source = 3
 ambient_light_sky_contribution = 0.01
 tonemap_mode = 2
 glow_enabled = true
+fog_enabled = true
+fog_light_energy = 2.95
+volumetric_fog_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bimoo"]
 transparency = 1
@@ -74,7 +77,7 @@ size = Vector3(2, 2, 2)
 
 [node name="debug" instance=ExtResource("1_43wqk")]
 level_name = "debug"
-level_music = "main_menu"
+level_music = "station_theme"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Enviro#Lighting" index="0"]
 environment = SubResource("Environment_3qnft")
