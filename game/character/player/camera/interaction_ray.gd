@@ -21,7 +21,7 @@ func _process(_delta: float) -> void:
 			
 			if Input.is_action_just_pressed("interact"):
 				collider.interact()
-				if collider is KeyPad or ComputerScreen:
+				if (collider is KeyPad) or (collider is ComputerScreen):
 					interacted_object = collider
 					collider.connect("successful", return_control)
 					if camera_user is BodyBase:
@@ -34,6 +34,14 @@ func _process(_delta: float) -> void:
 						print('spider_used')
 						camera_user.disabled = true
 						target_info.visible = false
+				if collider is DataPad:
+					var used_pad : DataPad = collider
+					if camera_user is BodyBase:
+						if camera_user.hud.hud_dialogue.comm_active == false:
+							camera_user.hud.hud_datapad.open_data_pad(used_pad.data)
+						else:
+							return
+						
 		elif collider is Area3D:
 			if collider.name == "SpiderReturn":
 				interact_text.text = "Return"
@@ -51,7 +59,7 @@ func return_control() -> void:
 	target_info.visible = true
 	camera_user.player_camera.camera.make_current()
 	
-	if interacted_object is KeyPad or ComputerScreen:
+	if (interacted_object is KeyPad) or (interacted_object is ComputerScreen):
 		interacted_object.disconnect("successful", return_control)
 	
 	if camera_user is BodyBase:

@@ -16,7 +16,7 @@ func _ready() -> void:
 		if node is Powered:
 			powered = node
 			powered.powered_state.connect(toggle_power)
-	
+
 
 func toggle_power(power_state:bool) -> void:
 	powered_on = power_state

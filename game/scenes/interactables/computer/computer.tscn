@@ -30,6 +30,30 @@ albedo_color = Color(0, 0, 0.1, 1)
 [sub_resource type="QuadMesh" id="QuadMesh_00a5y"]
 size = Vector2(16, 9)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1vegq"]
+shader = ExtResource("7_mfk8i")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.02
+shader_parameter/grille_opacity = 0.15
+shader_parameter/resolution = Vector2(1920, 1080)
+shader_parameter/pixelate = false
+shader_parameter/roll = true
+shader_parameter/roll_speed = 1.0
+shader_parameter/roll_size = 1.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.01
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.15
+shader_parameter/aberration = 0.01
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = true
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vekxg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_emrgm"]
@@ -59,30 +83,6 @@ corner_radius_top_left = 15
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1vegq"]
-shader = ExtResource("7_mfk8i")
-shader_parameter/overlay = true
-shader_parameter/scanlines_opacity = 0.4
-shader_parameter/scanlines_width = 0.02
-shader_parameter/grille_opacity = 0.15
-shader_parameter/resolution = Vector2(1920, 1080)
-shader_parameter/pixelate = false
-shader_parameter/roll = true
-shader_parameter/roll_speed = 1.0
-shader_parameter/roll_size = 1.0
-shader_parameter/roll_variation = 1.8
-shader_parameter/distort_intensity = 0.01
-shader_parameter/noise_opacity = 0.4
-shader_parameter/noise_speed = 5.0
-shader_parameter/static_noise_intensity = 0.15
-shader_parameter/aberration = 0.01
-shader_parameter/brightness = 1.4
-shader_parameter/discolor = false
-shader_parameter/warp_amount = 0.0
-shader_parameter/clip_warp = true
-shader_parameter/vignette_intensity = 0.4
-shader_parameter/vignette_opacity = 0.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ayswv"]
 size = Vector3(16.1934, 9.1889, 1)
@@ -162,6 +162,18 @@ unique_name_in_owner = true
 transparent_bg = true
 size = Vector2i(1920, 1080)
 size_2d_override_stretch = true
+
+[node name="MenuEffect" type="ColorRect" parent="ComputerScreen/SubViewport"]
+material = SubResource("ShaderMaterial_1vegq")
+custom_minimum_size = Vector2(600, 800)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+mouse_filter = 2
+mouse_default_cursor_shape = 2
 
 [node name="Control" type="Control" parent="ComputerScreen/SubViewport"]
 layout_mode = 3
@@ -405,18 +417,6 @@ theme_override_fonts/font = ExtResource("5_yy4wl")
 theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxFlat_xtcte")
 text = "Enter"
-
-[node name="MenuEffect" type="ColorRect" parent="ComputerScreen/SubViewport"]
-material = SubResource("ShaderMaterial_1vegq")
-custom_minimum_size = Vector2(600, 800)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
-mouse_filter = 2
-mouse_default_cursor_shape = 2
 
 [node name="Area3D" type="Area3D" parent="ComputerScreen"]
 unique_name_in_owner = true

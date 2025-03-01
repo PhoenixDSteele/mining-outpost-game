@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://dfqcqf6cw5gkp"]
+[gd_scene load_steps=62 format=4 uid="uid://dfqcqf6cw5gkp"]
 
 [ext_resource type="PackedScene" uid="uid://r0rsvd7xkcoh" path="res://game/character/body_base.tscn" id="1_heyne"]
 [ext_resource type="PackedScene" uid="uid://buxi3fgts6clp" path="res://game/character/components/grapple/grapple.tscn" id="2_6rfct"]
@@ -24,6 +24,7 @@
 [ext_resource type="AudioStream" uid="uid://g85cykgro1m5" path="res://assets/audio/ui/Static_Loop.mp3" id="21_ailb5"]
 [ext_resource type="Script" path="res://game/scenes/interactables/keypad/rotating_mesh.gd" id="22_4ijxm"]
 [ext_resource type="AudioStream" uid="uid://dhruew71f187b" path="res://assets/audio/ui/comm_start.mp3" id="22_u5mu8"]
+[ext_resource type="PackedScene" uid="uid://2j5goy468brr" path="res://hud_datapad.tscn" id="24_l0qb2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0t56c"]
 radius = 0.2
@@ -9051,6 +9052,33 @@ corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 anti_aliasing_size = 0.01
 
+[sub_resource type="Animation" id="Animation_vrksj"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.01, 1), Vector2(1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_rq8lw"]
 resource_name = "open_diag"
 length = 0.1
@@ -9074,33 +9102,6 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0.01, 1), Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_vrksj"]
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Panel:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Panel:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0.01, 1), Vector2(1, 1)]
@@ -10437,7 +10438,6 @@ camera_user = NodePath("../../../../../..")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.26823, 0)
-visible = false
 light_energy = 0.25
 light_specular = 0.0
 light_cull_mask = 4293918721
@@ -10445,9 +10445,12 @@ omni_range = 2.0
 
 [node name="HUD" parent="." index="8" instance=ExtResource("14_daw6m")]
 unique_name_in_owner = true
+process_mode = 1
 mouse_filter = 1
 
 [node name="HUD_Dialogue" type="Control" parent="HUD" index="6"]
+unique_name_in_owner = true
+process_mode = 1
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -10645,6 +10648,10 @@ unique_name_in_owner = true
 cull_mask = 512
 fov = 37.8493
 
+[node name="HUD_Datapad" parent="HUD" index="8" instance=ExtResource("24_l0qb2")]
+unique_name_in_owner = true
+layout_mode = 1
+
 [node name="MapMarker" type="MeshInstance3D" parent="." index="9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 layers = 512
@@ -10652,6 +10659,7 @@ sorting_offset = 5.0
 mesh = SubResource("CapsuleMesh_il3ic")
 
 [node name="VisorText" type="Label3D" parent="." index="10"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44452, 0.23526)
 layers = 1024
 billboard = 1
@@ -10663,6 +10671,7 @@ outline_modulate = Color(5.77569e-07, 0.210334, 0.139322, 1)
 text = "<User Detected>"
 font = SubResource("FontFile_1314y")
 outline_size = 2
+horizontal_alignment = 0
 vertical_alignment = 2
 
 [node name="VisorCube" type="MeshInstance3D" parent="VisorText" index="0"]

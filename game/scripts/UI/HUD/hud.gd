@@ -1,6 +1,7 @@
 class_name HUD extends Control
 
-@onready var hud_dialogue: Control = $HUD_Dialogue
+@onready var hud_dialogue: HUD_Dialogue = %HUD_Dialogue
+@onready var hud_datapad: HUD_Datapad = %HUD_Datapad
 
 @onready var current_area: Label = %CurrentArea
 @onready var fade: ColorRect = %Fade
@@ -11,7 +12,10 @@ class_name HUD extends Control
 @onready var oxygen_bar: ShaderMaterial = %OxygenBar.material
 @onready var vignette: ShaderMaterial = $Vignette.material
 
+@onready var visor_text: Label3D = %VisorText
+
 var current_level : Level
+var area_name : String
 
 var can_breath : bool = true
 
@@ -30,17 +34,23 @@ func _ready() -> void:
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	visor_text.text = "<user detected> \n Oxygen Remaining: " + str(snapped(stats.oxygen, 0.01)) + "%"
 	oxygen_bar.set("shader_parameter/progress", stats.oxygen / 100)
 	oxygen_bar.set("shader_parameter/particle_speed", (stats.oxygen / 100) / 2)
 	if stats.oxygen != 100:
 		vignette.set("shader_parameter/vignette_strength", (100 - stats.oxygen) / 100)
+	else:
+		vignette.set("shader_parameter/vignette_strength", 0)
 	if stats.oxygen <= 0:
 		print("player died")
 
+	if hud_datapad.datapad_active:
+		current_area.text = "Playing: " + hud_datapad.datapad_title.text
+	else:
+		current_area.text = area_name
 
 ## Preset names for areas to clean them up for the HUD display.
 func set_area_name():
-	var area_name:String
 	match current_level.level_name:
 		"hub_area":
 			area_name = "HUB"

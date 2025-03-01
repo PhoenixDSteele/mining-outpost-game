@@ -44,6 +44,18 @@ var stored_pause_music_time : float = 0
 ## Current Song
 var current_song : String
 
+var volume_reduced : bool = false
+
+func reduce_volume():
+	if volume_reduced == false:
+		volume_reduced = true
+		music.volume_db -= 15
+
+func restore_volume():
+	if volume_reduced == true:
+		volume_reduced = false
+		music.volume_db += 15
+
 ## Current Song Syntax String List: 'main_menu', 'gameplay', 'paused', 'shop'.
 func play_music(song_name:String, play_time:float = 0, volume:float = 0) -> void:
 	current_song = song_name
