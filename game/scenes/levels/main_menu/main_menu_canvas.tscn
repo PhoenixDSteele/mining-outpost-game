@@ -2,18 +2,27 @@
 
 [ext_resource type="Script" path="res://game/scripts/main_menu/main_menu.gd" id="1_kukyf"]
 [ext_resource type="Theme" uid="uid://dtej56pljgyf2" path="res://assets/ui_theme/temp_theme.tres" id="2_lmcxa"]
-[ext_resource type="VideoStream" path="res://assets/video/bg_loop.ogv" id="3_wpcag"]
 [ext_resource type="PackedScene" uid="uid://3u6ci5l75476" path="res://core/ui/feature_button.tscn" id="4_4vemy"]
-[ext_resource type="AudioStream" uid="uid://dee2pvosg4tos" path="res://assets/audio/environmental/WE Heavy Inside Rain 1 - Looped.mp3" id="5_t1q80"]
+[ext_resource type="Texture2D" uid="uid://4u0h7r84s3tu" path="res://icon.svg" id="4_vs3ek"]
 [ext_resource type="PackedScene" uid="uid://d0jvtutoqnwm" path="res://core/ui/options_menu/options_menu.tscn" id="6_hibpx"]
+
+[sub_resource type="FontFile" id="FontFile_tmat8"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/40/0/ascent = 0.0
+cache/0/40/0/descent = 0.0
+cache/0/40/0/underline_position = 0.0
+cache/0/40/0/underline_thickness = 0.0
+cache/0/40/0/scale = 1.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_kukyf")
-
-[node name="BackgroundRain" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_t1q80")
-volume_db = -80.0
-autoplay = true
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -24,67 +33,49 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_lmcxa")
 
-[node name="BackgroundVideo" type="VideoStreamPlayer" parent="Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = -1
+anchor_right = 0.266667
 anchor_bottom = 1.0
-grow_horizontal = 2
+offset_right = -12.0
 grow_vertical = 2
-stream = ExtResource("3_wpcag")
-autoplay = true
-expand = true
-loop = true
-bus = &"SFX"
+theme_override_constants/separation = 100
+metadata/_edit_use_anchors_ = true
 
-[node name="Panel" type="Panel" parent="Control"]
-self_modulate = Color(1, 1, 1, 0.5)
-custom_minimum_size = Vector2(300, 300)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Control/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 25
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
-theme_override_constants/separation = 20
+texture = ExtResource("4_vs3ek")
 
-[node name="START_Button" parent="Control/Panel/MarginContainer/VBoxContainer" instance=ExtResource("4_4vemy")]
+[node name="START_Button" parent="Control/VBoxContainer" instance=ExtResource("4_4vemy")]
 layout_mode = 2
+theme_override_fonts/font = SubResource("FontFile_tmat8")
+theme_override_font_sizes/font_size = 40
 text = "START GAME"
 
-[node name="OPTIONS_Button" parent="Control/Panel/MarginContainer/VBoxContainer" instance=ExtResource("4_4vemy")]
+[node name="OPTIONS_Button" parent="Control/VBoxContainer" instance=ExtResource("4_4vemy")]
 layout_mode = 2
+theme_override_fonts/font = SubResource("FontFile_tmat8")
+theme_override_font_sizes/font_size = 40
 text = "OPTIONS"
 
-[node name="EXIT_Button" parent="Control/Panel/MarginContainer/VBoxContainer" instance=ExtResource("4_4vemy")]
+[node name="EXIT_Button" parent="Control/VBoxContainer" instance=ExtResource("4_4vemy")]
 layout_mode = 2
+theme_override_fonts/font = SubResource("FontFile_tmat8")
+theme_override_font_sizes/font_size = 40
 text = "EXIT"
 
-[node name="DEBUG_AREA_Button" parent="Control/Panel/MarginContainer/VBoxContainer" instance=ExtResource("4_4vemy")]
+[node name="DEBUG_AREA_Button" parent="Control/VBoxContainer" instance=ExtResource("4_4vemy")]
 layout_mode = 2
+theme_override_fonts/font = SubResource("FontFile_tmat8")
+theme_override_font_sizes/font_size = 40
 text = "Go to Debug Area"
 
 [node name="OptionsMenu" parent="." instance=ExtResource("6_hibpx")]
 visible = false
 
-[connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/START_Button" to="." method="_start_button_pressed"]
-[connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/OPTIONS_Button" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/EXIT_Button" to="." method="_exit_button_pressed"]
-[connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/DEBUG_AREA_Button" to="." method="_on_debug_area_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/START_Button" to="." method="_start_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/OPTIONS_Button" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/EXIT_Button" to="." method="_exit_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/DEBUG_AREA_Button" to="." method="_on_debug_area_button_pressed"]

@@ -10,6 +10,8 @@ class_name ScreenName extends Node3D
 
 @export var clmp : int = 2
 
+@export var reversed_moused : bool = false
+
 @onready var yaw_node: Node3D = %CamYaw
 @onready var pitch_node: Node3D = %CamPitch
 @onready var camera: Camera3D = %Camera3D
@@ -31,8 +33,12 @@ func _input(event: InputEvent) -> void:
 	if camera.current:
 		if event is InputEventMouseMotion:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-			yaw += event.relative.x * yaw_sensitivity
-			pitch += event.relative.y * pitch_sensitivity
+			if not reversed_moused:
+				yaw += event.relative.x * yaw_sensitivity
+				pitch += event.relative.y * pitch_sensitivity
+			else:
+				yaw += -event.relative.x * yaw_sensitivity
+				pitch += -event.relative.y * pitch_sensitivity
 
 ## Make menu visible, and moves camera to correct position.
 func enter_menu():

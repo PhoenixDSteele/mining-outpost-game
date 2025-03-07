@@ -4,16 +4,22 @@ class_name MainMenu extends CanvasLayer
 
 @onready var options_menu: Control = $OptionsMenu
 
+@onready var cutscene_handler: CutsceneHandler = $"../CutsceneHandler"
 
 @warning_ignore("standalone_expression") # Working correctly as intended. -Phoenix
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	# Starts Menu Music.
-	if AudioManager.current_song != "main_menu":
-		AudioManager.play_music("main_menu")
+	#if AudioManager.current_song != "main_menu":
+		#AudioManager.play_music("main_menu")
 
 ## Connected to the start button. Goes to the selected scene.
 func _start_button_pressed() -> void:
+	self.visible = false
+	cutscene_handler.start_cutscene()
+	cutscene_handler.cutscene_finished.connect(go_to_hud)
+
+func go_to_hud():
 	SceneManager.scene_change(SceneManager.level_hub_area)
 
 ## Connected to the options button. Goes to the options screen.
