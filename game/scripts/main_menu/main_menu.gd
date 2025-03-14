@@ -15,9 +15,10 @@ func _ready() -> void:
 
 ## Connected to the start button. Goes to the selected scene.
 func _start_button_pressed() -> void:
-	self.visible = false
-	cutscene_handler.start_cutscene()
-	cutscene_handler.cutscene_finished.connect(go_to_hud)
+	go_to_hud() # Swap these for testing! - Don't Forget!
+	#self.visible = false
+	#cutscene_handler.start_cutscene()
+	#cutscene_handler.cutscene_finished.connect(go_to_hud)
 
 func go_to_hud():
 	SceneManager.scene_change(SceneManager.level_hub_area)

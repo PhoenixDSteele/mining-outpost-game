@@ -27,6 +27,7 @@ class_name ZoneDoor extends Interactable
 @onready var door_name: Label3D = $DoorName
 
 func _ready() -> void:
+	animation_player.play("close_door")
 	door_name.text = ("TO: <" + target_level + " | " + "Target ID: " + str(target_door_id) + ">" +
 						"\n FROM: <" + str(get_parent().get_parent().name) + " | " + "ID: " + str(door_id) + ">" )
 

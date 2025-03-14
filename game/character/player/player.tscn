@@ -10345,6 +10345,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 1)
 [node name="SpiderSpawnCheck" type="Area3D" parent="Visual" index="4"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Visual/SpiderSpawnCheck" index="0"]
@@ -10446,6 +10447,7 @@ omni_range = 2.0
 [node name="HUD" parent="." index="8" instance=ExtResource("14_daw6m")]
 unique_name_in_owner = true
 process_mode = 1
+visible = false
 mouse_filter = 1
 
 [node name="HUD_Dialogue" type="Control" parent="HUD" index="6"]
@@ -10633,7 +10635,7 @@ stretch = true
 unique_name_in_owner = true
 handle_input_locally = false
 size = Vector2i(422, 248)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="MapCamRoot" type="Node3D" parent="HUD/3DMap/SubViewportContainer/SubViewport" index="0"]
 unique_name_in_owner = true
