@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://sv47lnemnjnc"]
 
-[ext_resource type="Script" path="res://core/ui/pause_menu/pause_screen.gd" id="1_ba3h2"]
+[ext_resource type="Script" uid="uid://exybls6fkelq" path="res://core/ui/pause_menu/pause_screen.gd" id="1_ba3h2"]
 [ext_resource type="Theme" uid="uid://dtej56pljgyf2" path="res://assets/ui_theme/temp_theme.tres" id="2_23tle"]
 [ext_resource type="PackedScene" uid="uid://3u6ci5l75476" path="res://core/ui/feature_button.tscn" id="4_qiia4"]
 [ext_resource type="PackedScene" uid="uid://d0jvtutoqnwm" path="res://core/ui/options_menu/options_menu.tscn" id="5_15wcu"]
@@ -38,8 +38,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6pqbd"]
 _data = {
-"RESET": SubResource("Animation_x85kf"),
-"slide_on_to_screen": SubResource("Animation_6238j")
+&"RESET": SubResource("Animation_x85kf"),
+&"slide_on_to_screen": SubResource("Animation_6238j")
 }
 
 [node name="PauseScreen" type="CanvasLayer"]

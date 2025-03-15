@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b11iqejgk4xcj"]
 
-[ext_resource type="Script" path="res://game/scenes/interactables/computer/email_subject_button.gd" id="1_p1t4e"]
+[ext_resource type="Script" uid="uid://c0noul02onhpr" path="res://game/scenes/interactables/computer/email_subject_button.gd" id="1_p1t4e"]
 [ext_resource type="FontFile" uid="uid://csnmcna6ln5mk" path="res://assets/fonts/Ethnocentric Rg.otf" id="1_ud70o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kmnk0"]

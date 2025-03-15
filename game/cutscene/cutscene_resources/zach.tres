@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CharPortraits" load_steps=6 format=3 uid="uid://cjrumem600maa"]
 
 [ext_resource type="Texture2D" uid="uid://wc7668w3s2rw" path="res://game/cutscene/cutscene_portraits/zachariah/zach_angry.png" id="1_dl48y"]
-[ext_resource type="Script" path="res://game/cutscene/cutscene_resources/cutscene_template.gd" id="1_gft7s"]
+[ext_resource type="Script" uid="uid://d0710x03a5o1m" path="res://game/cutscene/cutscene_resources/cutscene_template.gd" id="1_gft7s"]
 [ext_resource type="Texture2D" uid="uid://d0g43drb42jel" path="res://game/cutscene/cutscene_portraits/zachariah/zach_happy.png" id="2_3hvi4"]
 [ext_resource type="Texture2D" uid="uid://caiqncxljgkbc" path="res://game/cutscene/cutscene_portraits/zachariah/zach_confused.png" id="3_orjlh"]
 [ext_resource type="Texture2D" uid="uid://c3i4c6rr4w22k" path="res://game/cutscene/cutscene_portraits/zachariah/zach_normal.png" id="4_ru8nl"]

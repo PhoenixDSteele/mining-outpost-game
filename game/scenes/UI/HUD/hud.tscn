@@ -1,13 +1,13 @@
 [gd_scene load_steps=16 format=3 uid="uid://b3enlx341w1qs"]
 
 [ext_resource type="Theme" uid="uid://dtej56pljgyf2" path="res://assets/ui_theme/temp_theme.tres" id="1_6d38i"]
-[ext_resource type="Script" path="res://game/scripts/UI/HUD/hud.gd" id="1_7weg7"]
+[ext_resource type="Script" uid="uid://b3ojx17qep87k" path="res://game/scripts/UI/HUD/hud.gd" id="1_7weg7"]
 [ext_resource type="FontFile" uid="uid://csnmcna6ln5mk" path="res://assets/fonts/Ethnocentric Rg.otf" id="3_ralim"]
-[ext_resource type="Shader" path="res://assets/shaders/particle_bar.gdshader" id="4_fl677"]
+[ext_resource type="Shader" uid="uid://bfkp5huedrjh6" path="res://assets/shaders/particle_bar.gdshader" id="4_fl677"]
 [ext_resource type="Texture2D" uid="uid://c15euck5oia3m" path="res://assets/ui_theme/hud_v1.png" id="5_2k21j"]
-[ext_resource type="Shader" path="res://assets/shaders/crt_vhs.gdshader" id="5_hu6yv"]
+[ext_resource type="Shader" uid="uid://dpt2c6c5u62ic" path="res://assets/shaders/crt_vhs.gdshader" id="5_hu6yv"]
 [ext_resource type="Texture2D" uid="uid://dgxv116d4g8fm" path="res://assets/ui_theme/hud_v1_powered.png" id="6_oroeq"]
-[ext_resource type="Shader" path="res://assets/shaders/vignette.gdshader" id="8_5ipvx"]
+[ext_resource type="Shader" uid="uid://bbdqp22c833t3" path="res://assets/shaders/vignette.gdshader" id="8_5ipvx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eb5jf"]
 shader = ExtResource("8_5ipvx")
@@ -62,6 +62,7 @@ gradient = SubResource("Gradient_h8lol")
 shader = ExtResource("4_fl677")
 shader_parameter/progress = 0.5
 shader_parameter/background_color = Color(0, 0, 0, 0.2)
+shader_parameter/color_gradient = SubResource("GradientTexture2D_egvsn")
 shader_parameter/wave_amplitude = 0.005
 shader_parameter/wave_frequency = 2.0
 shader_parameter/wave_speed = 1.0
@@ -74,7 +75,6 @@ shader_parameter/particle_start_scale = Vector2(0.015, 0.2)
 shader_parameter/particle_end_scale = Vector2(0.008, 0.1)
 shader_parameter/particle_scale_randomness = 0.5
 shader_parameter/particle_amount = 20
-shader_parameter/color_gradient = SubResource("GradientTexture2D_egvsn")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_61w5a"]
 

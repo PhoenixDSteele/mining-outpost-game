@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CharPortraits" load_steps=6 format=3 uid="uid://cue01jdjv7swk"]
 
 [ext_resource type="Texture2D" uid="uid://ckpjos0qlmoqo" path="res://game/cutscene/cutscene_portraits/pavlov/pavlov_angry.png" id="1_jglwj"]
-[ext_resource type="Script" path="res://game/cutscene/cutscene_resources/cutscene_template.gd" id="1_up2ra"]
+[ext_resource type="Script" uid="uid://d0710x03a5o1m" path="res://game/cutscene/cutscene_resources/cutscene_template.gd" id="1_up2ra"]
 [ext_resource type="Texture2D" uid="uid://do4dvgptwlfw1" path="res://game/cutscene/cutscene_portraits/pavlov/pavlov_happy.png" id="2_450ak"]
 [ext_resource type="Texture2D" uid="uid://g2eaaw6kog8d" path="res://game/cutscene/cutscene_portraits/pavlov/pavlov_confused.png" id="3_sefqp"]
 [ext_resource type="Texture2D" uid="uid://bb7utxc5vlci" path="res://game/cutscene/cutscene_portraits/pavlov/pavlov_normal.png" id="4_bapbx"]

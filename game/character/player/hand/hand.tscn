@@ -1,12 +1,12 @@
 [gd_scene load_steps=13 format=3 uid="uid://bjjt0afr84kt0"]
 
 [ext_resource type="PackedScene" uid="uid://ce6q280vssji4" path="res://assets/models/characters/player/hand.glb" id="1_k5nuj"]
-[ext_resource type="Script" path="res://game/character/player/hand_controller.gd" id="2_8wuot"]
-[ext_resource type="Script" path="res://game/character/player/hand/start_ik.gd" id="2_ked5p"]
-[ext_resource type="Script" path="res://game/character/player/hand/ik_target.gd" id="4_luyn5"]
+[ext_resource type="Script" uid="uid://dywwjcdfhw6k" path="res://game/character/player/hand_controller.gd" id="2_8wuot"]
+[ext_resource type="Script" uid="uid://pkdqjranfrds" path="res://game/character/player/hand/start_ik.gd" id="2_ked5p"]
+[ext_resource type="Script" uid="uid://cqupxm3ut0gbw" path="res://game/character/player/hand/ik_target.gd" id="4_luyn5"]
 [ext_resource type="PackedScene" uid="uid://b20fckocvf0xf" path="res://game/character/player/camera/player_camera.tscn" id="4_xfxa6"]
-[ext_resource type="Script" path="res://game/character/player/hand/step_ray.gd" id="5_5kged"]
-[ext_resource type="Script" path="res://game/character/player/hand/step_target_container.gd" id="5_xd6he"]
+[ext_resource type="Script" uid="uid://2wklyj56s8jy" path="res://game/character/player/hand/step_ray.gd" id="5_5kged"]
+[ext_resource type="Script" uid="uid://i5q8u36fjc16" path="res://game/character/player/hand/step_target_container.gd" id="5_xd6he"]
 [ext_resource type="AudioStream" uid="uid://bxblvxod0u7nn" path="res://assets/audio/sfx/hand_step.mp3" id="8_53vak"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r30vu"]

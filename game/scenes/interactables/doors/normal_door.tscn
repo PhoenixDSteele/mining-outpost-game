@@ -1,8 +1,8 @@
 [gd_scene load_steps=20 format=4 uid="uid://dr038k11r1a4h"]
 
-[ext_resource type="Script" path="res://game/scripts/interactable/doors/normal_door.gd" id="1_62071"]
+[ext_resource type="Script" uid="uid://db526dff23jka" path="res://game/scripts/interactable/doors/normal_door.gd" id="1_62071"]
 [ext_resource type="AudioStream" uid="uid://dj10gsc4fvlea" path="res://assets/audio/sfx/S_Sliding_Future_Door_Open.wav" id="2_cegxl"]
-[ext_resource type="Script" path="res://game/scripts/object_components/powered.gd" id="2_of6uv"]
+[ext_resource type="Script" uid="uid://ddrpdsdq2ph2c" path="res://game/scripts/object_components/powered.gd" id="2_of6uv"]
 [ext_resource type="AudioStream" uid="uid://2sruocolw06x" path="res://assets/audio/sfx/S_Sliding_Future_Door_Close.wav" id="3_6x5wx"]
 [ext_resource type="AudioStream" uid="uid://b6aoqryx4rx2x" path="res://assets/audio/sfx/S_Door_Locked.wav" id="4_lowci"]
 [ext_resource type="Texture2D" uid="uid://dsovyxbtx5gfa" path="res://assets/environment/scenery/door_001_texture_atlas_001.png" id="6_3umg3"]
@@ -128,9 +128,9 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_omime"]
 _data = {
-"RESET": SubResource("Animation_ofxnh"),
-"close_door": SubResource("Animation_6vi6h"),
-"open_door": SubResource("Animation_72qpt")
+&"RESET": SubResource("Animation_ofxnh"),
+&"close_door": SubResource("Animation_6vi6h"),
+&"open_door": SubResource("Animation_72qpt")
 }
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_c2u1h"]

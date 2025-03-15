@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=4 uid="uid://b2kfr3fjuompc"]
 
-[ext_resource type="Script" path="res://game/cutscene/cutscene_body.gd" id="1_3v7h0"]
+[ext_resource type="Script" uid="uid://brxltpivrk662" path="res://game/cutscene/cutscene_body.gd" id="1_3v7h0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ou01m"]
 
@@ -12251,23 +12251,23 @@ tracks/97/keys = PackedFloat32Array(0, 1, 0, -1.49012e-08, 0)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o6l5d"]
 _data = {
-"activate_spider_hand": SubResource("Animation_1c2jb"),
-"crash_animation": SubResource("Animation_e2e38"),
-"default": SubResource("Animation_4cfyg"),
-"falling": SubResource("Animation_hpbf5"),
-"float": SubResource("Animation_vqbay"),
-"hand_out_idle": SubResource("Animation_bq3ed"),
-"hard_landing": SubResource("Animation_5j7qm"),
-"idle": SubResource("Animation_5e6vy"),
-"jump_start": SubResource("Animation_64pmh"),
-"jump_up": SubResource("Animation_nb1gj"),
-"ledge_climb": SubResource("Animation_ggjnl"),
-"ledge_grab": SubResource("Animation_4h66i"),
-"run": SubResource("Animation_gre7m"),
-"sitting_flying": SubResource("Animation_bo1ht"),
-"sitting_typing": SubResource("Animation_l1bnq"),
-"soft_landing": SubResource("Animation_o8wwj"),
-"walk": SubResource("Animation_r2lbu")
+&"activate_spider_hand": SubResource("Animation_1c2jb"),
+&"crash_animation": SubResource("Animation_e2e38"),
+&"default": SubResource("Animation_4cfyg"),
+&"falling": SubResource("Animation_hpbf5"),
+&"float": SubResource("Animation_vqbay"),
+&"hand_out_idle": SubResource("Animation_bq3ed"),
+&"hard_landing": SubResource("Animation_5j7qm"),
+&"idle": SubResource("Animation_5e6vy"),
+&"jump_start": SubResource("Animation_64pmh"),
+&"jump_up": SubResource("Animation_nb1gj"),
+&"ledge_climb": SubResource("Animation_ggjnl"),
+&"ledge_grab": SubResource("Animation_4h66i"),
+&"run": SubResource("Animation_gre7m"),
+&"sitting_flying": SubResource("Animation_bo1ht"),
+&"sitting_typing": SubResource("Animation_l1bnq"),
+&"soft_landing": SubResource("Animation_o8wwj"),
+&"walk": SubResource("Animation_r2lbu")
 }
 
 [node name="CutsceneBody" type="Node3D"]

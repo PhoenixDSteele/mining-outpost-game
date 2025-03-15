@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://stn485b8nnuy"]
 
-[ext_resource type="Script" path="res://game/scenes/levels/main_menu/cutscene_handler.gd" id="1_1nyfl"]
-[ext_resource type="Script" path="res://game/cutscene/cutscene_hud.gd" id="2_wsr4m"]
+[ext_resource type="Script" uid="uid://nys8hwytgfvq" path="res://game/scenes/levels/main_menu/cutscene_handler.gd" id="1_1nyfl"]
+[ext_resource type="Script" uid="uid://ddknoiboysurs" path="res://game/cutscene/cutscene_hud.gd" id="2_wsr4m"]
 [ext_resource type="Texture2D" uid="uid://4u0h7r84s3tu" path="res://icon.svg" id="3_n4jrp"]
 
 [sub_resource type="Animation" id="Animation_mjdsw"]
@@ -97,11 +97,11 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uhubt"]
 _data = {
-"RESET": SubResource("Animation_mjdsw"),
-"fade_in_bars": SubResource("Animation_kw33m"),
-"fade_in_diag": SubResource("Animation_leolp"),
-"fade_out_bars": SubResource("Animation_88ujd"),
-"fade_out_diag": SubResource("Animation_reawe")
+&"RESET": SubResource("Animation_mjdsw"),
+&"fade_in_bars": SubResource("Animation_kw33m"),
+&"fade_in_diag": SubResource("Animation_leolp"),
+&"fade_out_bars": SubResource("Animation_88ujd"),
+&"fade_out_diag": SubResource("Animation_reawe")
 }
 
 [node name="CutsceneHandler" type="Node"]

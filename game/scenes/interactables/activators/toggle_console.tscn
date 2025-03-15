@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=4 uid="uid://dupla3kuq3qf0"]
 
-[ext_resource type="Script" path="res://game/scenes/interactables/activators/toggle_console.gd" id="1_i5m6c"]
-[ext_resource type="Script" path="res://game/scripts/object_components/powered.gd" id="2_xun2i"]
+[ext_resource type="Script" uid="uid://wbnlqief22kh" path="res://game/scenes/interactables/activators/toggle_console.gd" id="1_i5m6c"]
+[ext_resource type="Script" uid="uid://ddrpdsdq2ph2c" path="res://game/scripts/object_components/powered.gd" id="2_xun2i"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_stb5a"]
 points = PackedVector3Array(0.375608, 0.0912621, -0.971989, 0.375608, -0.102621, -1.37224, 0.375608, 0.290998, -1.06817, 0.282221, 0.319544, 0.00416899, 0.290162, -0.111779, 0.00416899, 0.303251, -0.133982, -1.43741, 0.375608, 0.0971143, -1.46857, 0.357666, 0.28041, -1.09015, 0.292736, 0.310073, -1.02859, 0.303251, 0.322358, -1.003, -0.282294, 0.319544, 0.00416899, -0.290236, -0.111779, 0.00416899, 0.253469, -0.117274, -0.220566, -0.303325, -0.133982, -1.43741, 0.303251, 0.0424785, -1.52246, 0.303251, 0.0657088, -1.5336, -0.357739, 0.28041, -1.09015, 0.292736, 0.0780387, -1.50816, -0.29281, 0.310073, -1.02859, -0.303325, 0.322358, -1.003, -0.375608, 0.290998, -1.06817, -0.375608, 0.0912621, -0.971989, -0.253543, -0.117274, -0.220566, -0.375608, -0.102621, -1.37224, -0.375608, 0.0971143, -1.46857, -0.303325, 0.0424785, -1.52246, -0.303325, 0.0657088, -1.5336, -0.29281, 0.0780387, -1.50816)

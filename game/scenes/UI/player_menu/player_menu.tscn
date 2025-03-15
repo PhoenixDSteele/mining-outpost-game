@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://bq5ggtlx3irif"]
 
-[ext_resource type="Script" path="res://game/scripts/UI/player_menu/player_menu.gd" id="1_4olg0"]
+[ext_resource type="Script" uid="uid://cd0vy0tdp8a1s" path="res://game/scripts/UI/player_menu/player_menu.gd" id="1_4olg0"]
 [ext_resource type="PackedScene" uid="uid://bpoh2c6b0lro4" path="res://game/scenes/UI/player_menu/information_screen.tscn" id="2_e2mv3"]
-[ext_resource type="Shader" path="res://assets/shaders/crt_vhs.gdshader" id="3_5er60"]
+[ext_resource type="Shader" uid="uid://dpt2c6c5u62ic" path="res://assets/shaders/crt_vhs.gdshader" id="3_5er60"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_rjvcv"]
 size = Vector2(4, 2.5)

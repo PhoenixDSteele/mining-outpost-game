@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dhtfci4mdigt0"]
 
-[ext_resource type="Script" path="res://game/scenes/levels/debug/trigger_zone.gd" id="1_25rks"]
+[ext_resource type="Script" uid="uid://bvskpe6f86vke" path="res://game/scenes/levels/debug/trigger_zone.gd" id="1_25rks"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ttgdp"]
 size = Vector3(1, 2, 3)

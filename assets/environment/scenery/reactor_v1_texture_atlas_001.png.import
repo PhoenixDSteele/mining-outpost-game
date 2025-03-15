@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxtde4r7bkkge"
+uid="uid://clyks53ncx3xy"
 path.s3tc="res://.godot/imported/reactor_v1_texture_atlas_001.png-caa03b4803ddc95873cf1cda9c08da40.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "719c88246ad4d3fd634108703bf6cbed"
 }
 
 [deps]

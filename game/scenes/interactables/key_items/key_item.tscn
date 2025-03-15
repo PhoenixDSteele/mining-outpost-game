@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://baq4gd5fw1htt"]
 
-[ext_resource type="Script" path="res://game/scripts/interactable/key_item/key_item.gd" id="1_6gh1l"]
-[ext_resource type="Script" path="res://game/scenes/interactables/keypad/rotating_mesh.gd" id="2_43i20"]
+[ext_resource type="Script" uid="uid://dsbhgl10foa78" path="res://game/scripts/interactable/key_item/key_item.gd" id="1_6gh1l"]
+[ext_resource type="Script" uid="uid://eg80h0wm1d77" path="res://game/scenes/interactables/keypad/rotating_mesh.gd" id="2_43i20"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s6iry"]
 size = Vector3(0.35, 0.35, 0.35)

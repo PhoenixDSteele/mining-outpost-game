@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dq43nutt8nmo1"]
 
-[ext_resource type="Script" path="res://game/character/components/grapple/cable.gd" id="1_q71xe"]
+[ext_resource type="Script" uid="uid://bqgc4f8o8p1wk" path="res://game/character/components/grapple/cable.gd" id="1_q71xe"]
 
 [node name="Cable" type="Node3D"]
 script = ExtResource("1_q71xe")

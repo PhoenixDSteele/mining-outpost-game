@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://2j5goy468brr"]
 
-[ext_resource type="Script" path="res://game/character/player/hud_datapad.gd" id="1_5i8po"]
+[ext_resource type="Script" uid="uid://deq4tuanpd04g" path="res://game/character/player/hud_datapad.gd" id="1_5i8po"]
 [ext_resource type="FontFile" uid="uid://csnmcna6ln5mk" path="res://assets/fonts/Ethnocentric Rg.otf" id="2_3r3wx"]
 [ext_resource type="AudioStream" uid="uid://cgtgopxrm147r" path="res://assets/audio/ui/DataPad_Open.wav" id="3_xq13r"]
 
@@ -402,8 +402,8 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ano4j"]
 _data = {
-"RESET": SubResource("Animation_o1ni1"),
-"open_pad": SubResource("Animation_qjgo8")
+&"RESET": SubResource("Animation_o1ni1"),
+&"open_pad": SubResource("Animation_qjgo8")
 }
 
 [node name="HUD_Datapad" type="Control"]

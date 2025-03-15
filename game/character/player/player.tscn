@@ -2,27 +2,27 @@
 
 [ext_resource type="PackedScene" uid="uid://r0rsvd7xkcoh" path="res://game/character/body_base.tscn" id="1_heyne"]
 [ext_resource type="PackedScene" uid="uid://buxi3fgts6clp" path="res://game/character/components/grapple/grapple.tscn" id="2_6rfct"]
-[ext_resource type="Script" path="res://game/character/components/player_controller.gd" id="2_lusoa"]
-[ext_resource type="Script" path="res://game/character/components/states/common/idle.gd" id="3_3npd5"]
+[ext_resource type="Script" uid="uid://bcuqsmf1kyj4m" path="res://game/character/components/player_controller.gd" id="2_lusoa"]
+[ext_resource type="Script" uid="uid://c1x0p4to4gae" path="res://game/character/components/states/common/idle.gd" id="3_3npd5"]
 [ext_resource type="Animation" uid="uid://87kaa5lg4qw1" path="res://assets/models/characters/player/player_animations/activate_spider_hand.res" id="3_210mq"]
 [ext_resource type="Animation" uid="uid://yxw6ieh6fgd0" path="res://assets/models/characters/player/player_animations/hand_out_idle.res" id="4_1qnsk"]
-[ext_resource type="Script" path="res://game/character/components/states/common/movement.gd" id="4_gfeqp"]
-[ext_resource type="Script" path="res://game/character/components/states/common/fall.gd" id="5_gjswa"]
-[ext_resource type="Script" path="res://game/character/components/states/common/jump.gd" id="6_vlmxj"]
-[ext_resource type="Script" path="res://game/character/player/camera/player_camera.gd" id="7_h0o73"]
-[ext_resource type="Script" path="res://game/character/components/states/common/ledgehang.gd" id="7_ysduw"]
+[ext_resource type="Script" uid="uid://b8w5gg6ged01h" path="res://game/character/components/states/common/movement.gd" id="4_gfeqp"]
+[ext_resource type="Script" uid="uid://c8louh1dqda8a" path="res://game/character/components/states/common/fall.gd" id="5_gjswa"]
+[ext_resource type="Script" uid="uid://cldidieuulqxo" path="res://game/character/components/states/common/jump.gd" id="6_vlmxj"]
+[ext_resource type="Script" uid="uid://d3u8w4rt40dx" path="res://game/character/player/camera/player_camera.gd" id="7_h0o73"]
+[ext_resource type="Script" uid="uid://1y4jo4ii8kui" path="res://game/character/components/states/common/ledgehang.gd" id="7_ysduw"]
 [ext_resource type="PackedScene" uid="uid://ckdrpe78mknwr" path="res://game/character/player/camera/interaction_ray.tscn" id="8_wnmaa"]
 [ext_resource type="PackedScene" uid="uid://dfgxhc1ypxt24" path="res://game/character/player/climb_checker.tscn" id="10_8mwll"]
-[ext_resource type="Script" path="res://game/character/components/states/common/spider_hand_out.gd" id="11_3piow"]
+[ext_resource type="Script" uid="uid://bkefoad0otso6" path="res://game/character/components/states/common/spider_hand_out.gd" id="11_3piow"]
 [ext_resource type="PackedScene" uid="uid://bq5ggtlx3irif" path="res://game/scenes/UI/player_menu/player_menu.tscn" id="11_h0okq"]
-[ext_resource type="Script" path="res://game/character/components/ui_controller.gd" id="11_x6r1t"]
+[ext_resource type="Script" uid="uid://1ew4as2ufi1x" path="res://game/character/components/ui_controller.gd" id="11_x6r1t"]
 [ext_resource type="PackedScene" uid="uid://b3enlx341w1qs" path="res://game/scenes/UI/HUD/hud.tscn" id="14_daw6m"]
 [ext_resource type="Texture2D" uid="uid://35ggn51r1rf1" path="res://assets/ui_theme/map_frame_v1.png" id="18_5ceet"]
-[ext_resource type="Script" path="res://game/character/player/hud_dialogue.gd" id="19_l2y8v"]
+[ext_resource type="Script" uid="uid://b3oa4t42o88p6" path="res://game/character/player/hud_dialogue.gd" id="19_l2y8v"]
 [ext_resource type="Texture2D" uid="uid://7a2mhtba21cc" path="res://assets/portraits/portrait_shronk.png" id="20_5omhn"]
 [ext_resource type="FontFile" uid="uid://csnmcna6ln5mk" path="res://assets/fonts/Ethnocentric Rg.otf" id="20_fia20"]
 [ext_resource type="AudioStream" uid="uid://g85cykgro1m5" path="res://assets/audio/ui/Static_Loop.mp3" id="21_ailb5"]
-[ext_resource type="Script" path="res://game/scenes/interactables/keypad/rotating_mesh.gd" id="22_4ijxm"]
+[ext_resource type="Script" uid="uid://eg80h0wm1d77" path="res://game/scenes/interactables/keypad/rotating_mesh.gd" id="22_4ijxm"]
 [ext_resource type="AudioStream" uid="uid://dhruew71f187b" path="res://assets/audio/ui/comm_start.mp3" id="22_u5mu8"]
 [ext_resource type="PackedScene" uid="uid://2j5goy468brr" path="res://hud_datapad.tscn" id="24_l0qb2"]
 
@@ -8758,20 +8758,20 @@ tracks/96/keys = PackedFloat32Array(0, 1, 0, -1.49012e-08, 0)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qlfmk"]
 _data = {
-"activate_spider_hand": ExtResource("3_210mq"),
-"default": SubResource("Animation_t1m3v"),
-"falling": SubResource("Animation_0ug7m"),
-"float": SubResource("Animation_fa86y"),
-"hand_out_idle": ExtResource("4_1qnsk"),
-"hard_landing": SubResource("Animation_pmv3g"),
-"idle": SubResource("Animation_ou3m4"),
-"jump_start": SubResource("Animation_jeh2i"),
-"jump_up": SubResource("Animation_keanv"),
-"ledge_climb": SubResource("Animation_nf8j5"),
-"ledge_grab": SubResource("Animation_yrksu"),
-"run": SubResource("Animation_xm68m"),
-"soft_landing": SubResource("Animation_b7dv3"),
-"walk": SubResource("Animation_g4qgo")
+&"activate_spider_hand": ExtResource("3_210mq"),
+&"default": SubResource("Animation_t1m3v"),
+&"falling": SubResource("Animation_0ug7m"),
+&"float": SubResource("Animation_fa86y"),
+&"hand_out_idle": ExtResource("4_1qnsk"),
+&"hard_landing": SubResource("Animation_pmv3g"),
+&"idle": SubResource("Animation_ou3m4"),
+&"jump_start": SubResource("Animation_jeh2i"),
+&"jump_up": SubResource("Animation_keanv"),
+&"ledge_climb": SubResource("Animation_nf8j5"),
+&"ledge_grab": SubResource("Animation_yrksu"),
+&"run": SubResource("Animation_xm68m"),
+&"soft_landing": SubResource("Animation_b7dv3"),
+&"walk": SubResource("Animation_g4qgo")
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w0ikw"]
@@ -9109,8 +9109,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6ey26"]
 _data = {
-"RESET": SubResource("Animation_vrksj"),
-"open_diag": SubResource("Animation_rq8lw")
+&"RESET": SubResource("Animation_vrksj"),
+&"open_diag": SubResource("Animation_rq8lw")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vwfxd"]

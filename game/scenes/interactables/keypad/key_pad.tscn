@@ -1,17 +1,17 @@
 [gd_scene load_steps=26 format=4 uid="uid://beb6lip5hi5lo"]
 
 [ext_resource type="Theme" uid="uid://dtej56pljgyf2" path="res://assets/ui_theme/temp_theme.tres" id="1_jx01b"]
-[ext_resource type="Script" path="res://game/scenes/interactables/keypad/key_pad_screen.gd" id="1_ske8h"]
+[ext_resource type="Script" uid="uid://dgcfmmtc1ewba" path="res://game/scenes/interactables/keypad/key_pad_screen.gd" id="1_ske8h"]
 [ext_resource type="FontFile" uid="uid://csnmcna6ln5mk" path="res://assets/fonts/Ethnocentric Rg.otf" id="2_pxk0c"]
-[ext_resource type="Shader" path="res://assets/shaders/crt_vhs.gdshader" id="2_tex6b"]
-[ext_resource type="Script" path="res://game/scripts/object_components/powered.gd" id="2_uid2s"]
+[ext_resource type="Shader" uid="uid://dpt2c6c5u62ic" path="res://assets/shaders/crt_vhs.gdshader" id="2_tex6b"]
+[ext_resource type="Script" uid="uid://ddrpdsdq2ph2c" path="res://game/scripts/object_components/powered.gd" id="2_uid2s"]
 [ext_resource type="Texture2D" uid="uid://m6138c3nudqw" path="res://assets/environment/scenery/keypad_texture_atlas_001.png" id="2_xmy0d"]
-[ext_resource type="Script" path="res://game/scenes/interactables/keypad/keypad.gd" id="3_o0qet"]
-[ext_resource type="Script" path="res://game/scenes/UI/screen_button.gd" id="4_ttjlp"]
+[ext_resource type="Script" uid="uid://ce7or7l6j8i0m" path="res://game/scenes/interactables/keypad/keypad.gd" id="3_o0qet"]
+[ext_resource type="Script" uid="uid://clh3ejedhsjw8" path="res://game/scenes/UI/screen_button.gd" id="4_ttjlp"]
 [ext_resource type="AudioStream" uid="uid://c8ap70ijjomlr" path="res://assets/audio/sfx/screen_sounds/keypad_clicked.wav" id="5_s28up"]
 [ext_resource type="PackedScene" uid="uid://ciw14m13fy8j6" path="res://game/scenes/interactables/keypad/screen_camera.tscn" id="5_u8exo"]
 [ext_resource type="AudioStream" uid="uid://c2mtiwh1jir6y" path="res://assets/audio/sfx/screen_sounds/del_keypad.wav" id="7_xs3xt"]
-[ext_resource type="Script" path="res://game/scenes/interactables/keypad/rotating_mesh.gd" id="12_wqxm7"]
+[ext_resource type="Script" uid="uid://eg80h0wm1d77" path="res://game/scenes/interactables/keypad/rotating_mesh.gd" id="12_wqxm7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bidcn"]
 size = Vector3(0.415955, 0.516907, 0.19104)

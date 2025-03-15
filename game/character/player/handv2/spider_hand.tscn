@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=4 uid="uid://dl5kmm06rr82v"]
 
-[ext_resource type="Script" path="res://game/character/player/handv2/spider_hand.gd" id="1_jf6yu"]
+[ext_resource type="Script" uid="uid://w54ny3jeeg2r" path="res://game/character/player/handv2/spider_hand.gd" id="1_jf6yu"]
 [ext_resource type="PackedScene" uid="uid://b20fckocvf0xf" path="res://game/character/player/camera/player_camera.tscn" id="2_72s5d"]
 [ext_resource type="Texture2D" uid="uid://ct6rmm57guujv" path="res://assets/models/characters/player/handv2/hand_v2_hand_texture.png" id="3_ytv15"]
 [ext_resource type="AudioStream" uid="uid://bxblvxod0u7nn" path="res://assets/audio/sfx/hand_step.mp3" id="4_3wd26"]
@@ -1338,11 +1338,11 @@ tracks/33/keys = PackedFloat32Array(0, 1, 0.0481889, 2.62817e-05, -0.998823, 0.0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dxtib"]
 _data = {
-"default": SubResource("Animation_b2sim"),
-"fall": SubResource("Animation_wpg8r"),
-"idle": SubResource("Animation_ijodl"),
-"jump_up": SubResource("Animation_10bdi"),
-"walk": SubResource("Animation_utldj")
+&"default": SubResource("Animation_b2sim"),
+&"fall": SubResource("Animation_wpg8r"),
+&"idle": SubResource("Animation_ijodl"),
+&"jump_up": SubResource("Animation_10bdi"),
+&"walk": SubResource("Animation_utldj")
 }
 
 [sub_resource type="Shader" id="Shader_aaqk6"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=4 uid="uid://bhijhscc5lduk"]
 
-[ext_resource type="Script" path="res://game/scripts/interactable/doors/zone_door.gd" id="1_3xmmv"]
+[ext_resource type="Script" uid="uid://ctlwx6k6m3cyk" path="res://game/scripts/interactable/doors/zone_door.gd" id="1_3xmmv"]
 [ext_resource type="AudioStream" uid="uid://dj10gsc4fvlea" path="res://assets/audio/sfx/S_Sliding_Future_Door_Open.wav" id="2_q15bh"]
 [ext_resource type="AudioStream" uid="uid://2sruocolw06x" path="res://assets/audio/sfx/S_Sliding_Future_Door_Close.wav" id="3_fqiej"]
 [ext_resource type="AudioStream" uid="uid://b6aoqryx4rx2x" path="res://assets/audio/sfx/S_Door_Locked.wav" id="4_wscmw"]
@@ -94,9 +94,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4w42h"]
 _data = {
-"RESET": SubResource("Animation_jabor"),
-"close_door": SubResource("Animation_hfqi6"),
-"open_door": SubResource("Animation_cr8fq")
+&"RESET": SubResource("Animation_jabor"),
+&"close_door": SubResource("Animation_hfqi6"),
+&"open_door": SubResource("Animation_cr8fq")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bm45r"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ca74yjlkaqv87"]
 
-[ext_resource type="Script" path="res://core/scene_manager/loading_screen/loading_screen.gd" id="1_3f8pw"]
+[ext_resource type="Script" uid="uid://fqu3t34g7qad" path="res://core/scene_manager/loading_screen/loading_screen.gd" id="1_3f8pw"]
 
 [sub_resource type="Animation" id="Animation_dgq1h"]
 length = 0.001
@@ -51,9 +51,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4imew"]
 _data = {
-"RESET": SubResource("Animation_dgq1h"),
-"fade_in": SubResource("Animation_mwk3e"),
-"fade_out": SubResource("Animation_fh0rd")
+&"RESET": SubResource("Animation_dgq1h"),
+&"fade_in": SubResource("Animation_mwk3e"),
+&"fade_out": SubResource("Animation_fh0rd")
 }
 
 [node name="LoadingScreen" type="CanvasLayer"]

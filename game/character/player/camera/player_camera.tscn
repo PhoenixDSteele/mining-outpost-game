@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b20fckocvf0xf"]
 
-[ext_resource type="Script" path="res://game/character/player/camera/player_camera.gd" id="1_4sxyx"]
+[ext_resource type="Script" uid="uid://d3u8w4rt40dx" path="res://game/character/player/camera/player_camera.gd" id="1_4sxyx"]
 [ext_resource type="PackedScene" uid="uid://ckdrpe78mknwr" path="res://game/character/player/camera/interaction_ray.tscn" id="2_aujkq"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_me3pq"]

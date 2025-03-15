@@ -14376,23 +14376,23 @@ tracks/116/keys = PackedFloat32Array(0, 1, -5.78364e-07, 10.3293, 5.30996e-07)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_awxvk"]
 _data = {
-"Armature_002|mixamo_com|Layer0": SubResource("Animation_efeoo"),
-"Armature_002|mixamo_com|Layer0_001": SubResource("Animation_66rwx"),
-"Armature_007|mixamo_com|Layer0": SubResource("Animation_rl7bp"),
-"Armature_008|mixamo_com|Layer0": SubResource("Animation_schw0"),
-"Armature|mixamo_com|Layer0": SubResource("Animation_3eudo"),
-"climb_up": SubResource("Animation_x66sg"),
-"default": SubResource("Animation_xid6r"),
-"fall": SubResource("Animation_htw87"),
-"hard_landing": SubResource("Animation_dosy6"),
-"idle": SubResource("Animation_bamnd"),
-"jog": SubResource("Animation_ib1r4"),
-"jump_up": SubResource("Animation_qbhi8"),
-"landing": SubResource("Animation_qkmty"),
-"ledge_hang": SubResource("Animation_4oele"),
-"sdsds": SubResource("Animation_njpi3"),
-"sprint": SubResource("Animation_xn5uf"),
-"walk": SubResource("Animation_uuchu")
+&"Armature_002|mixamo_com|Layer0": SubResource("Animation_efeoo"),
+&"Armature_002|mixamo_com|Layer0_001": SubResource("Animation_66rwx"),
+&"Armature_007|mixamo_com|Layer0": SubResource("Animation_rl7bp"),
+&"Armature_008|mixamo_com|Layer0": SubResource("Animation_schw0"),
+&"Armature|mixamo_com|Layer0": SubResource("Animation_3eudo"),
+&"climb_up": SubResource("Animation_x66sg"),
+&"default": SubResource("Animation_xid6r"),
+&"fall": SubResource("Animation_htw87"),
+&"hard_landing": SubResource("Animation_dosy6"),
+&"idle": SubResource("Animation_bamnd"),
+&"jog": SubResource("Animation_ib1r4"),
+&"jump_up": SubResource("Animation_qbhi8"),
+&"landing": SubResource("Animation_qkmty"),
+&"ledge_hang": SubResource("Animation_4oele"),
+&"sdsds": SubResource("Animation_njpi3"),
+&"sprint": SubResource("Animation_xn5uf"),
+&"walk": SubResource("Animation_uuchu")
 }
 
 [node name="tom" type="Node3D"]
