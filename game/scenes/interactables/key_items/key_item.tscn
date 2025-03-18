@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://baq4gd5fw1htt"]
+[gd_scene load_steps=12 format=3 uid="uid://baq4gd5fw1htt"]
 
 [ext_resource type="Script" uid="uid://dsbhgl10foa78" path="res://game/scripts/interactable/key_item/key_item.gd" id="1_6gh1l"]
 [ext_resource type="Script" uid="uid://eg80h0wm1d77" path="res://game/scenes/interactables/keypad/rotating_mesh.gd" id="2_43i20"]
+[ext_resource type="Shader" uid="uid://bx46t8pedlsbq" path="res://assets/shaders/hologram.gdshader" id="2_tjcmq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s6iry"]
 size = Vector3(0.35, 0.35, 0.35)
@@ -43,14 +44,24 @@ cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ad5b8"]
-transparency = 1
-no_depth_test = true
-albedo_color = Color(0, 1, 0.718, 0.6)
-emission = Color(0, 1, 0.717647, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r754p"]
+render_priority = 0
+shader = ExtResource("2_tjcmq")
+shader_parameter/line_color = Color(0, 1, 0.718, 1)
+shader_parameter/line_width = 0.005
+shader_parameter/line_blur = 0.2
+shader_parameter/line_speed = 0.02
+shader_parameter/straight_lines = false
+shader_parameter/interrupt_width = 0.5
+shader_parameter/interrupt_blur = 0.25
+shader_parameter/interrupt_speed = 0.2
+shader_parameter/glow_color = Color(0.5, 0.75, 1, 1)
+shader_parameter/glow_itensity = 4.5
+shader_parameter/glow_amount = 4.5
+shader_parameter/flickering = 0.55
 
 [sub_resource type="BoxMesh" id="BoxMesh_lqxuv"]
-material = SubResource("StandardMaterial3D_ad5b8")
+material = SubResource("ShaderMaterial_r754p")
 flip_faces = true
 size = Vector3(0.1, 0.1, 0.1)
 

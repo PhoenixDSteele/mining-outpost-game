@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://beb6lip5hi5lo"]
+[gd_scene load_steps=27 format=4 uid="uid://beb6lip5hi5lo"]
 
 [ext_resource type="Theme" uid="uid://dtej56pljgyf2" path="res://assets/ui_theme/temp_theme.tres" id="1_jx01b"]
 [ext_resource type="Script" uid="uid://dgcfmmtc1ewba" path="res://game/scenes/interactables/keypad/key_pad_screen.gd" id="1_ske8h"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://c8ap70ijjomlr" path="res://assets/audio/sfx/screen_sounds/keypad_clicked.wav" id="5_s28up"]
 [ext_resource type="PackedScene" uid="uid://ciw14m13fy8j6" path="res://game/scenes/interactables/keypad/screen_camera.tscn" id="5_u8exo"]
 [ext_resource type="AudioStream" uid="uid://c2mtiwh1jir6y" path="res://assets/audio/sfx/screen_sounds/del_keypad.wav" id="7_xs3xt"]
+[ext_resource type="Shader" uid="uid://bx46t8pedlsbq" path="res://assets/shaders/hologram.gdshader" id="12_6o78p"]
 [ext_resource type="Script" uid="uid://eg80h0wm1d77" path="res://game/scenes/interactables/keypad/rotating_mesh.gd" id="12_wqxm7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bidcn"]
@@ -137,14 +138,24 @@ cache/0/32/0/underline_position = 0.0
 cache/0/32/0/underline_thickness = 0.0
 cache/0/32/0/scale = 1.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gov66"]
-transparency = 1
-no_depth_test = true
-albedo_color = Color(0, 1, 0.718, 0.6)
-emission = Color(0, 1, 0.717647, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e6jbv"]
+render_priority = 0
+shader = ExtResource("12_6o78p")
+shader_parameter/line_color = Color(0, 1, 0.718, 1)
+shader_parameter/line_width = 0.005
+shader_parameter/line_blur = 0.2
+shader_parameter/line_speed = 0.02
+shader_parameter/straight_lines = false
+shader_parameter/interrupt_width = 0.5
+shader_parameter/interrupt_blur = 0.25
+shader_parameter/interrupt_speed = 0.2
+shader_parameter/glow_color = Color(0.5, 0.75, 1, 1)
+shader_parameter/glow_itensity = 4.5
+shader_parameter/glow_amount = 4.5
+shader_parameter/flickering = 0.55
 
 [sub_resource type="BoxMesh" id="BoxMesh_bk1lv"]
-material = SubResource("StandardMaterial3D_gov66")
+material = SubResource("ShaderMaterial_e6jbv")
 flip_faces = true
 size = Vector3(0.1, 0.1, 0.1)
 
@@ -257,8 +268,8 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
-theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 1, 0.717647, 1)
+theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
 theme_override_fonts/font = ExtResource("2_pxk0c")
 theme_override_font_sizes/font_size = 96
 text = "1"
@@ -282,8 +293,8 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
-theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 1, 0.717647, 1)
+theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
 theme_override_fonts/font = ExtResource("2_pxk0c")
 theme_override_font_sizes/font_size = 96
 text = "2"
@@ -307,8 +318,8 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
-theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 1, 0.717647, 1)
+theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
 theme_override_fonts/font = ExtResource("2_pxk0c")
 theme_override_font_sizes/font_size = 96
 text = "3"
@@ -332,8 +343,8 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
-theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 1, 0.717647, 1)
+theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
 theme_override_fonts/font = ExtResource("2_pxk0c")
 theme_override_font_sizes/font_size = 96
 text = "4"
@@ -357,8 +368,8 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
-theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 1, 0.717647, 1)
+theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
 theme_override_fonts/font = ExtResource("2_pxk0c")
 theme_override_font_sizes/font_size = 96
 text = "5"
@@ -382,8 +393,8 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
-theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 1, 0.717647, 1)
+theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
 theme_override_fonts/font = ExtResource("2_pxk0c")
 theme_override_font_sizes/font_size = 96
 text = "6"
@@ -407,8 +418,8 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
-theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 1, 0.717647, 1)
+theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
 theme_override_fonts/font = ExtResource("2_pxk0c")
 theme_override_font_sizes/font_size = 96
 text = "7"
@@ -432,8 +443,8 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
-theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 1, 0.717647, 1)
+theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
 theme_override_fonts/font = ExtResource("2_pxk0c")
 theme_override_font_sizes/font_size = 96
 text = "8"
@@ -457,8 +468,8 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
-theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 1, 0.717647, 1)
+theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
 theme_override_fonts/font = ExtResource("2_pxk0c")
 theme_override_font_sizes/font_size = 96
 text = "9"
@@ -482,8 +493,8 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
-theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 1, 0.717647, 1)
+theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
 theme_override_fonts/font = ExtResource("2_pxk0c")
 theme_override_font_sizes/font_size = 45
 text = "×
@@ -508,8 +519,8 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
-theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 1, 0.717647, 1)
+theme_override_colors/font_pressed_color = Color(0.639216, 0.396078, 0, 1)
 theme_override_fonts/font = ExtResource("2_pxk0c")
 theme_override_font_sizes/font_size = 96
 text = "0"
@@ -535,8 +546,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 theme_override_colors/font_hover_color = Color(0.988235, 0.611765, 0, 1)
-theme_override_colors/font_pressed_color = Color(0.64, 0.394667, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 1, 0.717647, 1)
+theme_override_colors/font_pressed_color = Color(0.64, 0.394667, 0, 1)
 theme_override_fonts/font = ExtResource("2_pxk0c")
 theme_override_font_sizes/font_size = 45
 text = "▲
