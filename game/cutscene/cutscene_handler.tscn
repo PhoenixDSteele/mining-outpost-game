@@ -1,8 +1,59 @@
-[gd_scene load_steps=10 format=3 uid="uid://stn485b8nnuy"]
+[gd_scene load_steps=20 format=3 uid="uid://stn485b8nnuy"]
 
 [ext_resource type="Script" uid="uid://nys8hwytgfvq" path="res://game/scenes/levels/main_menu/cutscene_handler.gd" id="1_1nyfl"]
 [ext_resource type="Script" uid="uid://ddknoiboysurs" path="res://game/cutscene/cutscene_hud.gd" id="2_wsr4m"]
-[ext_resource type="Texture2D" uid="uid://4u0h7r84s3tu" path="res://icon.svg" id="3_n4jrp"]
+[ext_resource type="Shader" uid="uid://bp2sfqrwxxjev" path="res://assets/shaders/aurora.gdshader" id="3_b5eoa"]
+[ext_resource type="FontFile" uid="uid://ido1dfwi4qjo" path="res://assets/fonts/BIOSfontII.ttf" id="3_m4yso"]
+[ext_resource type="Texture2D" uid="uid://d0xeb0gm51l6a" path="res://assets/shaders/bubbles.png" id="4_eat8f"]
+[ext_resource type="Texture2D" uid="uid://bnto0plb68526" path="res://game/cutscene/cutscene_portraits/zachariah/zacha.png" id="4_t3l4s"]
+[ext_resource type="Shader" uid="uid://dpt2c6c5u62ic" path="res://assets/shaders/crt_vhs.gdshader" id="5_t3l4s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ofcj"]
+shader = ExtResource("3_b5eoa")
+shader_parameter/bottom_color = Color(0, 0, 0, 0.8)
+shader_parameter/top_color = Color(0, 0.5, 0.5, 0.101961)
+shader_parameter/tex = ExtResource("4_eat8f")
+shader_parameter/layer_count = 5
+shader_parameter/time_scale = 0.2
+shader_parameter/base_intensity = 0.3
+shader_parameter/size = 0.02001
+
+[sub_resource type="FontVariation" id="FontVariation_t3l4s"]
+base_font = ExtResource("3_m4yso")
+
+[sub_resource type="Theme" id="Theme_b5eoa"]
+Label/fonts/font = SubResource("FontVariation_t3l4s")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m4yso"]
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 200
+anti_aliasing = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b5eoa"]
+shader = ExtResource("5_t3l4s")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(150, 200)
+shader_parameter/pixelate = false
+shader_parameter/roll = true
+shader_parameter/roll_speed = 0.2
+shader_parameter/roll_size = 25.0
+shader_parameter/roll_variation = 3.0
+shader_parameter/distort_intensity = 0.01
+shader_parameter/noise_opacity = 0.2
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.3
+shader_parameter/aberration = 4.75e-08
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.0
 
 [sub_resource type="Animation" id="Animation_mjdsw"]
 length = 0.001
@@ -30,6 +81,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%TalkerPortrait:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-96, 200)]
+}
 
 [sub_resource type="Animation" id="Animation_kw33m"]
 resource_name = "fade_in_bars"
@@ -49,7 +112,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_leolp"]
 resource_name = "fade_in_diag"
-length = 0.2
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -95,13 +158,30 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_m4yso"]
+resource_name = "move_portrait_in"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%TalkerPortrait:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-96, 200), Vector2(-96, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uhubt"]
 _data = {
 &"RESET": SubResource("Animation_mjdsw"),
 &"fade_in_bars": SubResource("Animation_kw33m"),
 &"fade_in_diag": SubResource("Animation_leolp"),
 &"fade_out_bars": SubResource("Animation_88ujd"),
-&"fade_out_diag": SubResource("Animation_reawe")
+&"fade_out_diag": SubResource("Animation_reawe"),
+&"move_portrait_in": SubResource("Animation_m4yso")
 }
 
 [node name="CutsceneHandler" type="Node"]
@@ -145,6 +225,7 @@ color = Color(0, 0, 0, 1)
 [node name="diag_box" type="Panel" parent="CutsceneHUD"]
 unique_name_in_owner = true
 visible = false
+material = SubResource("ShaderMaterial_8ofcj")
 custom_minimum_size = Vector2(900, 200)
 anchors_preset = 7
 anchor_left = 0.5
@@ -157,6 +238,8 @@ offset_right = 450.0
 offset_bottom = -65.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = SubResource("Theme_b5eoa")
+theme_override_styles/panel = SubResource("StyleBoxFlat_m4yso")
 
 [node name="MarginContainer2" type="MarginContainer" parent="CutsceneHUD/diag_box"]
 layout_mode = 1
@@ -177,7 +260,51 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "Press <E> To Continue"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CutsceneHUD/diag_box"]
+[node name="TalkerPortrait" type="TextureRect" parent="CutsceneHUD/diag_box"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 2
+offset_left = -96.0
+offset_top = 200.0
+offset_right = 54.0
+offset_bottom = 400.0
+texture = ExtResource("4_t3l4s")
+expand_mode = 1
+
+[node name="ColorRect2" type="ColorRect" parent="CutsceneHUD/diag_box/TalkerPortrait"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -44.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 0.5)
+
+[node name="Speaker" type="Label" parent="CutsceneHUD/diag_box/TalkerPortrait"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.975
+anchor_right = 0.5
+anchor_bottom = 0.975
+offset_left = -69.5
+offset_top = -28.0
+offset_right = 69.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 28
+text = "ZACHARIAH"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="CutsceneHUD/diag_box/TalkerPortrait"]
+material = SubResource("ShaderMaterial_b5eoa")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -185,30 +312,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TalkerPortrait" type="TextureRect" parent="CutsceneHUD/diag_box/HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 200)
-layout_mode = 2
-texture = ExtResource("3_n4jrp")
-expand_mode = 1
-
-[node name="Speaker" type="Label" parent="CutsceneHUD/diag_box/HBoxContainer/TalkerPortrait"]
-unique_name_in_owner = true
+[node name="HBoxContainer" type="HBoxContainer" parent="CutsceneHUD/diag_box"]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -34.0
-offset_top = -32.0
-offset_right = 34.0
-offset_bottom = -9.0
 grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "SPEAKER"
+grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CutsceneHUD/diag_box/HBoxContainer"]
 custom_minimum_size = Vector2(750, 0)
@@ -224,6 +334,9 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(700, 140)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
 theme_override_font_sizes/font_size = 24
 text = "We’re almost there. I’ll bring up a sensor projection. We’re almost there. I’ll bring up a sensor projection. We’re almost there. I’ll bring up a sensor projection. "
 autowrap_mode = 2
@@ -231,7 +344,7 @@ autowrap_mode = 2
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CutsceneHUD"]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_uhubt")
+&"": SubResource("AnimationLibrary_uhubt")
 }
 
 [node name="DialogueAudio" type="AudioStreamPlayer" parent="."]

@@ -16,10 +16,11 @@ var can_continue : bool = false
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and can_continue:
 		push_cutscene.emit()
-		anim.play("fade_in_diag")
 		print("attempted cutscene push")
 
 func update_information(portrait:Texture2D, speaker_name: String, dialogue:String, diag_audio:AudioStream = null):
+	if speaker_name != speaker.text:
+		anim.play("move_portrait_in")
 	continue_txt.visible = false
 	can_continue = false
 	talker_portrait.texture = portrait

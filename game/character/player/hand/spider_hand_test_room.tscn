@@ -62,3 +62,5 @@ use_collision = true
 size = Vector3(2, 30, 30)
 
 [node name="hand" parent="." instance=ExtResource("1_u8qgg")]
+move_speed = 0.8
+turn_speed = 0.8

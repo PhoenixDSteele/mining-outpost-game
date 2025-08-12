@@ -10343,6 +10343,7 @@ mesh = SubResource("SphereMesh_l1d6k")
 
 [node name="BoneAttachmentGrapple" type="BoneAttachment3D" parent="Visual/greygoober_combined/metarig/Skeleton3D" index="2"]
 transform = Transform3D(0.0237859, -0.0385967, 0.998972, 0.295138, -0.954446, -0.0439037, 0.955159, 0.295878, -0.0113109, -0.274209, 1.01027, -0.00623291)
+visible = false
 bone_name = "palm.01.R"
 bone_idx = 126
 

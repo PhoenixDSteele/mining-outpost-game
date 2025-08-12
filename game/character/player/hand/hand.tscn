@@ -31,11 +31,9 @@ height = 0.02
 [node name="hand" instance=ExtResource("1_k5nuj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0545753, 0)
 script = ExtResource("2_8wuot")
-move_speed = 1.0
-ground_offset = 0.055
 
 [node name="Hand_001" parent="." index="0"]
-transform = Transform3D(-8.74228e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.74228e-09, 0, 0, -0.006)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.006)
 
 [node name="PlayerCamera" parent="Hand_001" index="0" instance=ExtResource("4_xfxa6")]
 transform = Transform3D(-2.73196e-08, 0, 0.625, 0, 0.625, 0, -0.625, 0, -2.73196e-08, 0, 0.399059, 0)

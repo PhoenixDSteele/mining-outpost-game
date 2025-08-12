@@ -78,8 +78,8 @@ func load_scene() -> void:
 		loaded_level.spawn_at_door(next_door_id)
 	if loaded_level.level_music != "":
 		if loaded_level.level_music != AudioManager.current_song:
-			AudioManager.play_music(loaded_level.level_music)
-		
+			AudioManager.play_music(AudLib.song.get(loaded_level.level_music))
+	
 	scene_change_finished()
 
 ## Uses built in signal for the timer node.

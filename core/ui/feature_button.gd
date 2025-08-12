@@ -8,9 +8,16 @@ class_name FeatureButton extends Button
 @export var clickedSoundModifier : float = -5.0
 
 func highlighted() -> void:
+	self.text = "<" + self.text + ">"
 	if useHighlightSound == true:
-		AudioManager.play_UI_sound("highlight", highlightSoundModifier)
+		AudioManager.play_UI_sound(AudLib.ui.highlight)
 
 func clicked() -> void:
 	if useHighlightSound == true:
-		AudioManager.play_UI_sound("clicked", clickedSoundModifier)
+		AudioManager.play_UI_sound(AudLib.ui.clicked, clickedSoundModifier)
+
+
+func _on_mouse_exited() -> void:
+	self.text = self.text.lstrip("<")
+	self.text = self.text.rstrip(">")
+	self.release_focus()

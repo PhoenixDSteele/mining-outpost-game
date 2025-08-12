@@ -1,0 +1,38 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cahsqxrfq4smg"]
+
+[ext_resource type="FontFile" uid="uid://ido1dfwi4qjo" path="res://assets/fonts/BIOSfontII.ttf" id="1_lfbbl"]
+
+[sub_resource type="FontVariation" id="FontVariation_lfbbl"]
+base_font = ExtResource("1_lfbbl")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rgj84"]
+bg_color = Color(0, 0, 0, 0.5)
+border_width_left = 50
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+expand_margin_left = 20.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nookb"]
+bg_color = Color(0, 0, 0, 0.5)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+expand_margin_left = 20.0
+expand_margin_right = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8dh7k"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 50
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+expand_margin_left = 20.0
+
+[resource]
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/fonts/font = SubResource("FontVariation_lfbbl")
+Button/styles/focus = SubResource("StyleBoxFlat_rgj84")
+Button/styles/hover = SubResource("StyleBoxFlat_nookb")
+Button/styles/normal = SubResource("StyleBoxFlat_8dh7k")
+Button/styles/pressed = SubResource("StyleBoxFlat_rgj84")

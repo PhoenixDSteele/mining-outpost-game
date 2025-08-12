@@ -27,12 +27,12 @@ const MANUAL_POWER_OPTION = preload("res://game/scenes/UI/debug/manual_power_opt
 ## Pauses the game when it's instantiated in.
 func _ready() -> void:
 	# Plays swoosh sound for menu.
-	AudioManager.play_UI_sound("swoosh")
+	AudioManager.play_UI_sound(AudLib.ui.swoosh)
 	
 	# Starts Menu Music.
 	stored_music_time = AudioManager.music.get_playback_position()
 	stored_song = AudioManager.current_song
-	AudioManager.play_music("paused", AudioManager.stored_pause_music_time)
+	AudioManager.play_music(AudLib.song.pause_theme, AudioManager.stored_pause_music_time)
 	
 	get_tree().paused = true
 	animation_player.play("slide_on_to_screen")

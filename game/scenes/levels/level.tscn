@@ -35,6 +35,8 @@ unique_name_in_owner = true
 
 [node name="LevelMapGeometry" type="Node" parent="."]
 
+[node name="Cutscenes" type="Node" parent="."]
+
 [node name="Triggers" type="Node" parent="."]
 
 [node name="ManualSpawnLocation" type="Marker3D" parent="."]

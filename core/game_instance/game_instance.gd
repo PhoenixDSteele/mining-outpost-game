@@ -13,6 +13,9 @@ var powered_areas : Dictionary = {
 	"mine_a_floor_1": false
 }
 
+## Key Items
+var batteries : float = 0
+
 ## Searches dictionary for the area provided, and sets it's power state.
 func toggle_area_power(area_name:String, powered_state:bool):
 	if powered_areas.has(area_name):
@@ -20,5 +23,8 @@ func toggle_area_power(area_name:String, powered_state:bool):
 		if SceneManager.current_scene == area_name:
 			SceneManager.loaded_level.check_powered_objects()
 
-## Key Items
-var batteries : float = 0
+## [Active, Finished]
+var story_trigger_progression : Dictionary = {
+	"hub_exposition" : [true, false],
+	"back_from_living_area" : [true, false],
+}
